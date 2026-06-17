@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Devesh Sahu — Developer Portfolio
 
 Portfolio built with React (Vite), Tailwind CSS, Framer Motion and React Router.
@@ -37,3 +38,6 @@ Messages will now be sent to `deveshsahu567@gmail.com`.
 - This repo is a starter scaffold with pages: Home, About, Projects, Skills, Contact.
 - Add `resume.pdf` to the public root to enable resume download.
 - Replace placeholder images in `src/assets/` with real screenshots.
+=======
+# Portfolio-
+>>>>>>> 8d24eae1504628a79f452c363dc3d619577da0b2
