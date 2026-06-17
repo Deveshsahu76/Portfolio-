@@ -83,11 +83,11 @@ export default function Contact(){
 
   return (
     <div className="pt-24">
-      <div className="grid gap-6 xl:grid-cols-[1.5fr_1fr] items-start">
+      <div className="grid gap-8 xl:grid-cols-[1.5fr_1fr] items-start">
         <div className="space-y-4">
           <p className="text-sm uppercase tracking-[0.3em] text-primary">Get in touch</p>
-          <h1 className="text-4xl md:text-5xl font-semibold text-white">Let’s build something impactful together.</h1>
-          <p className="text-slate-400 max-w-2xl leading-8">Send a message with your requirements, internship interest, or collaboration ideas. I’ll get back to you promptly with a thoughtful response.</p>
+          <h1 className="text-3xl md:text-4xl font-semibold text-white">Let’s build something impactful together.</h1>
+          <p className="text-slate-400 max-w-full md:max-w-2xl leading-8">Send a message with your requirements, internship interest, or collaboration ideas. I’ll get back to you promptly with a thoughtful response.</p>
 
           <div className="grid gap-4 md:grid-cols-2">
             <div className="glass p-5 rounded-3xl border border-white/10 shadow-[0_25px_80px_-40px_rgba(99,102,241,0.45)]">
@@ -129,7 +129,7 @@ export default function Contact(){
       </div>
 
       <div className="mt-10 grid gap-8 lg:grid-cols-[1.25fr_0.9fr]">
-        <form onSubmit={handleSubmit} className="glass p-8 rounded-[2rem] border border-white/10 shadow-2xl shadow-slate-950/15">
+        <form onSubmit={handleSubmit} className="glass p-6 md:p-8 rounded-[2rem] border border-white/10 shadow-2xl shadow-slate-950/15">
           <div className="grid gap-6">
             {status && (
               <div className={`rounded-3xl border p-4 text-sm ${status.type === 'success' ? 'border-emerald-400/30 bg-emerald-400/10 text-emerald-100' : 'border-rose-400/30 bg-rose-400/10 text-rose-100'}`}>

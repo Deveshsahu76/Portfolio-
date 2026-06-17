@@ -4,7 +4,7 @@ import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
 
 export default function LeftSidebar(){
   return (
-    <aside className="hidden md:flex flex-col fixed left-4 top-1/3 z-50 items-center gap-4">
+    <aside className="hidden lg:flex flex-col fixed left-4 top-1/3 z-50 items-center gap-4">
       <nav className="flex flex-col items-center gap-4">
         <NavLink to="/" className={({isActive})=> isActive? 'text-white':'text-slate-400'}>Home</NavLink>
         <NavLink to="/about" className={({isActive})=> isActive? 'text-white':'text-slate-400'}>About</NavLink>

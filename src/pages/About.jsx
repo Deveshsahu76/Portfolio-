@@ -9,9 +9,9 @@ export default function About(){
   ]
 
   return (
-    <div className="pt-20">
-      <motion.div initial={{opacity:0, y:10}} animate={{opacity:1,y:0}} className="grid md:grid-cols-3 gap-6">
-        <div className="md:col-span-2">
+    <div className="pt-24">
+      <motion.div initial={{opacity:0, y:10}} animate={{opacity:1,y:0}} className="grid gap-8 lg:grid-cols-[2fr_1fr]">
+        <div>
           <h1 className="text-3xl font-bold">About Me</h1>
           <p className="text-slate-300 mt-4">Hi, I'm <strong>Devesh Sahu</strong>, a <strong>B.Tech Information Technology student</strong> at <strong>Kanpur Institute of Technology (AKTU)</strong> from <strong>Raebareli, Uttar Pradesh</strong>. I'm an aspiring <strong>Full-Stack Developer</strong> passionate about building impactful digital solutions through clean, scalable code and thoughtful product design.</p>
 
