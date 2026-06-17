@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --bg:#0b1020;
+  --bg-alt:#05060a;
+  --glass: rgba(255,255,255,0.06);
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+}
+
+html.light {
+  --bg: #f3f4f6;
+  --bg-alt: #ebebf0;
+  --glass: rgba(0,0,0,0.06);
+  --text-primary: #1a202c;
+  --text-secondary: #4a5568;
+}
+
+html,body,#root{
+  height:100%;
+  background: linear-gradient(180deg, var(--bg-alt) 0%, var(--bg) 100%);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.light body,
+html.light #root {
+  background: linear-gradient(180deg, #ebebf0 0%, #f3f4f6 100%);
+}
+
+/* Custom glass card */
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+html.light .glass {
+  background: rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.12);
+}
+
+/* Light mode text color overrides */
+html.light .text-slate-200 { color: #334155; }
+html.light .text-slate-300 { color: #475569; }
+html.light .text-slate-400 { color: #64748b; }
+html.light .text-white { color: #0f172a; }
+
+/* Custom cursor */
+.custom-cursor { cursor: none; }
+
+/* Simple animated gradient bg */
+.animated-bg {
+  background: linear-gradient(90deg, rgba(124,58,237,0.15), rgba(6,182,212,0.08));
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+}
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
