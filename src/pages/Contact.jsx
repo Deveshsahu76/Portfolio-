@@ -17,8 +17,18 @@ export default function Contact(){
   const [sending, setSending] = useState(false)
 
   useEffect(() => {
+    let isMounted = true
+
     if(isEmailJSConfigured) {
-      emailjs.init(EMAILJS_PUBLIC_KEY)
+      try {
+        emailjs.init(EMAILJS_PUBLIC_KEY)
+      } catch (error) {
+        console.error('EmailJS init failed:', error)
+      }
+    }
+
+    return () => {
+      isMounted = false
     }
   }, [])
 
@@ -67,7 +77,7 @@ export default function Contact(){
         }
       )
 
-      if(response.status === 200){
+      if(response?.status === 200){
         setStatus({ type:'success', message: 'Your message has been sent successfully. I will reply soon.' })
         setForm({ name:'', email:'', message:'' })
       } else {
