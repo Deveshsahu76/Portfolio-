@@ -22,7 +22,7 @@ const projects = [
     title: 'E-Commerce Store',
     description: 'Full-stack e-commerce platform with product management, carts, and order tracking.',
     tech: ['React.js','Node.js','Express','MongoDB','Redux','JWT'],
-    github: '#',
+    github: 'https://github.com/Deveshsahu76/ecommerce-store',
     demo: '#',
     image: '/src/assets/placeholder-3.png'
   }
