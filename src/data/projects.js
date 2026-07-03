@@ -1,3 +1,7 @@
+import zerodhaDashboard from '../assets/projects/Zerodha-Dashboard.png'
+import zerodhaHoldings from '../assets/projects/Zerodha-Holdings.png'
+import zerodhaHomepage from '../assets/projects/Zerodha-homepage.png'
+
 const projects = [
   {
     id: 'zerodha',
@@ -14,7 +18,8 @@ const projects = [
     tech: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'Bootstrap'],
     github: 'https://github.com/Deveshsahu76/zerodha-clone-',
     demo: 'https://zerodha-clone-frontend-7qlg.onrender.com/',
-    image: '',
+    image: zerodhaDashboard,
+    images: [zerodhaDashboard, zerodhaHomepage, zerodhaHoldings],
   },
   {
     id: 'ecommerce',
