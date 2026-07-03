@@ -18,8 +18,8 @@ const projects = [
     tech: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'Bootstrap'],
     github: 'https://github.com/Deveshsahu76/zerodha-clone-',
     demo: 'https://zerodha-clone-frontend-7qlg.onrender.com/',
-    image: zerodhaDashboard,
-    images: [zerodhaDashboard, zerodhaHomepage, zerodhaHoldings],
+    image: zerodhaHomepage,
+    images: [zerodhaHomepage, zerodhaDashboard, zerodhaHoldings],
   },
   {
     id: 'ecommerce',

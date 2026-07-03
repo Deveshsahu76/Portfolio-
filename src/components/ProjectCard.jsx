@@ -90,6 +90,7 @@ export default function ProjectCard({ project, compact = false }) {
           <span className="rounded-full bg-violet-100 px-3 py-1 text-xs font-black text-violet-700 dark:bg-violet-500/15 dark:text-violet-200">
             {project.type}
           </span>
+
           <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-black text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-200">
             {project.status}
           </span>
