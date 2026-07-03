@@ -1,6 +1,6 @@
 import zerodhaDashboard from '../assets/projects/Zerodha-Dashboard.png'
 import zerodhaHoldings from '../assets/projects/Zerodha-Holdings.png'
-import zerodhaHomepage from '../assets/projects/Zerodha-homepage.png'
+import zerodhaHomepage from '../assets/projects/Zerodha-Homepage.png'
 
 const projects = [
   {
