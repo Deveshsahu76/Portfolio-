@@ -1,6 +1,7 @@
 import zerodhaDashboard from '../assets/projects/Zerodha-Dashboard.png'
 import zerodhaHoldings from '../assets/projects/Zerodha-Holdings.png'
-import zerodhaHomepage from '../assets/projects/Zerodha-homepage.png'
+import zerodhaHomepage from '../assets/projects/Zerodha-Homepage.png'
+import ecommerceHomepage from '../assets/projects/ecommerceHomepage.png'
 
 const projects = [
   {
@@ -25,18 +26,19 @@ const projects = [
     id: 'ecommerce',
     title: 'E-Commerce Store',
     type: 'MERN App',
-    status: 'Featured',
+    status: 'Live',
     description:
-      'A full-stack e-commerce application with product listing, authentication, cart flow, order management and payment-ready architecture.',
+      'A full-stack e-commerce platform with authentication, product listing, cart management, orders and payment-ready architecture.',
     features: [
-      'Login/signup and user flow',
-      'Product listing, cart and order tracking',
-      'Admin and payment integration-ready structure',
+      'User authentication and protected routes',
+      'Product listing, cart and order flow',
+      'Admin/payment integration-ready structure',
     ],
     tech: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Redux', 'JWT'],
     github: 'https://github.com/Deveshsahu76/ecommerce-store',
-    demo: '',
-    image: '',
+    demo: 'https://e-commerce-nu-bay.vercel.app/',
+    image: ecommerceHomepage,
+    images: [ecommerceHomepage],
   },
   {
     id: 'vcs',
