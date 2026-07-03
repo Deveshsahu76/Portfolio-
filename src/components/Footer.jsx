@@ -1,27 +1,21 @@
 import React from 'react'
-import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from 'react-icons/fa'
+import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa'
 
-export default function Footer(){
+export default function Footer() {
   return (
-    <footer className="border-t border-white/5 mt-12 py-6">
-      <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="text-slate-400 text-sm">© {new Date().getFullYear()} Devesh Sahu</div>
+    <footer className="border-t border-slate-900/10 px-4 py-7 dark:border-white/10">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 text-sm font-semibold text-slate-600 dark:text-slate-400 sm:flex-row">
+        <p>© 2026 Devesh Sahu</p>
 
-        <div className="flex items-center gap-4">
-          <a href="https://github.com/Deveshsahu76" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white flex items-center gap-2">
-            <FaGithub /> <span className="hidden md:inline">GitHub</span>
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          <a href="https://github.com/Deveshsahu76" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-violet-600">
+            <FaGithub /> GitHub
           </a>
-
-          <a href="https://www.linkedin.com/in/devesh-sahu-560608270/" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white flex items-center gap-2">
-            <FaLinkedin /> <span className="hidden md:inline">LinkedIn</span>
+          <a href="https://www.linkedin.com/in/devesh-sahu-560608270/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-violet-600">
+            <FaLinkedin /> LinkedIn
           </a>
-
-          <a href="https://www.instagram.com/devesh_0075?igsh=enpzZDY4Y3ZqbnBz" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white flex items-center gap-2">
-            <FaInstagram /> <span className="hidden md:inline">Instagram</span>
-          </a>
-
-          <a href="mailto:deveshsahu567@gmail.com" className="text-slate-400 hover:text-white flex items-center gap-2">
-            <FaEnvelope /> <span className="hidden md:inline">Email</span>
+          <a href="mailto:deveshsahu567@gmail.com" className="inline-flex items-center gap-2 hover:text-violet-600">
+            <FaEnvelope /> Email
           </a>
         </div>
       </div>

@@ -1,32 +1,26 @@
-import React, {useEffect, useState} from 'react'
-import { FiSun, FiMoon } from 'react-icons/fi'
+import React, { useEffect, useState } from 'react'
+import { FiMoon, FiSun } from 'react-icons/fi'
 
-export default function ThemeToggle(){
+export default function ThemeToggle() {
   const [dark, setDark] = useState(() => {
-    if(typeof window === 'undefined') return true
-    try{
-      const stored = localStorage.getItem('theme')
-      if(stored) return stored === 'dark'
-      return window.matchMedia('(prefers-color-scheme: dark)').matches
-    }catch(e){return true}
+    const saved = localStorage.getItem('theme')
+    if (saved) return saved === 'dark'
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
   })
 
-  useEffect(()=>{
-    const root = document.documentElement
-    if(dark){
-      root.classList.add('dark')
-      root.classList.remove('light')
-      localStorage.setItem('theme','dark')
-    }else{
-      root.classList.remove('dark')
-      root.classList.add('light')
-      localStorage.setItem('theme','light')
-    }
-  },[dark])
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', dark)
+    localStorage.setItem('theme', dark ? 'dark' : 'light')
+  }, [dark])
 
   return (
-    <button onClick={()=>setDark(!dark)} className="p-2 rounded-md bg-white/5 hover:bg-white/10 transition" aria-label={`Switch to ${dark? 'light':'dark'} mode`}>
-      {dark? <FiSun size={18}/> : <FiMoon size={18}/>}
+    <button
+      type="button"
+      onClick={() => setDark((prev) => !prev)}
+      className="grid h-11 w-11 place-items-center rounded-full border border-slate-900/10 bg-white/70 text-slate-800 shadow-sm backdrop-blur-xl transition hover:-translate-y-1 hover:border-violet-400 hover:text-violet-600 dark:border-white/10 dark:bg-white/5 dark:text-white"
+      aria-label="Toggle theme"
+    >
+      {dark ? <FiSun size={18} /> : <FiMoon size={18} />}
     </button>
   )
 }

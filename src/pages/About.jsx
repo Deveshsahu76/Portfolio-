@@ -1,60 +1,106 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
-export default function About(){
-  const timeline = [
-    {year:'2023', title:'College Journey Begins', desc:'Joined Kanpur Institute of Technology (AKTU) — B.Tech IT.'},
-    {year:'2023-24', title:'Full-Stack Development', desc:'Built Zerodha Clone, Version Control System, E-Commerce Platform.'},
-    {year:'2024', title:'Hackathons & Leadership', desc:'Participated in national hackathons; Organized "Hack to Learn".'}
-  ]
+const timeline = [
+  {
+    year: '2023',
+    title: 'B.Tech IT Journey',
+    desc: 'Started Bachelor of Technology in Information Technology at Kanpur Institute of Technology.',
+  },
+  {
+    year: '2024-25',
+    title: 'Full-Stack Development',
+    desc: 'Built MERN projects including Zerodha Clone, E-Commerce Store and Web Version Control System.',
+  },
+  {
+    year: '2026',
+    title: 'Internship Focus',
+    desc: 'Improving DSA, fundamentals and applying for Software Development / Full-Stack internships.',
+  },
+]
 
+const focus = [
+  'Building scalable MERN stack applications with clean architecture.',
+  'Improving DSA, DBMS, OS and software engineering fundamentals.',
+  'Creating recruiter-ready projects with live demos and strong documentation.',
+]
+
+export default function About() {
   return (
-    <div className="pt-24">
-      <motion.div initial={{opacity:0, y:10}} animate={{opacity:1,y:0}} className="grid gap-8 lg:grid-cols-[2fr_1fr]">
-        <div>
-          <h1 className="text-3xl font-bold">About Me</h1>
-          <p className="text-slate-300 mt-4">Hi, I'm <strong>Devesh Sahu</strong>, a <strong>B.Tech Information Technology student</strong> at <strong>Kanpur Institute of Technology (AKTU)</strong> from <strong>Raebareli, Uttar Pradesh</strong>. I'm an aspiring <strong>Full-Stack Developer</strong> passionate about building impactful digital solutions through clean, scalable code and thoughtful product design.</p>
+    <section className="section-container">
+      <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+        <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
+          <p className="text-sm font-black uppercase tracking-[0.3em] text-violet-600 dark:text-violet-300">
+            About
+          </p>
 
-          <p className="text-slate-300 mt-4">I specialize in <strong>React.js, Node.js, Express.js, MongoDB, JavaScript, SQL, Docker, and Kubernetes</strong>. I've built projects such as a <strong>Zerodha Clone</strong>, a <strong>Version Control System</strong>, and an <strong>E‑Commerce Platform</strong>, gaining hands-on experience with REST APIs, authentication systems, database design, and deployment workflows.</p>
+          <h1 className="mt-3 text-4xl font-black tracking-tight text-slate-950 dark:text-white sm:text-5xl">
+            About Me
+          </h1>
 
-          <h2 className="mt-8 text-2xl font-semibold">Experience & Activities</h2>
-          <p className="text-slate-400 mt-2">I actively participate in national-level hackathons, collaborating with teams to deliver innovative solutions under tight deadlines. These events have sharpened my problem-solving, teamwork, and communication skills.</p>
+          <div className="mt-7 space-y-5 text-lg leading-8 text-slate-600 dark:text-slate-400">
+            <p>
+              I’m <strong className="text-slate-950 dark:text-white">Devesh Sahu</strong>, a B.Tech Information
+              Technology student and MERN Stack Developer focused on building clean, responsive and scalable web
+              applications.
+            </p>
 
-          <p className="text-slate-400 mt-2">I also contribute to the tech community through leadership roles — I organized <strong>"Hack to Learn"</strong>, an online hackathon focused on student learning and collaboration, and I serve as the <strong>Technical Coordinator of Aviothic 2.0</strong>, where I help run technical events and foster innovation on campus.</p>
+            <p>
+              I have built projects like <strong className="text-slate-950 dark:text-white">Zerodha Clone</strong>,{' '}
+              <strong className="text-slate-950 dark:text-white">E-Commerce Store</strong> and{' '}
+              <strong className="text-slate-950 dark:text-white">Web Version Control System</strong> using React.js,
+              Node.js, Express.js, MongoDB, JWT and REST APIs.
+            </p>
 
-          <h2 className="mt-8 text-2xl font-semibold">Current Focus</h2>
-          <ul className="list-disc list-inside text-slate-400 mt-2">
-            <li>Strengthening software engineering fundamentals and system design.</li>
-            <li>Building scalable web applications and production-grade services.</li>
-            <li>Pursuing opportunities as a Software Engineer / Full-Stack Developer.</li>
-          </ul>
-
-          <h2 className="mt-8 text-2xl font-semibold">Skills & Projects</h2>
-          <p className="text-slate-400 mt-2">Key technologies: <strong>React, Node, Express, MongoDB, SQL, Docker, Kubernetes</strong>. Notable projects include a Zerodha Clone, a Version Control System, and an E‑Commerce Platform demonstrating full-stack capabilities.</p>
-        </div>
-
-        <aside className="space-y-4">
-          <div className="glass p-4 rounded">
-            <h3 className="font-semibold">Education</h3>
-            <div className="text-slate-400 text-sm mt-2">Bachelor of Technology (Information Technology) — In progress</div>
+            <p>
+              Currently, I’m open to Software Development / Full-Stack internship opportunities where I can contribute,
+              learn fast and work on real-world products.
+            </p>
           </div>
 
-          <div className="glass p-4 rounded">
-            <h3 className="font-semibold">Timeline</h3>
-            <div className="mt-3 space-y-4">
-              {timeline.map(t=> (
-                <div key={t.year} className="flex gap-3 items-start">
-                  <div className="w-10 text-sm font-semibold">{t.year}</div>
+          <div className="mt-9">
+            <h2 className="text-2xl font-black text-slate-950 dark:text-white">Current Focus</h2>
+            <ul className="mt-4 space-y-3 text-slate-600 dark:text-slate-400">
+              {focus.map((item) => (
+                <li key={item} className="flex gap-3">
+                  <span className="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-violet-500" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </motion.div>
+
+        <div className="space-y-6">
+          <div className="card-3d glass-3d rounded-[2rem] p-7">
+            <p className="text-sm font-black uppercase tracking-[0.25em] text-violet-600 dark:text-violet-300">
+              Education
+            </p>
+            <h2 className="mt-4 text-2xl font-black text-slate-950 dark:text-white">B.Tech Information Technology</h2>
+            <p className="mt-3 leading-7 text-slate-600 dark:text-slate-400">
+              Kanpur Institute of Technology · AKTU · In progress
+            </p>
+          </div>
+
+          <div className="card-3d glass-3d rounded-[2rem] p-7">
+            <p className="text-sm font-black uppercase tracking-[0.25em] text-violet-600 dark:text-violet-300">
+              Timeline
+            </p>
+
+            <div className="mt-6 space-y-6">
+              {timeline.map((item) => (
+                <div key={item.title} className="grid grid-cols-[80px_1fr] gap-4">
+                  <p className="font-black text-slate-950 dark:text-white">{item.year}</p>
                   <div>
-                    <div className="font-medium">{t.title}</div>
-                    <div className="text-slate-400 text-sm">{t.desc}</div>
+                    <h3 className="font-black text-slate-950 dark:text-white">{item.title}</h3>
+                    <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-400">{item.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-        </aside>
-      </motion.div>
-    </div>
+        </div>
+      </div>
+    </section>
   )
 }

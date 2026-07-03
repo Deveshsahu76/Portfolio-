@@ -1,49 +1,43 @@
 import React from 'react'
+import SkillPill from '../components/SkillPill'
 import skills from '../data/skills'
-import SkillCard from '../components/SkillCard'
 
-export default function Skills(){
+const sections = [
+  { title: 'Languages', items: skills.languages },
+  { title: 'Frontend', items: skills.frontend },
+  { title: 'Backend', items: skills.backend },
+  { title: 'Database', items: skills.database },
+  { title: 'Tools & Deployment', items: skills.tools },
+  { title: 'Core Fundamentals', items: skills.fundamentals },
+]
+
+export default function Skills() {
   return (
-    <div className="pt-24">
-      <h1 className="text-3xl md:text-4xl font-bold">Skills</h1>
-      <p className="text-slate-400 mt-2 max-w-3xl">Languages, frameworks and tools I use regularly.</p>
+    <section className="section-container">
+      <div className="mb-10 max-w-3xl">
+        <p className="text-sm font-black uppercase tracking-[0.3em] text-violet-600 dark:text-violet-300">
+          Skills
+        </p>
+        <h1 className="mt-3 text-4xl font-black tracking-tight text-slate-950 dark:text-white sm:text-5xl">
+          Tech Stack
+        </h1>
+        <p className="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-400">
+          Category-wise skills look more professional than percentage bars and help recruiters quickly understand your stack.
+        </p>
+      </div>
 
-      <section className="mt-6 grid gap-6">
-        <div>
-          <h2 className="text-xl font-semibold">Languages</h2>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 mt-4">
-            {skills.languages.map(s=> <SkillCard key={s.name} skill={s.name} level={s.level} />)}
+      <div className="grid gap-6 lg:grid-cols-2">
+        {sections.map((section) => (
+          <div key={section.title} className="card-3d glass-3d rounded-[2rem] p-7">
+            <h2 className="text-2xl font-black text-slate-950 dark:text-white">{section.title}</h2>
+            <div className="mt-5 flex flex-wrap gap-3">
+              {section.items.map((item) => (
+                <SkillPill key={item} name={item} />
+              ))}
+            </div>
           </div>
-        </div>
-
-        <div>
-          <h2 className="text-xl font-semibold">Frontend</h2>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 mt-4">
-            {skills.frontend.map(s=> <SkillCard key={s.name} skill={s.name} level={s.level} />)}
-          </div>
-        </div>
-
-        <div>
-          <h2 className="text-xl font-semibold">Backend</h2>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 mt-4">
-            {skills.backend.map(s=> <SkillCard key={s.name} skill={s.name} level={s.level} />)}
-          </div>
-        </div>
-
-        <div>
-          <h2 className="text-xl font-semibold">Databases</h2>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 mt-4">
-            {skills.databases.map(s=> <SkillCard key={s.name} skill={s.name} level={s.level} />)}
-          </div>
-        </div>
-
-        <div>
-          <h2 className="text-xl font-semibold">Tools</h2>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 mt-4">
-            {skills.tools.map(s=> <SkillCard key={s.name} skill={s.name} level={s.level} />)}
-          </div>
-        </div>
-      </section>
-    </div>
+        ))}
+      </div>
+    </section>
   )
 }
