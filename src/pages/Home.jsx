@@ -3,109 +3,136 @@ import { motion } from 'framer-motion'
 import {
   FiArrowRight,
   FiBriefcase,
-  FiCalendar,
+  FiCheckCircle,
   FiCode,
+  FiDatabase,
   FiDownload,
+  FiExternalLink,
   FiLayers,
   FiSend,
-  FiZap,
+  FiServer,
+  FiShield,
 } from 'react-icons/fi'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import profileImg from '../assets/portfolioimage.png'
 import projects from '../data/projects'
 import ProjectCard from '../components/ProjectCard'
 
-const trustBadges = [
-  'MERN Stack',
-  'Live Projects',
-  'API Docs',
-  'Database Schema',
-  'Recruiter Hub',
-  'Freelance Portal',
+const proofPoints = [
+  'Live full-stack projects',
+  'React + Node + MongoDB',
+  'Backend APIs deployed',
+  'Recruiter & freelance forms',
 ]
 
-const careerActions = [
+const snapshot = [
+  { label: 'Role', value: 'MERN Developer' },
+  { label: 'Status', value: 'Open to Internship' },
+  { label: 'Focus', value: 'Full-stack Apps' },
+]
+
+const bentoCards = [
   {
-    title: 'Recruiter Hub',
-    desc: 'Shortlist resume, schedule interview, or send assignment.',
+    icon: FiCode,
+    title: 'Frontend',
+    desc: 'React, responsive interfaces, clean components and modern UI flows.',
+  },
+  {
+    icon: FiServer,
+    title: 'Backend',
+    desc: 'Node.js, Express APIs, route handling, validation and clean backend structure.',
+  },
+  {
+    icon: FiDatabase,
+    title: 'Database',
+    desc: 'MongoDB, Mongoose schemas, CRUD operations and data modeling.',
+  },
+  {
+    icon: FiShield,
+    title: 'Auth & Deploy',
+    desc: 'JWT authentication, protected routes, Vercel frontend and Render backend.',
+  },
+]
+
+const actions = [
+  {
+    title: 'For Recruiters',
+    desc: 'Schedule interview, shortlist resume or send assignment.',
     icon: FiBriefcase,
     link: '/recruiter',
-    cta: 'Open Hub',
+    cta: 'Open recruiter hub',
   },
   {
-    title: 'Freelance Portal',
-    desc: 'Request websites, MERN apps, bug fixing or deployment help.',
+    title: 'For Clients',
+    desc: 'Request portfolio, business website, dashboard or MERN app.',
     icon: FiSend,
     link: '/freelance',
-    cta: 'Request Work',
+    cta: 'Request freelance work',
   },
   {
-    title: 'Project Case Studies',
-    desc: 'Explore screenshots, APIs, architecture and database schema.',
+    title: 'For Reviewers',
+    desc: 'Check live demos, GitHub code and project structure.',
     icon: FiLayers,
     link: '/projects',
-    cta: 'View Projects',
+    cta: 'View project lab',
   },
-]
-
-const systemStats = [
-  { label: 'Full-stack Projects', value: '3+' },
-  { label: 'Primary Stack', value: 'MERN' },
-  { label: 'Availability', value: 'Open' },
 ]
 
 export default function Home() {
   return (
-    <section className="section-container">
-      <div className="grid min-h-[calc(100vh-7rem)] items-center gap-12 lg:grid-cols-[1.02fr_0.98fr]">
+    <main className="section-container">
+      <section className="pro-hero">
         <motion.div
-          initial={{ opacity: 0, y: 26 }}
+          initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55 }}
+          transition={{ duration: 0.45 }}
+          className="pro-copy"
         >
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-violet-500/20 bg-violet-500/10 px-4 py-2 text-sm font-black text-violet-700 dark:text-violet-200">
-            <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-emerald-500" />
-            AI-powered career portfolio · Open to internships
+          <div className="pro-kicker">
+            <span />
+            Available for MERN Stack Internship
           </div>
 
-          <h1 className="text-5xl font-black tracking-tight text-slate-950 dark:text-white sm:text-6xl lg:text-7xl">
-            Devesh Sahu’s <span className="gradient-text">Career OS</span>
+          <h1 className="pro-title">
+            I build clean, usable and deployable{' '}
+            <strong>full-stack web products.</strong>
           </h1>
 
-          <h2 className="mt-5 text-2xl font-black text-slate-800 dark:text-slate-200 sm:text-3xl">
-            MERN Stack Developer · B.Tech IT Student · Product-minded Builder
-          </h2>
-
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-400">
-            A recruiter-friendly interactive portfolio where recruiters can review my projects,
-            download resume, schedule interview requests, assign tasks and clients can request freelance work.
+          <p className="pro-subtitle">
+            I’m Devesh Sahu, a B.Tech IT student and MERN Stack Developer. My
+            portfolio is built to help recruiters quickly review my projects,
+            resume, backend skills and live deployed work.
           </p>
 
-          <div className="mt-7 flex flex-wrap gap-3">
-            {trustBadges.map((badge) => (
-              <span
-                key={badge}
-                className="rounded-full border border-slate-900/10 bg-white/70 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-slate-700 backdrop-blur-xl dark:border-white/10 dark:bg-white/5 dark:text-slate-300"
-              >
-                {badge}
-              </span>
+          <div className="pro-actions">
+            <a href="/projects" className="pro-primary-btn">
+              View Projects <FiArrowRight />
+            </a>
+
+            <a href="/recruiter" className="pro-secondary-btn">
+              <FiBriefcase /> Recruiter Hub
+            </a>
+
+            <a href="/resume.pdf" download className="pro-secondary-btn">
+              <FiDownload /> Resume
+            </a>
+          </div>
+
+          <div className="pro-proof-grid">
+            {proofPoints.map((item) => (
+              <div key={item} className="pro-proof-item">
+                <FiCheckCircle />
+                <span>{item}</span>
+              </div>
             ))}
           </div>
 
-          <div className="mt-9 flex flex-wrap gap-3">
-            <a href="/recruiter" className="btn-primary">
-              <FiCalendar /> Schedule Interview
-            </a>
-
-            <a href="/projects" className="btn-secondary">
-              <FiCode /> View Projects
-            </a>
-
-            <a href="/resume.pdf" download className="btn-secondary">
-              <FiDownload /> Resume
-            </a>
-
-            <a href="https://github.com/Deveshsahu76" target="_blank" rel="noreferrer" className="btn-secondary">
+          <div className="pro-socials">
+            <a
+              href="https://github.com/Deveshsahu76"
+              target="_blank"
+              rel="noreferrer"
+            >
               <FaGithub /> GitHub
             </a>
 
@@ -113,7 +140,6 @@ export default function Home() {
               href="https://www.linkedin.com/in/devesh-sahu-560608270/"
               target="_blank"
               rel="noreferrer"
-              className="btn-secondary"
             >
               <FaLinkedin /> LinkedIn
             </a>
@@ -121,123 +147,125 @@ export default function Home() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.94, rotateY: -6 }}
-          animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-          transition={{ duration: 0.65 }}
-          className="relative mx-auto w-full max-w-[540px] [perspective:1200px]"
+          initial={{ opacity: 0, scale: 0.96, y: 18 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="pro-profile-wrap"
         >
-          <div className="absolute -inset-8 rounded-[3rem] bg-gradient-to-br from-violet-500/30 via-blue-500/20 to-cyan-400/30 blur-3xl" />
+          <div className="pro-profile-card">
+            <div className="pro-image-frame">
+              <img
+                src={profileImg}
+                alt="Devesh Sahu"
+                className="pro-profile-img"
+              />
+            </div>
 
-          <div className="orbit-ring absolute left-1/2 top-1/2 h-[390px] w-[390px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-violet-500/20 sm:h-[500px] sm:w-[500px]" />
-          <div className="orbit-ring absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-500/20 sm:h-[390px] sm:w-[390px]" />
+            <div className="mt-4 rounded-[1.5rem] border border-slate-900/10 bg-white/85 p-5 shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-white/5">
+              <span className="inline-flex rounded-full bg-indigo-500/10 px-3 py-1.5 text-xs font-black text-indigo-600 dark:text-indigo-300">
+                Developer Profile
+              </span>
 
-          <div className="card-3d glass-3d relative overflow-hidden rounded-[2.4rem] p-4">
-            <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
-              <div className="scan-line relative overflow-hidden rounded-[2rem] bg-slate-950">
-                <img
-                  src={profileImg}
-                  alt="Devesh Sahu"
-                  className="h-[360px] w-full object-cover object-center sm:h-[480px] lg:h-full"
-                />
+              <h2 className="mt-4 text-3xl font-black tracking-tight text-slate-950 dark:text-white">
+                Devesh Sahu
+              </h2>
 
-                <div className="absolute bottom-4 left-4 right-4 rounded-2xl bg-black/45 p-4 text-white backdrop-blur-xl">
-                  <p className="text-xs font-black uppercase tracking-[0.24em] text-cyan-200">
-                    Developer Profile
-                  </p>
-                  <p className="mt-1 text-xl font-black">Devesh Sahu</p>
-                  <p className="text-sm text-white/75">Full-stack · MERN · DSA</p>
-                </div>
-              </div>
-
-              <div className="grid gap-4">
-                <div className="rounded-[2rem] border border-white/40 bg-white/75 p-5 shadow-sm dark:border-white/10 dark:bg-white/5">
-                  <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-violet-600 dark:text-violet-300">
-                    <FiZap /> AI Summary
-                  </p>
-                  <p className="mt-4 text-2xl font-black text-slate-950 dark:text-white">
-                    Hire-ready MERN developer with live full-stack projects.
-                  </p>
-                  <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
-                    Projects include auth, dashboards, APIs, MongoDB schemas, deployment and recruiter workflows.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-3 gap-3">
-                  {systemStats.map((stat) => (
-                    <div
-                      key={stat.label}
-                      className="rounded-[1.5rem] border border-white/40 bg-white/75 p-4 text-center dark:border-white/10 dark:bg-white/5"
-                    >
-                      <p className="text-2xl font-black text-slate-950 dark:text-white">{stat.value}</p>
-                      <p className="mt-1 text-[11px] font-bold leading-4 text-slate-500 dark:text-slate-400">
-                        {stat.label}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="rounded-[2rem] border border-emerald-500/20 bg-emerald-500/10 p-5">
-                  <p className="text-sm font-black text-emerald-700 dark:text-emerald-200">
-                    Status: Available
-                  </p>
-                  <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
-                    Open for Software Development / MERN Stack internships and freelance web projects.
-                  </p>
-                </div>
-              </div>
+              <p className="mt-1 text-sm font-bold text-slate-600 dark:text-slate-400">
+                MERN Stack Developer · B.Tech IT
+              </p>
             </div>
           </div>
 
-          <span className="ai-orb left-2 top-16 h-5 w-5 bg-violet-500" />
-          <span className="ai-orb right-0 top-24 h-7 w-7 bg-cyan-400" />
-          <span className="ai-orb bottom-10 left-16 h-4 w-4 bg-blue-500" />
+          <div className="pro-snapshot">
+            {snapshot.map((item) => (
+              <div key={item.label}>
+                <span>{item.label}</span>
+                <strong>{item.value}</strong>
+              </div>
+            ))}
+          </div>
         </motion.div>
-      </div>
+      </section>
 
-      <div className="mt-20">
-        <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-          <div>
-            <p className="text-sm font-black uppercase tracking-[0.3em] text-violet-600 dark:text-violet-300">
-              Interactive Career System
-            </p>
-            <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 dark:text-white sm:text-4xl">
-              More than a portfolio.
-            </h2>
-            <p className="mt-3 max-w-2xl text-slate-600 dark:text-slate-400">
-              This portfolio works like a mini product where recruiters and clients can take direct action.
-            </p>
+      <section className="pro-bento">
+        <div className="pro-bento-main">
+          <span className="pro-tag">Hiring Snapshot</span>
+
+          <h2>Why this portfolio is different</h2>
+
+          <p>
+            It is not only a static resume. It has live projects, backend
+            connected recruiter forms, freelance request flow, deployed frontend
+            and deployed backend.
+          </p>
+
+          <div className="pro-mini-stats">
+            <div>
+              <strong>3+</strong>
+              <span>Projects</span>
+            </div>
+
+            <div>
+              <strong>MERN</strong>
+              <span>Stack</span>
+            </div>
+
+            <div>
+              <strong>Live</strong>
+              <span>Deployments</span>
+            </div>
           </div>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-3">
-          {careerActions.map(({ title, desc, icon: Icon, link, cta }) => (
-            <a key={title} href={link} className="card-3d glass-3d group rounded-[2rem] p-7">
-              <div className="mb-6 grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-violet-600 to-cyan-500 text-2xl text-white shadow-lg">
-                <Icon />
+        {bentoCards.map(({ icon: Icon, title, desc }) => (
+          <div key={title} className="pro-bento-card">
+            <div className="pro-icon">
+              <Icon />
+            </div>
+
+            <h3>{title}</h3>
+            <p>{desc}</p>
+          </div>
+        ))}
+      </section>
+
+      <section className="pro-action-grid">
+        {actions.map(({ title, desc, icon: Icon, link, cta }) => (
+          <a key={title} href={link} className="pro-action-card">
+            <div>
+              <div className="pro-action-top">
+                <div className="pro-icon">
+                  <Icon />
+                </div>
+
+                <FiExternalLink />
               </div>
 
-              <h3 className="text-2xl font-black text-slate-950 dark:text-white">{title}</h3>
-              <p className="mt-3 leading-7 text-slate-600 dark:text-slate-400">{desc}</p>
+              <h3>{title}</h3>
+              <p>{desc}</p>
+            </div>
 
-              <div className="mt-6 inline-flex items-center gap-2 font-black text-violet-600 dark:text-violet-300">
-                {cta} <FiArrowRight className="transition group-hover:translate-x-1" />
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
+            <span>
+              {cta} <FiArrowRight />
+            </span>
+          </a>
+        ))}
+      </section>
 
-      <div className="mt-20">
-        <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+      <section className="mt-16">
+        <div className="mb-7 flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>
-            <p className="text-sm font-black uppercase tracking-[0.3em] text-violet-600 dark:text-violet-300">
+            <p className="text-sm font-black uppercase tracking-[0.28em] text-indigo-600 dark:text-cyan-300">
               Selected Work
             </p>
+
             <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 dark:text-white sm:text-4xl">
-              Featured Projects
+              Projects that prove my skills
             </h2>
+
             <p className="mt-3 max-w-2xl text-slate-600 dark:text-slate-400">
-              Live demos, GitHub links, screenshots, architecture, API docs and database schema.
+              Live demos, GitHub repositories, screenshots, backend APIs and
+              deployment-ready structure.
             </p>
           </div>
 
@@ -248,10 +276,10 @@ export default function Home() {
 
         <div className="grid gap-6 lg:grid-cols-3">
           {projects.slice(0, 3).map((project) => (
-            <ProjectCard key={project.id} project={project} compact />
+            <ProjectCard key={project.id || project.title} project={project} />
           ))}
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
   )
 }

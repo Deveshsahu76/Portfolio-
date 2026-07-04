@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { FiSend } from 'react-icons/fi';
-import serviceData from '../data/serviceData';
-import { submitFreelanceRequest } from '../services/api';
+import React, { useState } from 'react'
+import { FiSend } from 'react-icons/fi'
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
 
 export default function Freelance() {
   const [form, setForm] = useState({
@@ -10,202 +10,108 @@ export default function Freelance() {
     phone: '',
     service: 'Portfolio Website',
     budget: '',
-    timeline: '',
+    deadline: '',
     projectDetails: '',
-  });
+  })
 
-  const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState('');
-
-  const selectService = (service) => {
-    setForm((prev) => ({
-      ...prev,
-      service,
-    }));
-
-    document.getElementById('freelance-form')?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center',
-    });
-  };
+  const [loading, setLoading] = useState(false)
+  const [status, setStatus] = useState('')
 
   const handleChange = (e) => {
-    setForm((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+  }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
+    setLoading(true)
+    setStatus('')
 
     try {
-      setLoading(true);
-      setStatus('');
+      const res = await fetch(`${API_URL}/api/freelance/request`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
 
-      await submitFreelanceRequest(form);
+      const data = await res.json()
 
-      setStatus('success');
+      if (!res.ok) {
+        throw new Error(data?.message || 'Request failed')
+      }
 
+      setStatus('success')
       setForm({
         clientName: '',
         clientEmail: '',
         phone: '',
         service: 'Portfolio Website',
         budget: '',
-        timeline: '',
+        deadline: '',
         projectDetails: '',
-      });
+      })
     } catch (error) {
-      setStatus(error.message);
+      setStatus(error.message)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   return (
-    <section className="section-container">
-      <div className="mb-10 max-w-4xl">
-        <p className="text-sm font-black uppercase tracking-[0.3em] text-violet-600 dark:text-violet-300">
-          Freelance Portal
-        </p>
+    <main className="section-container">
+      <section className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+        <div>
+          <div className="badge mb-5">Freelance Portal</div>
+          <h1 className="page-title">
+            Need a website, dashboard or MERN app?
+          </h1>
+          <p className="page-subtitle mt-6">
+            Submit your project details and I’ll review the requirements. This is connected to my backend request system.
+          </p>
 
-        <h1 className="mt-3 text-4xl font-black tracking-tight text-slate-950 dark:text-white sm:text-5xl">
-          Need a website or full-stack project?
-        </h1>
-
-        <p className="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-400">
-          Clients can request portfolio websites, landing pages, MERN applications, e-commerce websites, bug fixing and deployment support.
-        </p>
-      </div>
-
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {serviceData.map((service) => (
-          <div key={service.title} className="card-3d glass-3d flex flex-col rounded-[2rem] p-6">
-            <h2 className="text-2xl font-black text-slate-950 dark:text-white">
-              {service.title}
-            </h2>
-
-            <p className="mt-3 leading-7 text-slate-600 dark:text-slate-400">
-              {service.description}
-            </p>
-
-            <div className="mt-5 flex flex-wrap gap-2">
-              <span className="rounded-full bg-violet-100 px-3 py-1 text-xs font-black text-violet-700 dark:bg-violet-500/15 dark:text-violet-200">
-                {service.price}
-              </span>
-              <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-black text-blue-700 dark:bg-blue-500/15 dark:text-blue-200">
-                {service.timeline}
-              </span>
-            </div>
-
-            <ul className="mt-5 space-y-2 text-sm text-slate-600 dark:text-slate-400">
-              {service.includes.map((item) => (
-                <li key={item}>• {item}</li>
-              ))}
-            </ul>
-
-            <button
-              type="button"
-              onClick={() => selectService(service.title)}
-              className="btn-primary mt-auto pt-3"
-            >
-              Request Quote
-            </button>
-          </div>
-        ))}
-      </div>
-
-      <form
-        id="freelance-form"
-        onSubmit={handleSubmit}
-        className="card-3d glass-3d mt-12 rounded-[2rem] p-6 sm:p-8"
-      >
-        <h2 className="text-2xl font-black text-slate-950 dark:text-white">
-          Send Project Request
-        </h2>
-
-        <div className="mt-6 grid gap-5 sm:grid-cols-2">
-          <input
-            name="clientName"
-            value={form.clientName}
-            onChange={handleChange}
-            className="input-field"
-            placeholder="Your name"
-            required
-          />
-
-          <input
-            name="clientEmail"
-            type="email"
-            value={form.clientEmail}
-            onChange={handleChange}
-            className="input-field"
-            placeholder="Your email"
-            required
-          />
-
-          <input
-            name="phone"
-            value={form.phone}
-            onChange={handleChange}
-            className="input-field"
-            placeholder="Phone optional"
-          />
-
-          <select
-            name="service"
-            value={form.service}
-            onChange={handleChange}
-            className="input-field"
-          >
-            {serviceData.map((service) => (
-              <option key={service.title}>{service.title}</option>
+          <div className="mt-8 grid gap-4">
+            {['Portfolio Website', 'Business Website', 'MERN App', 'Bug Fixing', 'Deployment Help'].map((item) => (
+              <div key={item} className="soft-card rounded-2xl p-5 font-black text-slate-800 dark:text-slate-200">
+                {item}
+              </div>
             ))}
-          </select>
-
-          <input
-            name="budget"
-            value={form.budget}
-            onChange={handleChange}
-            className="input-field"
-            placeholder="Budget e.g. ₹2000"
-          />
-
-          <input
-            name="timeline"
-            value={form.timeline}
-            onChange={handleChange}
-            className="input-field"
-            placeholder="Timeline e.g. 5 days"
-          />
-
-          <textarea
-            name="projectDetails"
-            value={form.projectDetails}
-            onChange={handleChange}
-            className="input-field min-h-[160px] sm:col-span-2"
-            placeholder="Tell me about your project requirement"
-            required
-          />
+          </div>
         </div>
 
-        {status === 'success' && (
-          <div className="mt-5 rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-4 font-bold text-emerald-700 dark:text-emerald-200">
-            Freelance request submitted successfully.
+        <form onSubmit={handleSubmit} className="soft-card rounded-[2rem] p-6 sm:p-8">
+          <div className="grid gap-4 sm:grid-cols-2">
+            <input name="clientName" value={form.clientName} onChange={handleChange} placeholder="Your name" className="input-field" required />
+            <input name="clientEmail" value={form.clientEmail} onChange={handleChange} placeholder="Email" type="email" className="input-field" required />
+            <input name="phone" value={form.phone} onChange={handleChange} placeholder="Phone optional" className="input-field" />
+            <select name="service" value={form.service} onChange={handleChange} className="input-field">
+              <option>Portfolio Website</option>
+              <option>Business Website</option>
+              <option>MERN App</option>
+              <option>Bug Fixing</option>
+              <option>Deployment Help</option>
+              <option>Other</option>
+            </select>
+            <input name="budget" value={form.budget} onChange={handleChange} placeholder="Budget optional" className="input-field" />
+            <input name="deadline" value={form.deadline} onChange={handleChange} type="date" className="input-field" />
+            <textarea name="projectDetails" value={form.projectDetails} onChange={handleChange} placeholder="Project details" rows="6" className="input-field sm:col-span-2" required />
           </div>
-        )}
 
-        {status && status !== 'success' && (
-          <div className="mt-5 rounded-2xl border border-red-500/20 bg-red-500/10 p-4 font-bold text-red-700 dark:text-red-200">
-            {status}
-          </div>
-        )}
+          <button disabled={loading} className="btn-primary mt-6 w-full">
+            {loading ? 'Sending...' : 'Submit Project Request'} <FiSend />
+          </button>
 
-        <button disabled={loading} type="submit" className="btn-primary mt-6 w-full sm:w-auto">
-          <FiSend /> {loading ? 'Submitting...' : 'Submit Project Request'}
-        </button>
-      </form>
-    </section>
-  );
+          {status === 'success' && (
+            <p className="mt-4 rounded-2xl bg-emerald-500/10 p-4 text-sm font-black text-emerald-600 dark:text-emerald-300">
+              Project request submitted successfully.
+            </p>
+          )}
+
+          {status && status !== 'success' && (
+            <p className="mt-4 rounded-2xl bg-red-500/10 p-4 text-sm font-black text-red-600 dark:text-red-300">
+              {status}
+            </p>
+          )}
+        </form>
+      </section>
+    </main>
+  )
 }

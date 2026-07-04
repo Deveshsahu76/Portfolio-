@@ -1,43 +1,65 @@
 import React from 'react'
-import SkillPill from '../components/SkillPill'
-import skills from '../data/skills'
+import { FiCode, FiDatabase, FiGitBranch, FiServer, FiTool } from 'react-icons/fi'
 
-const sections = [
-  { title: 'Languages', items: skills.languages },
-  { title: 'Frontend', items: skills.frontend },
-  { title: 'Backend', items: skills.backend },
-  { title: 'Database', items: skills.database },
-  { title: 'Tools & Deployment', items: skills.tools },
-  { title: 'Core Fundamentals', items: skills.fundamentals },
+const groups = [
+  {
+    icon: FiCode,
+    title: 'Frontend',
+    skills: ['React.js', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'Responsive UI'],
+  },
+  {
+    icon: FiServer,
+    title: 'Backend',
+    skills: ['Node.js', 'Express.js', 'REST APIs', 'JWT Auth', 'Middleware', 'MVC Structure'],
+  },
+  {
+    icon: FiDatabase,
+    title: 'Database',
+    skills: ['MongoDB', 'Mongoose', 'MySQL', 'Schemas', 'CRUD', 'Data Modeling'],
+  },
+  {
+    icon: FiGitBranch,
+    title: 'Tools',
+    skills: ['Git', 'GitHub', 'Vercel', 'Render', 'Postman', 'VS Code'],
+  },
+  {
+    icon: FiTool,
+    title: 'Core',
+    skills: ['C++', 'DSA', 'Problem Solving', 'Debugging', 'Deployment', 'API Integration'],
+  },
 ]
 
 export default function Skills() {
   return (
-    <section className="section-container">
-      <div className="mb-10 max-w-3xl">
-        <p className="text-sm font-black uppercase tracking-[0.3em] text-violet-600 dark:text-violet-300">
-          Skills
-        </p>
-        <h1 className="mt-3 text-4xl font-black tracking-tight text-slate-950 dark:text-white sm:text-5xl">
-          Tech Stack
+    <main className="section-container">
+      <section className="mb-10">
+        <div className="badge mb-5">Skill System</div>
+        <h1 className="page-title">
+          Skills arranged like a <span className="gradient-text">full-stack toolkit.</span>
         </h1>
-        <p className="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-400">
-          Category-wise skills look more professional than percentage bars and help recruiters quickly understand your stack.
+        <p className="page-subtitle mt-6 max-w-3xl">
+          My skill set is focused on building complete MERN applications from UI to API to database and deployment.
         </p>
-      </div>
+      </section>
 
-      <div className="grid gap-6 lg:grid-cols-2">
-        {sections.map((section) => (
-          <div key={section.title} className="card-3d glass-3d rounded-[2rem] p-7">
-            <h2 className="text-2xl font-black text-slate-950 dark:text-white">{section.title}</h2>
-            <div className="mt-5 flex flex-wrap gap-3">
-              {section.items.map((item) => (
-                <SkillPill key={item} name={item} />
+      <section className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {groups.map(({ icon: Icon, title, skills }) => (
+          <div key={title} className="soft-card hover-lift rounded-[2rem] p-7">
+            <div className="mb-5 grid h-14 w-14 place-items-center rounded-2xl bg-slate-950 text-2xl text-white dark:bg-white dark:text-slate-950">
+              <Icon />
+            </div>
+            <h2 className="text-2xl font-black text-slate-950 dark:text-white">{title}</h2>
+
+            <div className="mt-5 flex flex-wrap gap-2">
+              {skills.map((skill) => (
+                <span key={skill} className="badge">
+                  {skill}
+                </span>
               ))}
             </div>
           </div>
         ))}
-      </div>
-    </section>
+      </section>
+    </main>
   )
 }
