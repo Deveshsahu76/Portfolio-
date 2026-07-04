@@ -35,7 +35,7 @@ const projects = [
       'Admin/payment integration-ready structure',
     ],
     tech: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Redux', 'JWT'],
-    github: 'https://github.com/Deveshsahu76/ecommerce-store',
+    github: 'https://github.com/Deveshsahu76/E-Commerce-.git',
     demo: 'https://e-commerce-nu-bay.vercel.app/',
     image: ecommerceHomepage,
     images: [ecommerceHomepage],
