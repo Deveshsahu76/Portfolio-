@@ -1,7 +1,7 @@
-import zerodhaDashboard from '../assets/projects/Zerodha-Dashboard.png'
-import zerodhaHoldings from '../assets/projects/Zerodha-Holdings.png'
-import zerodhaHomepage from '../assets/projects/Zerodha-Homepage.png'
-import ecommerceHomepage from '../assets/projects/ecommerceHomepage.png'
+import zerodhaDashboard from '../assets/projects/Zerodha-Dashboard.png';
+import zerodhaHoldings from '../assets/projects/Zerodha-Holdings.png';
+import zerodhaHomepage from '../assets/projects/Zerodha-homepage.png';
+import ecommerceHomepage from '../assets/projects/ecommerceHomepage.png';
 
 const projects = [
   {
@@ -57,6 +57,6 @@ const projects = [
     demo: '',
     image: '',
   },
-]
+];
 
-export default projects
+export default projects;
