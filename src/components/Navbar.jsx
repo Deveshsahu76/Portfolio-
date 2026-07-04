@@ -9,8 +9,10 @@ const navLinks = [
   { to: '/about', label: 'About' },
   { to: '/projects', label: 'Projects' },
   { to: '/skills', label: 'Skills' },
+  { to: '/recruiter', label: 'Recruiter' },
+  { to: '/freelance', label: 'Freelance' },
   { to: '/contact', label: 'Contact' },
-]
+];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
