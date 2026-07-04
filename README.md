@@ -1,43 +1,108 @@
-<<<<<<< HEAD
-# Devesh Sahu — Developer Portfolio
+# 💼 Devesh Sahu - Developer Portfolio
 
-Portfolio built with React (Vite), Tailwind CSS, Framer Motion and React Router.
+A modern, responsive and recruiter-friendly personal portfolio website built with **React.js, Vite and Tailwind CSS**.  
+This portfolio showcases my projects, skills, resume, contact details and live project demos in a clean 3D/glassmorphism UI.
 
-## Setup
+## 🚀 Live Portfolio
+
+🔗 **Live Website:** https://deveshsahuportfolio.vercel.app/  
+🔗 **GitHub Repository:** https://github.com/Deveshsahu76/Portfolio-.git
+
+---
+
+## 📌 About
+
+I’m **Devesh Sahu**, a B.Tech Information Technology student and MERN Stack Developer.  
+This portfolio is designed to present my full-stack development skills, projects, tech stack and internship readiness in a professional way.
+
+The portfolio includes highlighted projects such as:
+
+- Zerodha Clone
+- E-Commerce Store
+- Web Version Control System
+
+---
+
+## ✨ Features
+
+- Modern 3D/glassmorphism UI
+- Fully responsive design for mobile, tablet and desktop
+- Clean hero section with professional introduction
+- Project showcase with screenshots and live links
+- Project gallery support
+- Skills section with category-wise tech stack
+- About section with education and current focus
+- Contact section with email, GitHub and LinkedIn links
+- Resume download button
+- Dark mode / theme toggle
+- Smooth animations using Framer Motion
+- Clean and reusable React components
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- React.js
+- Vite
+- JavaScript
+- Tailwind CSS
+- React Router DOM
+- Framer Motion
+- React Icons
+
+### Tools & Deployment
+- Git
+- GitHub
+- Vercel
+- VS Code
+
+---
+
+## 📂 Folder Structure
 
 ```bash
-# install
-npm install
-
-# dev
-npm run dev
-
-# build
-npm run build
-
-# preview
-npm run preview
-```
-
-## Email Notifications (Contact Form)
-
-To enable email notifications when someone submits the contact form:
-
-1. Go to [emailjs.com](https://emailjs.com) and sign up (free)
-2. Create a new email service and template
-3. Get your **SERVICE_ID**, **TEMPLATE_ID**, and **PUBLIC_KEY**
-4. Update `src/pages/Contact.jsx` and replace:
-   - `service_YOUR_SERVICE_ID` → your actual SERVICE_ID
-   - `template_YOUR_TEMPLATE_ID` → your actual TEMPLATE_ID
-   - `YOUR_PUBLIC_KEY` → your actual PUBLIC_KEY
-
-Messages will now be sent to `deveshsahu567@gmail.com`.
-
-## Notes
-
-- This repo is a starter scaffold with pages: Home, About, Projects, Skills, Contact.
-- Add `resume.pdf` to the public root to enable resume download.
-- Replace placeholder images in `src/assets/` with real screenshots.
-=======
-# Portfolio-
->>>>>>> 8d24eae1504628a79f452c363dc3d619577da0b2
+Portfolio-
+│
+├── public/
+│   └── resume.pdf
+│
+├── src/
+│   ├── assets/
+│   │   ├── portfolioimage.png
+│   │   └── projects/
+│   │       ├── Zerodha-Dashboard.png
+│   │       ├── Zerodha-Holdings.png
+│   │       ├── Zerodha-homepage.png
+│   │       └── ecommerceHomepage.png
+│   │
+│   ├── components/
+│   │   ├── Navbar.jsx
+│   │   ├── Footer.jsx
+│   │   ├── ProjectCard.jsx
+│   │   ├── ThemeToggle.jsx
+│   │   ├── SocialRail.jsx
+│   │   └── SkillPill.jsx
+│   │
+│   ├── data/
+│   │   ├── projects.js
+│   │   └── skills.js
+│   │
+│   ├── layouts/
+│   │   └── MainLayout.jsx
+│   │
+│   ├── pages/
+│   │   ├── Home.jsx
+│   │   ├── About.jsx
+│   │   ├── Projects.jsx
+│   │   ├── Skills.jsx
+│   │   └── Contact.jsx
+│   │
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+│
+├── package.json
+├── tailwind.config.cjs
+├── vite.config.js
+└── README.md
