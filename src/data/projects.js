@@ -63,7 +63,7 @@ const projects = [
       'Backend API integration',
     ],
     github: 'https://github.com/Deveshsahu76/Zerodha-Clone',
-    demo: '',
+    demo: 'https://zerodha-clone-frontend-7qlg.onrender.com/',
     architecture: [
       'User logs in from React frontend',
       'Frontend sends authentication request to backend',
