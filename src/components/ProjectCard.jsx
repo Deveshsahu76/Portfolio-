@@ -1,10 +1,11 @@
 import React from 'react'
-import { FiExternalLink, FiGithub, FiLayers } from 'react-icons/fi'
+import { FiDownload, FiExternalLink, FiGithub, FiLayers } from 'react-icons/fi'
 
 export default function ProjectCard({ project }) {
   const tech = project.techStack || project.tags || project.technologies || []
   const liveLink = project.demo || project.live || project.liveLink
   const githubLink = project.github || project.githubLink
+  const apkLink = project.apk
 
   return (
     <article className="soft-card hover-lift group overflow-hidden rounded-[2rem]">
@@ -13,7 +14,7 @@ export default function ProjectCard({ project }) {
           <img
             src={project.image}
             alt={project.title}
-            className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+            className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-105"
           />
         ) : (
           <div className="grid h-full place-items-center">
@@ -24,6 +25,12 @@ export default function ProjectCard({ project }) {
         <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-black text-slate-950 backdrop-blur-xl dark:bg-slate-950/80 dark:text-white">
           Full Stack
         </div>
+
+        {apkLink && (
+          <div className="absolute right-4 top-4 rounded-full bg-emerald-500 px-3 py-1 text-xs font-black text-white shadow-lg">
+            APK
+          </div>
+        )}
       </div>
 
       <div className="p-6">
@@ -45,14 +52,30 @@ export default function ProjectCard({ project }) {
 
         <div className="mt-6 flex flex-wrap gap-3">
           {liveLink && (
-            <a href={liveLink} target="_blank" rel="noreferrer" className="btn-primary px-4 py-2 text-sm">
+            <a
+              href={liveLink}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-primary px-4 py-2 text-sm"
+            >
               Live <FiExternalLink />
             </a>
           )}
 
           {githubLink && (
-            <a href={githubLink} target="_blank" rel="noreferrer" className="btn-secondary px-4 py-2 text-sm">
+            <a
+              href={githubLink}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-secondary px-4 py-2 text-sm"
+            >
               Code <FiGithub />
+            </a>
+          )}
+
+          {apkLink && (
+            <a href={apkLink} download className="btn-secondary px-4 py-2 text-sm">
+              APK <FiDownload />
             </a>
           )}
         </div>
