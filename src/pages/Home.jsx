@@ -48,7 +48,7 @@ const stagger = {
 
 const heroStats = [
   { value: '4+', label: 'Projects shipped' },
-  { value: '16+', label: 'LeetCode solved' },
+  { value: '170+', label: 'LeetCode solved' },
   { value: 'MERN', label: 'Primary stack' },
   { value: 'Live', label: 'Deployments' },
 ]
