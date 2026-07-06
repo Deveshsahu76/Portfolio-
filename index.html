@@ -1,21 +1,58 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Devesh Sahu - Full-Stack Developer | Portfolio" />
-    <title>Devesh Sahu — Full-Stack Developer</title>
+
+    <title>Devesh Sahu | MERN Stack Developer</title>
+
+    <meta
+      name="description"
+      content="Devesh Sahu is a MERN Stack Developer building full-stack web apps with React, Node.js, Express, MongoDB, APIs and deployment."
+    />
+
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+
+    <link rel="canonical" href="https://deveshsahuportfolio.vercel.app/" />
+
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <meta name="theme-color" content="#0f172a" />
+
+    <meta property="og:title" content="Devesh Sahu | MERN Stack Developer" />
+    <meta
+      property="og:description"
+      content="Explore Devesh Sahu’s full-stack MERN projects, resume, recruiter hub and freelance services."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://deveshsahuportfolio.vercel.app/" />
+    <meta property="og:image" content="https://deveshsahuportfolio.vercel.app/og-image.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Devesh Sahu | MERN Stack Developer" />
+    <meta
+      name="twitter:description"
+      content="MERN Stack Developer portfolio with live projects, resume, recruiter hub and freelance portal."
+    />
+    <meta name="twitter:image" content="https://deveshsahuportfolio.vercel.app/og-image.png" />
+
+    <link rel="preload" as="image" href="/profile-image.png" />
+
+    <script>
+      ;(() => {
+        const storedTheme = localStorage.getItem('theme')
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
+          document.documentElement.classList.add('dark')
+        }
+      })()
+    </script>
   </head>
+
   <body>
     <div id="root"></div>
-    <script>
-      const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-      if(theme === 'dark') {
-        document.documentElement.classList.add('dark')
-      } else {
-        document.documentElement.classList.add('light')
-      }
-    </script>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
