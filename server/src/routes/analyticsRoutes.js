@@ -1,5 +1,5 @@
-const express = require('express')
-const AnalyticsEvent = require('../models/AnalyticsEvent')
+import express from 'express'
+import AnalyticsEvent from '../models/AnalyticsEvent.js'
 
 const router = express.Router()
 
@@ -15,18 +15,20 @@ function sanitizeMetadata(value) {
 
   const clean = {}
 
-  Object.entries(value).slice(0, 20).forEach(([key, item]) => {
-    const safeKey = String(key).slice(0, 50)
+  Object.entries(value)
+    .slice(0, 20)
+    .forEach(([key, item]) => {
+      const safeKey = String(key).slice(0, 50)
 
-    if (
-      typeof item === 'string' ||
-      typeof item === 'number' ||
-      typeof item === 'boolean'
-    ) {
-      clean[safeKey] =
-        typeof item === 'string' ? item.trim().slice(0, 300) : item
-    }
-  })
+      if (
+        typeof item === 'string' ||
+        typeof item === 'number' ||
+        typeof item === 'boolean'
+      ) {
+        clean[safeKey] =
+          typeof item === 'string' ? item.trim().slice(0, 300) : item
+      }
+    })
 
   return clean
 }
@@ -47,6 +49,7 @@ function simpleRateLimit(req, res, next) {
       count: 1,
       start: now,
     })
+
     return next()
   }
 
@@ -59,6 +62,7 @@ function simpleRateLimit(req, res, next) {
 
   current.count += 1
   rateStore.set(key, current)
+
   return next()
 }
 
@@ -182,45 +186,79 @@ router.get('/dashboard', requireAdmin, async (req, res) => {
       recentEvents,
     ] = await Promise.all([
       AnalyticsEvent.distinct('sessionId', { createdAt: { $gte: since } }),
+
       AnalyticsEvent.countDocuments({ createdAt: { $gte: since } }),
+
       AnalyticsEvent.countDocuments({
         eventType: 'page_view',
         createdAt: { $gte: since },
       }),
+
       AnalyticsEvent.countDocuments({
         eventType: 'resume_download',
         createdAt: { $gte: since },
       }),
+
       AnalyticsEvent.countDocuments({
         eventType: 'recruiter_cta_click',
         createdAt: { $gte: since },
       }),
+
       AnalyticsEvent.countDocuments({
         eventType: 'freelance_cta_click',
         createdAt: { $gte: since },
       }),
+
       AnalyticsEvent.countDocuments({
         eventType: 'whatsapp_click',
         createdAt: { $gte: since },
       }),
+
       AnalyticsEvent.countDocuments({
         eventType: 'contact_email_click',
         createdAt: { $gte: since },
       }),
+
       AnalyticsEvent.aggregate([
-        { $match: { eventType: 'page_view', createdAt: { $gte: since } } },
-        { $group: { _id: '$path', count: { $sum: 1 } } },
+        {
+          $match: {
+            eventType: 'page_view',
+            createdAt: { $gte: since },
+          },
+        },
+        {
+          $group: {
+            _id: '$path',
+            count: { $sum: 1 },
+          },
+        },
         { $sort: { count: -1 } },
         { $limit: 10 },
       ]),
+
       AnalyticsEvent.aggregate([
-        { $match: { createdAt: { $gte: since } } },
-        { $group: { _id: '$eventType', count: { $sum: 1 } } },
+        {
+          $match: {
+            createdAt: { $gte: since },
+          },
+        },
+        {
+          $group: {
+            _id: '$eventType',
+            count: { $sum: 1 },
+          },
+        },
         { $sort: { count: -1 } },
         { $limit: 12 },
       ]),
+
       AnalyticsEvent.aggregate([
-        { $match: { eventType: 'page_view', createdAt: { $gte: since } } },
+        {
+          $match: {
+            eventType: 'page_view',
+            createdAt: { $gte: since },
+          },
+        },
         {
           $group: {
             _id: {
@@ -234,6 +272,7 @@ router.get('/dashboard', requireAdmin, async (req, res) => {
         },
         { $sort: { _id: 1 } },
       ]),
+
       AnalyticsEvent.find({ createdAt: { $gte: since } })
         .sort({ createdAt: -1 })
         .limit(25)
@@ -268,4 +307,4 @@ router.get('/dashboard', requireAdmin, async (req, res) => {
   }
 })
 
-module.exports = router
+export default router
