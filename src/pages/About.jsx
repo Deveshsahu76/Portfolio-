@@ -12,7 +12,6 @@ import {
   FiExternalLink,
   FiGithub,
   FiGlobe,
-  FiLayers,
   FiMapPin,
   FiStar,
   FiTarget,
@@ -23,7 +22,6 @@ import {
 import { FaLinkedin } from 'react-icons/fa'
 import SEO from '../components/SEO'
 import { personSchema } from '../seo/schema'
-import profileImg from '../assets/portfolioimage.png'
 
 const journey = [
   {
@@ -140,7 +138,12 @@ export default function About() {
 
           <aside className="about-premium-profile-card">
             <div className="about-premium-photo">
-              <img src={profileImg} alt="Devesh Sahu MERN Stack Developer" />
+              <img
+                src="/profile-image.webp"
+                alt="Devesh Sahu MERN Stack Developer"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
 
             <div className="about-premium-profile-info">

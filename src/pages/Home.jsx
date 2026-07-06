@@ -1,155 +1,94 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
   FiArrowRight,
-  FiArrowUpRight,
   FiBriefcase,
-  FiCalendar,
   FiCheckCircle,
   FiCode,
-  FiCpu,
   FiDatabase,
   FiDownload,
   FiExternalLink,
-  FiGlobe,
   FiLayers,
-  FiMail,
-  FiMapPin,
-  FiMessageSquare,
+  FiSend,
   FiServer,
   FiShield,
-  FiStar,
-  FiTarget,
-  FiTrendingUp,
-  FiUserCheck,
   FiZap,
 } from 'react-icons/fi'
-import { FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa'
+import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import SEO from '../components/SEO'
 import { homePageSchema } from '../seo/schema'
-import profileImg from '../assets/portfolioimage.png'
 import projects from '../data/projects'
 import ProjectCard from '../components/ProjectCard'
 import LivePortfolioStats from '../components/LivePortfolioStats'
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0 },
-}
-
-const stagger = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.08,
-    },
-  },
-}
+const proofPoints = [
+  'Live full-stack projects',
+  'React + Node + MongoDB',
+  'Backend APIs deployed',
+  'Recruiter & freelance forms',
+]
 
 const heroStats = [
-  { value: '4+', label: 'Projects shipped' },
-  { value: '170+', label: 'LeetCode solved' },
-  { value: 'MERN', label: 'Primary stack' },
+  { value: '170+', label: 'LeetCode Problems' },
+  { value: '4+', label: 'Projects Built' },
+  { value: 'MERN', label: 'Primary Stack' },
   { value: 'Live', label: 'Deployments' },
 ]
 
-const trustSignals = [
-  'React + Node.js + MongoDB',
-  'Live projects with GitHub code',
-  'Recruiter-ready portfolio flow',
-  'Freelance inquiry system',
+const snapshot = [
+  { label: 'Role', value: 'MERN Developer' },
+  { label: 'Status', value: 'Open to Internship' },
+  { label: 'Focus', value: 'Full-stack Apps' },
 ]
 
-const capabilityCards = [
+const bentoCards = [
   {
     icon: FiCode,
-    title: 'Frontend Engineering',
-    desc: 'Clean React interfaces, responsive layouts, reusable components and premium UI interactions.',
+    title: 'Frontend',
+    desc: 'React, responsive interfaces, clean components and modern UI flows.',
   },
   {
     icon: FiServer,
-    title: 'Backend APIs',
-    desc: 'Node.js, Express, REST APIs, authentication flows, validation and scalable backend structure.',
+    title: 'Backend',
+    desc: 'Node.js, Express APIs, route handling, validation and clean backend structure.',
   },
   {
     icon: FiDatabase,
-    title: 'Database Design',
-    desc: 'MongoDB schemas, CRUD operations, relationships, data modelling and real app storage flows.',
+    title: 'Database',
+    desc: 'MongoDB, Mongoose schemas, CRUD operations and data modeling.',
   },
   {
     icon: FiShield,
-    title: 'Auth & Deployment',
-    desc: 'JWT auth, protected routes, Vercel frontend, Render backend and production-ready deployment.',
+    title: 'Auth & Deploy',
+    desc: 'JWT authentication, protected routes, Vercel frontend and Render backend.',
   },
 ]
 
-const audienceCards = [
+const actions = [
   {
-    icon: FiBriefcase,
     title: 'For Recruiters',
-    desc: 'Review my resume, projects, skills, availability and shortlist me for software development roles.',
+    desc: 'Schedule interview, shortlist resume or send assignment.',
+    icon: FiBriefcase,
     link: '/recruiter',
-    cta: 'Open Recruiter Hub',
+    cta: 'Open recruiter hub',
   },
   {
-    icon: FiGlobe,
     title: 'For Clients',
-    desc: 'Need a portfolio, business website, dashboard, admin panel or MERN app? Start here.',
+    desc: 'Request portfolio, business website, dashboard or MERN app.',
+    icon: FiSend,
     link: '/freelance',
-    cta: 'Start a Project',
+    cta: 'Request freelance work',
   },
   {
+    title: 'For Reviewers',
+    desc: 'Check live demos, GitHub code and project structure.',
     icon: FiLayers,
-    title: 'For Developers',
-    desc: 'Explore my live projects, GitHub repositories, architecture, APIs and database structure.',
     link: '/projects',
-    cta: 'View Project Lab',
-  },
-]
-
-const timeline = [
-  {
-    label: 'Current Focus',
-    title: 'MERN Stack Development',
-    desc: 'Building real full-stack projects with React, Node.js, Express and MongoDB.',
-  },
-  {
-    label: 'Project Proof',
-    title: 'Live Deployments',
-    desc: 'Frontend deployed on Vercel and backend APIs deployed with database connectivity.',
-  },
-  {
-    label: 'Career Goal',
-    title: 'Software Development Internship',
-    desc: 'Actively looking for internship opportunities where I can contribute and learn with real teams.',
-  },
-]
-
-const contactActions = [
-  {
-    icon: FiMail,
-    label: 'Email',
-    value: 'deveshsahu567@gmail.com',
-    href: 'mailto:deveshsahu567@gmail.com',
-  },
-  {
-    icon: FaWhatsapp,
-    label: 'WhatsApp',
-    value: 'Message directly',
-    href: 'https://wa.me/917607997416?text=Hi%20Devesh%2C%20I%20visited%20your%20portfolio.',
-  },
-  {
-    icon: FaLinkedin,
-    label: 'LinkedIn',
-    value: 'Connect professionally',
-    href: 'https://www.linkedin.com/in/devesh-sahu-560608270/',
+    cta: 'View project lab',
   },
 ]
 
 export default function Home() {
-  const featuredProjects = projects.slice(0, 3)
-
   return (
     <>
       <SEO
@@ -159,141 +98,113 @@ export default function Home() {
         schema={homePageSchema}
       />
 
-      <main className="premium-home">
-        <section className="premium-hero">
-          <div className="premium-orb premium-orb-one" />
-          <div className="premium-orb premium-orb-two" />
+      <main className="section-container">
+        <section className="pro-hero">
+          <motion.div
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+            className="pro-copy"
+          >
+            <div className="pro-kicker">
+              <span />
+              Available for MERN Stack Internship & Freelance Work
+            </div>
+
+            <h1 className="pro-title">
+              Developer portfolio built like a{' '}
+              <strong>premium product.</strong>
+            </h1>
+
+            <p className="pro-subtitle">
+              I’m Devesh Sahu, a B.Tech IT student and MERN Stack Developer. My
+              portfolio is built to help recruiters quickly review my projects,
+              resume, backend skills and live deployed work.
+            </p>
+
+            <div className="pro-actions">
+              <a href="/projects" className="pro-primary-btn">
+                View Projects <FiArrowRight />
+              </a>
+
+              <a href="/recruiter" className="pro-secondary-btn">
+                <FiBriefcase /> Recruiter Hub
+              </a>
+
+              <a href="/resume.pdf" download className="pro-secondary-btn">
+                <FiDownload /> Resume
+              </a>
+            </div>
+
+            <div className="pro-proof-grid">
+              {proofPoints.map((item) => (
+                <div key={item} className="pro-proof-item">
+                  <FiCheckCircle />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="pro-socials">
+              <a
+                href="https://github.com/Deveshsahu76"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaGithub /> GitHub
+              </a>
+
+              <a
+                href="https://www.linkedin.com/in/devesh-sahu-560608270/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaLinkedin /> LinkedIn
+              </a>
+            </div>
+          </motion.div>
 
           <motion.div
-            variants={stagger}
-            initial="hidden"
-            animate="visible"
-            className="premium-hero-grid"
+            initial={{ opacity: 0, scale: 0.96, y: 18 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="pro-profile-wrap"
           >
-            <motion.div variants={fadeUp} className="premium-hero-copy">
-              <div className="premium-badge">
-                <span className="premium-live-dot" />
-                Available for MERN Stack Internship & Freelance Work
-              </div>
-
-              <h1>
-                Developer portfolio built like a{' '}
-                <span>premium product company.</span>
-              </h1>
-
-              <p className="premium-hero-desc">
-                I’m <strong>Devesh Sahu</strong>, a MERN Stack Developer building
-                clean, usable and deployable full-stack web apps with React,
-                Node.js, Express, MongoDB, APIs and production deployment.
-              </p>
-
-              <div className="premium-cta-row">
-                <Link to="/projects" className="premium-primary-btn">
-                  Explore Work <FiArrowRight />
-                </Link>
-
-                <Link to="/recruiter" className="premium-secondary-btn">
-                  <FiCalendar /> Book Interview
-                </Link>
-
-                <a href="/resume.pdf" download className="premium-ghost-btn">
-                  <FiDownload /> Resume
-                </a>
-              </div>
-
-              <div className="premium-trust-list">
-                {trustSignals.map((item) => (
-                  <div key={item}>
-                    <FiCheckCircle />
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="premium-social-row">
-                <a
-                  href="https://github.com/Deveshsahu76"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Open Devesh Sahu GitHub profile"
-                >
-                  <FaGithub /> GitHub
-                </a>
-
-                <a
-                  href="https://www.linkedin.com/in/devesh-sahu-560608270/"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Open Devesh Sahu LinkedIn profile"
-                >
-                  <FaLinkedin /> LinkedIn
-                </a>
-
-                <a
-                  href="mailto:deveshsahu567@gmail.com"
-                  aria-label="Email Devesh Sahu"
-                >
-                  <FiMail /> Email
-                </a>
-              </div>
-            </motion.div>
-
-            <motion.aside variants={fadeUp} className="premium-profile-panel">
-              <div className="premium-profile-top">
-                <div>
-                  <span className="premium-mini-label">Developer Profile</span>
-                  <h2>Devesh Sahu</h2>
-                  <p>MERN Stack Developer · B.Tech IT</p>
-                </div>
-
-                <div className="premium-status-pill">
-                  <span />
-                  Open
-                </div>
-              </div>
-
-              <div className="premium-photo-wrap">
+            <div className="pro-profile-card">
+              <div className="pro-image-frame">
                 <img
-                  src={profileImg}
+                  src="/profile-image.webp"
                   alt="Devesh Sahu - MERN Stack Developer"
+                  className="pro-profile-img"
                   loading="eager"
+                  decoding="async"
                   fetchPriority="high"
                 />
-
-                <div className="premium-photo-card">
-                  <FiZap />
-                  <div>
-                    <strong>Builds fast</strong>
-                    <span>React + Node products</span>
-                  </div>
-                </div>
               </div>
 
-              <div className="premium-profile-meta">
-                <div>
-                  <FiMapPin />
-                  <span>India</span>
-                </div>
-                <div>
-                  <FiTarget />
-                  <span>Internship + Freelance</span>
-                </div>
-              </div>
+              <div className="mt-4 rounded-[1.5rem] border border-slate-900/10 bg-white/85 p-5 shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-white/5">
+                <span className="inline-flex rounded-full bg-indigo-500/10 px-3 py-1.5 text-xs font-black text-indigo-600 dark:text-indigo-300">
+                  Developer Profile
+                </span>
 
-              <div className="premium-terminal-card">
-                <div className="premium-terminal-dots">
-                  <span />
-                  <span />
-                  <span />
-                </div>
+                <h2 className="mt-4 text-3xl font-black tracking-tight text-slate-950 dark:text-white">
+                  Devesh Sahu
+                </h2>
 
-                <p>
-                  <span>$</span> review --profile devesh-sahu
+                <p className="mt-1 text-sm font-bold text-slate-600 dark:text-slate-400">
+                  MERN Stack Developer · B.Tech IT
                 </p>
-
-                <strong>Result: Recruiter-ready full-stack developer.</strong>
               </div>
-            </motion.aside>
+            </div>
+
+            <div className="pro-snapshot">
+              {snapshot.map((item) => (
+                <div key={item.label}>
+                  <span>{item.label}</span>
+                  <strong>{item.value}</strong>
+                </div>
+              ))}
+            </div>
           </motion.div>
         </section>
 
@@ -304,201 +215,103 @@ export default function Home() {
               <span>{stat.label}</span>
             </div>
           ))}
-
         </section>
-         <LivePortfolioStats />
 
-        <section className="premium-section premium-audience-section">
-          <div className="premium-section-head">
-            <span>Built for conversion</span>
-            <h2>One portfolio. Three clear user journeys.</h2>
+        <LivePortfolioStats />
+
+        <section className="pro-bento">
+          <div className="pro-bento-main">
+            <span className="pro-tag">Hiring Snapshot</span>
+
+            <h2>Why this portfolio is different</h2>
+
             <p>
-              HR should find proof fast. Clients should understand services fast.
-              Developers should inspect projects fast.
+              It is not only a static resume. It has live projects, backend
+              connected recruiter forms, freelance request flow, deployed frontend
+              and deployed backend.
             </p>
+
+            <div className="pro-mini-stats">
+              <div>
+                <strong>170+</strong>
+                <span>DSA Problems</span>
+              </div>
+
+              <div>
+                <strong>MERN</strong>
+                <span>Stack</span>
+              </div>
+
+              <div>
+                <strong>Live</strong>
+                <span>Deployments</span>
+              </div>
+            </div>
           </div>
 
-          <div className="premium-audience-grid">
-            {audienceCards.map(({ icon: Icon, title, desc, link, cta }) => (
-              <Link key={title} to={link} className="premium-audience-card">
-                <div className="premium-card-icon">
-                  <Icon />
+          {bentoCards.map(({ icon: Icon, title, desc }) => (
+            <div key={title} className="pro-bento-card">
+              <div className="pro-icon">
+                <Icon />
+              </div>
+
+              <h3>{title}</h3>
+              <p>{desc}</p>
+            </div>
+          ))}
+        </section>
+
+        <section className="pro-action-grid">
+          {actions.map(({ title, desc, icon: Icon, link, cta }) => (
+            <a key={title} href={link} className="pro-action-card">
+              <div>
+                <div className="pro-action-top">
+                  <div className="pro-icon">
+                    <Icon />
+                  </div>
+
+                  <FiExternalLink />
                 </div>
 
                 <h3>{title}</h3>
                 <p>{desc}</p>
+              </div>
 
-                <span>
-                  {cta} <FiArrowUpRight />
-                </span>
-              </Link>
-            ))}
-          </div>
+              <span>
+                {cta} <FiArrowRight />
+              </span>
+            </a>
+          ))}
         </section>
 
-        <section className="premium-section premium-capability-section">
-          <div className="premium-section-head">
-            <span>Engineering capability</span>
-            <h2>Skills presented like product proof.</h2>
-            <p>
-              Not just a skill list. Each capability connects to real project
-              execution, deployment and product thinking.
-            </p>
-          </div>
-
-          <div className="premium-capability-grid">
-            {capabilityCards.map(({ icon: Icon, title, desc }) => (
-              <article key={title} className="premium-capability-card">
-                <div className="premium-card-icon">
-                  <Icon />
-                </div>
-
-                <h3>{title}</h3>
-                <p>{desc}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="premium-proof-section">
-          <div className="premium-proof-left">
-            <span>Recruiter trust layer</span>
-            <h2>Designed to make shortlisting easier.</h2>
-            <p>
-              The homepage directly answers the questions HR usually checks:
-              what I build, which stack I use, whether projects are live, and
-              how to contact me quickly.
-            </p>
-
-            <div className="premium-proof-actions">
-              <Link to="/recruiter" className="premium-primary-btn">
-                Recruiter Hub <FiArrowRight />
-              </Link>
-
-              <a href="/resume.pdf" download className="premium-secondary-btn">
-                Download Resume <FiDownload />
-              </a>
-            </div>
-          </div>
-
-          <div className="premium-proof-grid">
-            <div className="premium-proof-card">
-              <FiUserCheck />
-              <strong>HR-ready</strong>
-              <span>Resume, skills, projects and contact flow in one place.</span>
-            </div>
-
-            <div className="premium-proof-card">
-              <FiTrendingUp />
-              <strong>Conversion-focused</strong>
-              <span>Separate paths for recruiters, clients and developers.</span>
-            </div>
-
-            <div className="premium-proof-card">
-              <FiCpu />
-              <strong>Full-stack proof</strong>
-              <span>React frontend, Node backend and MongoDB integration.</span>
-            </div>
-
-            <div className="premium-proof-card">
-              <FiStar />
-              <strong>Premium brand</strong>
-              <span>Clean UI, strong CTAs, glass cards and smooth animation.</span>
-            </div>
-          </div>
-        </section>
-
-        <section className="premium-section">
-          <div className="premium-section-head premium-section-head-row">
+        <section className="mt-16">
+          <div className="mb-7 flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
-              <span>Selected work</span>
-              <h2>Projects that prove execution.</h2>
-              <p>
-                Live demos, GitHub repositories, backend APIs, database schema
-                and deployment-ready structure.
+              <p className="text-sm font-black uppercase tracking-[0.28em] text-indigo-600 dark:text-cyan-300">
+                Selected Work
+              </p>
+
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 dark:text-white sm:text-4xl">
+                Projects that prove my skills
+              </h2>
+
+              <p className="mt-3 max-w-2xl text-slate-600 dark:text-slate-400">
+                Live demos, GitHub repositories, screenshots, backend APIs and
+                deployment-ready structure.
               </p>
             </div>
 
-            <Link to="/projects" className="premium-secondary-btn">
-              View all projects <FiExternalLink />
-            </Link>
+            <a href="/projects" className="btn-secondary w-fit">
+              See all projects <FiArrowRight />
+            </a>
           </div>
 
-          <div className="premium-project-grid">
-            {featuredProjects.map((project) => (
+          <div className="grid gap-6 lg:grid-cols-3">
+            {projects.slice(0, 3).map((project) => (
               <ProjectCard key={project.id || project.title} project={project} />
             ))}
           </div>
         </section>
-
-        <section className="premium-section premium-timeline-section">
-          <div className="premium-section-head">
-            <span>Journey snapshot</span>
-            <h2>Clear direction, consistent execution.</h2>
-            <p>
-              This section helps visitors understand where I am now and what I am
-              building toward.
-            </p>
-          </div>
-
-          <div className="premium-timeline">
-            {timeline.map((item, index) => (
-              <article key={item.title} className="premium-timeline-item">
-                <div className="premium-timeline-number">
-                  {String(index + 1).padStart(2, '0')}
-                </div>
-
-                <div>
-                  <span>{item.label}</span>
-                  <h3>{item.title}</h3>
-                  <p>{item.desc}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="premium-final-cta">
-          <div>
-            <span>Ready when you are</span>
-            <h2>Need a developer who can build and ship?</h2>
-            <p>
-              Whether you are hiring for an internship or need a freelance web
-              project, this portfolio is designed to make the next step simple.
-            </p>
-          </div>
-
-          <div className="premium-contact-grid">
-            {contactActions.map(({ icon: Icon, label, value, href }) => (
-              <a
-                key={label}
-                href={href}
-                target={href.startsWith('http') ? '_blank' : undefined}
-                rel={href.startsWith('http') ? 'noreferrer' : undefined}
-                className="premium-contact-card"
-              >
-                <Icon />
-                <div>
-                  <strong>{label}</strong>
-                  <span>{value}</span>
-                </div>
-                <FiArrowUpRight />
-              </a>
-            ))}
-          </div>
-        </section>
-
-        <div className="premium-floating-cta" aria-label="Quick actions">
-          <a href="/resume.pdf" download>
-            <FiDownload />
-            Resume
-          </a>
-
-          <Link to="/recruiter">
-            <FiBriefcase />
-            Hire Me
-          </Link>
-        </div>
       </main>
     </>
   )

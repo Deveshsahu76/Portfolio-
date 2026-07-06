@@ -6,9 +6,17 @@ const projects = [
       'A mobile-first N-Queens strategy puzzle game with user login, deployed backend APIs, MongoDB database integration and Android APK support.',
     longDescription:
       'Queens Arena is a full-stack strategy puzzle game based on the classic N-Queens problem. The project includes a frontend game interface, backend APIs, authentication flow, MongoDB database connection and an installable Android APK for real device testing.',
-    image: '/projects/queens-arena.png',
-    images: ['/projects/queens-arena.png'],
-    techStack: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Android APK', 'Render', 'Vercel'],
+    image: '/projects/queens-arena.webp',
+    images: ['/projects/queens-arena.webp'],
+    techStack: [
+      'React',
+      'Node.js',
+      'Express.js',
+      'MongoDB',
+      'Android APK',
+      'Render',
+      'Vercel',
+    ],
     features: [
       'N-Queens based strategy puzzle gameplay',
       'User login and authentication flow',
@@ -29,13 +37,31 @@ const projects = [
       'Android APK allows testing the game on real mobile devices',
     ],
     apiDocs: [
-      { method: 'POST', endpoint: '/api/auth/register', description: 'Create a new user account' },
-      { method: 'POST', endpoint: '/api/auth/login', description: 'Login user and return authentication response' },
-      { method: 'GET', endpoint: '/api/auth/me', description: 'Fetch logged-in user profile' },
+      {
+        method: 'POST',
+        endpoint: '/api/auth/register',
+        description: 'Create a new user account',
+      },
+      {
+        method: 'POST',
+        endpoint: '/api/auth/login',
+        description: 'Login user and return authentication response',
+      },
+      {
+        method: 'GET',
+        endpoint: '/api/auth/me',
+        description: 'Fetch logged-in user profile',
+      },
     ],
     schema: [
-      { name: 'User', fields: ['name', 'email', 'password', 'createdAt', 'updatedAt'] },
-      { name: 'GameData', fields: ['userId', 'score', 'level', 'moves', 'createdAt'] },
+      {
+        name: 'User',
+        fields: ['name', 'email', 'password', 'createdAt', 'updatedAt'],
+      },
+      {
+        name: 'GameData',
+        fields: ['userId', 'score', 'level', 'moves', 'createdAt'],
+      },
     ],
     credentials:
       'APK is available for testing. If Android shows an unknown-source warning, allow install from trusted source for testing only.',
@@ -47,13 +73,21 @@ const projects = [
       'A MERN-based stock trading dashboard clone with authentication, holdings, positions, orders and a responsive dashboard experience.',
     longDescription:
       'Zerodha Clone is a full-stack trading dashboard project built with React, Node.js, Express and MongoDB. It includes authentication, protected routes, dashboard sections, holdings, positions and order-related flows.',
-    image: '/projects/zerodha-homepage.png',
+    image: '/projects/zerodha-homepage.webp',
     images: [
-      '/projects/zerodha-homepage.png',
-      '/projects/zerodha-dashboard.png',
-      '/projects/zerodha-holdings.png',
+      '/projects/zerodha-homepage.webp',
+      '/projects/zerodha-dashboard.webp',
+      '/projects/zerodha-holdings.webp',
     ],
-    techStack: ['React', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'REST API', 'Vercel'],
+    techStack: [
+      'React',
+      'Node.js',
+      'Express.js',
+      'MongoDB',
+      'JWT',
+      'REST API',
+      'Vercel',
+    ],
     features: [
       'User login and authentication',
       'Protected dashboard routes',
@@ -63,7 +97,7 @@ const projects = [
       'Backend API integration',
     ],
     github: 'https://github.com/Deveshsahu76/Zerodha-Clone',
-    demo: 'https://zerodha-clone-frontend-7qlg.onrender.com/',
+    demo: '',
     architecture: [
       'User logs in from React frontend',
       'Frontend sends authentication request to backend',
@@ -72,16 +106,44 @@ const projects = [
       'MongoDB stores users and trading-related data',
     ],
     apiDocs: [
-      { method: 'POST', endpoint: '/api/auth/login', description: 'Login user and return token' },
-      { method: 'GET', endpoint: '/api/holdings', description: 'Fetch user holdings' },
-      { method: 'GET', endpoint: '/api/positions', description: 'Fetch user positions' },
-      { method: 'GET', endpoint: '/api/orders', description: 'Fetch user orders' },
+      {
+        method: 'POST',
+        endpoint: '/api/auth/login',
+        description: 'Login user and return token',
+      },
+      {
+        method: 'GET',
+        endpoint: '/api/holdings',
+        description: 'Fetch user holdings',
+      },
+      {
+        method: 'GET',
+        endpoint: '/api/positions',
+        description: 'Fetch user positions',
+      },
+      {
+        method: 'GET',
+        endpoint: '/api/orders',
+        description: 'Fetch user orders',
+      },
     ],
     schema: [
-      { name: 'User', fields: ['name', 'email', 'password', 'createdAt'] },
-      { name: 'Holding', fields: ['userId', 'name', 'qty', 'avg', 'price', 'net', 'day'] },
-      { name: 'Position', fields: ['userId', 'product', 'name', 'qty', 'avg', 'price'] },
-      { name: 'Order', fields: ['userId', 'stockName', 'qty', 'price', 'mode', 'createdAt'] },
+      {
+        name: 'User',
+        fields: ['name', 'email', 'password', 'createdAt'],
+      },
+      {
+        name: 'Holding',
+        fields: ['userId', 'name', 'qty', 'avg', 'price', 'net', 'day'],
+      },
+      {
+        name: 'Position',
+        fields: ['userId', 'product', 'name', 'qty', 'avg', 'price'],
+      },
+      {
+        name: 'Order',
+        fields: ['userId', 'stockName', 'qty', 'price', 'mode', 'createdAt'],
+      },
     ],
     credentials: 'Demo access can be shared on request.',
   },
@@ -92,9 +154,17 @@ const projects = [
       'A full-stack MERN e-commerce web app with product listing, cart, orders, authentication and payment gateway ready structure.',
     longDescription:
       'E-Commerce Store is a MERN stack shopping application built with React, Node.js, Express and MongoDB. It includes product listing, cart flow, authentication, order management and payment gateway ready architecture.',
-    image: '/projects/ecommerce-homepage.png',
-    images: ['/projects/ecommerce-homepage.png'],
-    techStack: ['React', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'Razorpay Ready', 'Vercel'],
+    image: '/projects/ecommerce-homepage.webp',
+    images: ['/projects/ecommerce-homepage.webp'],
+    techStack: [
+      'React',
+      'Node.js',
+      'Express.js',
+      'MongoDB',
+      'JWT',
+      'Razorpay Ready',
+      'Vercel',
+    ],
     features: [
       'Product listing and product details',
       'User authentication',
@@ -114,16 +184,44 @@ const projects = [
       'Payment gateway structure is ready for integration',
     ],
     apiDocs: [
-      { method: 'GET', endpoint: '/api/products', description: 'Fetch all products' },
-      { method: 'GET', endpoint: '/api/products/:id', description: 'Fetch single product details' },
-      { method: 'POST', endpoint: '/api/auth/login', description: 'Login user' },
-      { method: 'POST', endpoint: '/api/orders', description: 'Create new order' },
+      {
+        method: 'GET',
+        endpoint: '/api/products',
+        description: 'Fetch all products',
+      },
+      {
+        method: 'GET',
+        endpoint: '/api/products/:id',
+        description: 'Fetch single product details',
+      },
+      {
+        method: 'POST',
+        endpoint: '/api/auth/login',
+        description: 'Login user',
+      },
+      {
+        method: 'POST',
+        endpoint: '/api/orders',
+        description: 'Create new order',
+      },
     ],
     schema: [
-      { name: 'User', fields: ['name', 'email', 'password', 'isAdmin', 'createdAt'] },
-      { name: 'Product', fields: ['name', 'description', 'price', 'category', 'stock', 'images'] },
-      { name: 'Order', fields: ['userId', 'items', 'shippingAddress', 'paymentStatus', 'totalPrice'] },
-      { name: 'OrderItem', fields: ['productId', 'name', 'qty', 'price', 'image'] },
+      {
+        name: 'User',
+        fields: ['name', 'email', 'password', 'isAdmin', 'createdAt'],
+      },
+      {
+        name: 'Product',
+        fields: ['name', 'description', 'price', 'category', 'stock', 'images'],
+      },
+      {
+        name: 'Order',
+        fields: ['userId', 'items', 'shippingAddress', 'paymentStatus', 'totalPrice'],
+      },
+      {
+        name: 'OrderItem',
+        fields: ['productId', 'name', 'qty', 'price', 'image'],
+      },
     ],
     credentials: 'Admin access is not public. Demo access can be shared on request.',
   },
@@ -154,13 +252,31 @@ const projects = [
       'User can view history and restore old versions',
     ],
     apiDocs: [
-      { method: 'POST', endpoint: '/api/files', description: 'Upload or create a file record' },
-      { method: 'GET', endpoint: '/api/files/:id/versions', description: 'Fetch file version history' },
-      { method: 'POST', endpoint: '/api/files/:id/restore', description: 'Restore selected file version' },
+      {
+        method: 'POST',
+        endpoint: '/api/files',
+        description: 'Upload or create a file record',
+      },
+      {
+        method: 'GET',
+        endpoint: '/api/files/:id/versions',
+        description: 'Fetch file version history',
+      },
+      {
+        method: 'POST',
+        endpoint: '/api/files/:id/restore',
+        description: 'Restore selected file version',
+      },
     ],
     schema: [
-      { name: 'File', fields: ['name', 'ownerId', 'currentVersion', 'createdAt'] },
-      { name: 'Version', fields: ['fileId', 'versionNumber', 'content', 'createdAt'] },
+      {
+        name: 'File',
+        fields: ['name', 'ownerId', 'currentVersion', 'createdAt'],
+      },
+      {
+        name: 'Version',
+        fields: ['fileId', 'versionNumber', 'content', 'createdAt'],
+      },
     ],
     credentials: 'Project code/demo can be shared on request.',
   },
