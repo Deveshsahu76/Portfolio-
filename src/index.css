@@ -4353,3 +4353,1101 @@ html.dark .simple-footer-socials a {
     border-radius: 2rem;
   }
 }
+/* ================================
+   Premium Freelance Page
+================================ */
+
+.freelance-page {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 100vh;
+  padding: clamp(2rem, 4vw, 4.5rem) 1.25rem 7rem;
+}
+
+.freelance-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(79, 70, 229, 0.16), transparent 30%),
+    radial-gradient(circle at 85% 14%, rgba(6, 182, 212, 0.14), transparent 34%),
+    radial-gradient(circle at 50% 70%, rgba(168, 85, 247, 0.08), transparent 34%);
+  pointer-events: none;
+}
+
+.dark .freelance-page::before {
+  background:
+    radial-gradient(circle at 10% 10%, rgba(99, 102, 241, 0.22), transparent 32%),
+    radial-gradient(circle at 85% 14%, rgba(34, 211, 238, 0.16), transparent 34%),
+    radial-gradient(circle at 50% 70%, rgba(168, 85, 247, 0.12), transparent 34%);
+}
+
+.freelance-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(330px, 0.92fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.freelance-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: fit-content;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.72);
+  color: #334155;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(18px);
+  border-radius: 999px;
+  padding: 0.7rem 1rem;
+  font-size: 0.78rem;
+  font-weight: 1000;
+}
+
+.dark .freelance-badge {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.68);
+  color: #cbd5e1;
+}
+
+.freelance-badge span {
+  width: 0.62rem;
+  height: 0.62rem;
+  border-radius: 999px;
+  background: #22c55e;
+  box-shadow: 0 0 0 7px rgba(34, 197, 94, 0.14);
+}
+
+.freelance-hero-copy h1 {
+  margin-top: 1.5rem;
+  color: #020617;
+  font-size: clamp(3rem, 6.5vw, 6.1rem);
+  line-height: 0.94;
+  letter-spacing: -0.075em;
+  font-weight: 1000;
+}
+
+.dark .freelance-hero-copy h1 {
+  color: #ffffff;
+}
+
+.freelance-hero-copy h1 span {
+  background: linear-gradient(135deg, #4f46e5, #0891b2, #111827);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.dark .freelance-hero-copy h1 span {
+  background: linear-gradient(135deg, #a5b4fc, #67e8f9, #ffffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.freelance-hero-copy p {
+  max-width: 760px;
+  margin-top: 1.4rem;
+  color: #64748b;
+  font-size: clamp(1rem, 1.25vw, 1.15rem);
+  line-height: 1.9;
+  font-weight: 700;
+}
+
+.dark .freelance-hero-copy p {
+  color: #cbd5e1;
+}
+
+.freelance-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 1.8rem;
+}
+
+.freelance-primary-btn,
+.freelance-secondary-btn,
+.freelance-ghost-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3.25rem;
+  border-radius: 999px;
+  padding: 0 1.15rem;
+  font-size: 0.9rem;
+  font-weight: 1000;
+  transition:
+    transform 0.24s ease,
+    box-shadow 0.24s ease,
+    border-color 0.24s ease,
+    background 0.24s ease;
+}
+
+.freelance-primary-btn {
+  color: white;
+  background: linear-gradient(135deg, #4f46e5, #0891b2);
+  box-shadow: 0 22px 55px rgba(37, 99, 235, 0.28);
+}
+
+.freelance-secondary-btn {
+  color: #0f172a;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 16px 45px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(16px);
+}
+
+.freelance-ghost-btn {
+  color: #334155;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.38);
+}
+
+.dark .freelance-secondary-btn,
+.dark .freelance-ghost-btn {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(15, 23, 42, 0.72);
+}
+
+.freelance-primary-btn:hover,
+.freelance-secondary-btn:hover,
+.freelance-ghost-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 26px 70px rgba(15, 23, 42, 0.16);
+}
+
+.freelance-trust-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  max-width: 670px;
+  margin-top: 1.7rem;
+}
+
+.freelance-trust-strip div {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.65);
+  padding: 1rem;
+  backdrop-filter: blur(16px);
+}
+
+.dark .freelance-trust-strip div {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.58);
+}
+
+.freelance-trust-strip strong,
+.freelance-trust-strip span {
+  display: block;
+}
+
+.freelance-trust-strip strong {
+  color: #020617;
+  font-size: 1.3rem;
+  font-weight: 1000;
+}
+
+.dark .freelance-trust-strip strong {
+  color: #ffffff;
+}
+
+.freelance-trust-strip span {
+  margin-top: 0.25rem;
+  color: #64748b;
+  font-size: 0.8rem;
+  font-weight: 850;
+}
+
+.dark .freelance-trust-strip span {
+  color: #cbd5e1;
+}
+
+.freelance-hero-card,
+.freelance-calculator-section,
+.freelance-deliverables-section,
+.freelance-request-section,
+.freelance-final-cta {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.56)),
+    radial-gradient(circle at 100% 0%, rgba(6, 182, 212, 0.12), transparent 34%);
+  box-shadow: 0 34px 100px rgba(15, 23, 42, 0.11);
+  backdrop-filter: blur(22px);
+}
+
+.dark .freelance-hero-card,
+.dark .freelance-calculator-section,
+.dark .freelance-deliverables-section,
+.dark .freelance-request-section,
+.dark .freelance-final-cta {
+  border-color: rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.5)),
+    radial-gradient(circle at 100% 0%, rgba(34, 211, 238, 0.12), transparent 34%);
+}
+
+.freelance-hero-card {
+  border-radius: 2.3rem;
+  padding: clamp(1rem, 2vw, 1.35rem);
+}
+
+.freelance-card-top {
+  padding: 0.4rem;
+}
+
+.freelance-card-top span,
+.freelance-section-head span,
+.freelance-calculator-copy > span,
+.freelance-deliverables-copy > span,
+.freelance-request-copy > span,
+.freelance-final-cta > div > span {
+  color: #4f46e5;
+  font-size: 0.76rem;
+  font-weight: 1000;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.dark .freelance-card-top span,
+.dark .freelance-section-head span,
+.dark .freelance-calculator-copy > span,
+.dark .freelance-deliverables-copy > span,
+.dark .freelance-request-copy > span,
+.dark .freelance-final-cta > div > span {
+  color: #a5b4fc;
+}
+
+.freelance-card-top h2 {
+  margin-top: 0.55rem;
+  color: #020617;
+  font-size: 2rem;
+  font-weight: 1000;
+  letter-spacing: -0.05em;
+}
+
+.dark .freelance-card-top h2 {
+  color: #ffffff;
+}
+
+.freelance-card-top p {
+  margin-top: 0.35rem;
+  color: #64748b;
+  font-weight: 800;
+}
+
+.dark .freelance-card-top p {
+  color: #cbd5e1;
+}
+
+.freelance-mini-board {
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.freelance-mini-board div {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.8rem;
+  align-items: center;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 1.35rem;
+  background: rgba(255, 255, 255, 0.62);
+  padding: 1rem;
+}
+
+.dark .freelance-mini-board div {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(2, 6, 23, 0.32);
+}
+
+.freelance-mini-board svg {
+  grid-row: span 2;
+  width: 2.7rem;
+  height: 2.7rem;
+  border-radius: 1rem;
+  color: white;
+  background: linear-gradient(135deg, #4f46e5, #0891b2);
+  padding: 0.72rem;
+}
+
+.freelance-mini-board strong,
+.freelance-mini-board span {
+  display: block;
+}
+
+.freelance-mini-board strong {
+  color: #020617;
+  font-weight: 1000;
+}
+
+.dark .freelance-mini-board strong {
+  color: white;
+}
+
+.freelance-mini-board span {
+  color: #64748b;
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.dark .freelance-mini-board span {
+  color: #cbd5e1;
+}
+
+.freelance-live-card {
+  display: flex;
+  gap: 0.85rem;
+  align-items: center;
+  margin-top: 0.9rem;
+  border-radius: 1.35rem;
+  background: #020617;
+  color: white;
+  padding: 1rem;
+}
+
+.freelance-live-card svg {
+  flex: 0 0 auto;
+  color: #22c55e;
+  font-size: 1.45rem;
+}
+
+.freelance-live-card strong,
+.freelance-live-card span {
+  display: block;
+}
+
+.freelance-live-card strong {
+  font-weight: 1000;
+}
+
+.freelance-live-card span {
+  margin-top: 0.18rem;
+  color: #cbd5e1;
+  font-size: 0.84rem;
+  font-weight: 750;
+}
+
+.freelance-section {
+  max-width: 1240px;
+  margin: clamp(3.5rem, 7vw, 6.2rem) auto 0;
+}
+
+.freelance-section-head {
+  max-width: 760px;
+  margin-bottom: 1.55rem;
+}
+
+.freelance-section-head-row {
+  display: flex;
+  max-width: none;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.freelance-section-head h2,
+.freelance-calculator-copy h2,
+.freelance-deliverables-copy h2,
+.freelance-request-copy h2,
+.freelance-final-cta h2 {
+  margin-top: 0.7rem;
+  color: #020617;
+  font-size: clamp(2rem, 4vw, 3.8rem);
+  line-height: 1;
+  letter-spacing: -0.06em;
+  font-weight: 1000;
+}
+
+.dark .freelance-section-head h2,
+.dark .freelance-calculator-copy h2,
+.dark .freelance-deliverables-copy h2,
+.dark .freelance-request-copy h2,
+.dark .freelance-final-cta h2 {
+  color: white;
+}
+
+.freelance-section-head p,
+.freelance-calculator-copy p,
+.freelance-deliverables-copy p,
+.freelance-request-copy p,
+.freelance-final-cta p {
+  margin-top: 0.9rem;
+  color: #64748b;
+  line-height: 1.8;
+  font-weight: 700;
+}
+
+.dark .freelance-section-head p,
+.dark .freelance-calculator-copy p,
+.dark .freelance-deliverables-copy p,
+.dark .freelance-request-copy p,
+.dark .freelance-final-cta p {
+  color: #cbd5e1;
+}
+
+.freelance-services-grid,
+.freelance-pricing-grid,
+.freelance-workflow-grid,
+.freelance-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.freelance-service-card,
+.freelance-package-card,
+.freelance-workflow-card,
+.freelance-faq-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 1.85rem;
+  background: rgba(255, 255, 255, 0.68);
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.08);
+  padding: 1.25rem;
+  backdrop-filter: blur(18px);
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+}
+
+.dark .freelance-service-card,
+.dark .freelance-package-card,
+.dark .freelance-workflow-card,
+.dark .freelance-faq-card {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.58);
+}
+
+.freelance-service-card:hover,
+.freelance-package-card:hover,
+.freelance-workflow-card:hover,
+.freelance-faq-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(79, 70, 229, 0.24);
+  box-shadow: 0 34px 90px rgba(15, 23, 42, 0.14);
+}
+
+.freelance-icon {
+  display: grid;
+  width: 3.1rem;
+  height: 3.1rem;
+  place-items: center;
+  border-radius: 1.15rem;
+  color: white;
+  background: linear-gradient(135deg, #4f46e5, #0891b2);
+  box-shadow: 0 18px 45px rgba(37, 99, 235, 0.26);
+}
+
+.freelance-service-card h3,
+.freelance-package-card h3,
+.freelance-workflow-card h3,
+.freelance-faq-card h3 {
+  margin-top: 1rem;
+  color: #020617;
+  font-size: 1.25rem;
+  font-weight: 1000;
+  letter-spacing: -0.04em;
+}
+
+.dark .freelance-service-card h3,
+.dark .freelance-package-card h3,
+.dark .freelance-workflow-card h3,
+.dark .freelance-faq-card h3 {
+  color: white;
+}
+
+.freelance-service-card p,
+.freelance-package-card p,
+.freelance-workflow-card p,
+.freelance-faq-card p {
+  margin-top: 0.65rem;
+  color: #64748b;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  font-weight: 700;
+}
+
+.dark .freelance-service-card p,
+.dark .freelance-package-card p,
+.dark .freelance-workflow-card p,
+.dark .freelance-faq-card p {
+  color: #cbd5e1;
+}
+
+.freelance-price-pill {
+  display: inline-flex;
+  margin-top: 1rem;
+  border-radius: 999px;
+  background: rgba(79, 70, 229, 0.1);
+  color: #4338ca;
+  padding: 0.55rem 0.78rem;
+  font-size: 0.8rem;
+  font-weight: 1000;
+}
+
+.dark .freelance-price-pill {
+  background: rgba(129, 140, 248, 0.12);
+  color: #c7d2fe;
+}
+
+.freelance-package-card.featured {
+  border-color: rgba(79, 70, 229, 0.34);
+  box-shadow: 0 34px 100px rgba(79, 70, 229, 0.18);
+  transform: translateY(-8px);
+}
+
+.freelance-popular-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-radius: 999px;
+  background: #020617;
+  color: white;
+  padding: 0.55rem 0.78rem;
+  font-size: 0.76rem;
+  font-weight: 1000;
+}
+
+.dark .freelance-popular-badge {
+  background: white;
+  color: #020617;
+}
+
+.freelance-package-card > span {
+  display: block;
+  margin-top: 0.9rem;
+  color: #4f46e5;
+  font-size: 0.76rem;
+  font-weight: 1000;
+}
+
+.dark .freelance-package-card > span {
+  color: #a5b4fc;
+}
+
+.freelance-package-price {
+  margin-top: 0.85rem;
+  color: #020617;
+  font-size: 2.4rem;
+  line-height: 1;
+  font-weight: 1000;
+  letter-spacing: -0.06em;
+}
+
+.dark .freelance-package-price {
+  color: white;
+}
+
+.freelance-package-card p {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.freelance-feature-list {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 1.2rem;
+}
+
+.freelance-feature-list div {
+  display: flex;
+  gap: 0.55rem;
+  color: #475569;
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+.dark .freelance-feature-list div {
+  color: #cbd5e1;
+}
+
+.freelance-feature-list svg {
+  flex: 0 0 auto;
+  margin-top: 0.1rem;
+  color: #10b981;
+}
+
+.freelance-package-card a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  width: 100%;
+  min-height: 3.1rem;
+  margin-top: 1.25rem;
+  border-radius: 999px;
+  color: white;
+  background: linear-gradient(135deg, #4f46e5, #0891b2);
+  font-size: 0.9rem;
+  font-weight: 1000;
+}
+
+.freelance-calculator-section,
+.freelance-deliverables-section,
+.freelance-request-section,
+.freelance-final-cta {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: 1.2rem;
+  border-radius: 2.4rem;
+  padding: clamp(1.2rem, 3vw, 2rem);
+}
+
+.freelance-estimate-card {
+  margin-top: 1.4rem;
+  border-radius: 1.5rem;
+  background: #020617;
+  color: white;
+  padding: 1.2rem;
+}
+
+.freelance-estimate-card span,
+.freelance-estimate-card strong {
+  display: block;
+}
+
+.freelance-estimate-card span {
+  color: #cbd5e1;
+  font-size: 0.8rem;
+  font-weight: 1000;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.freelance-estimate-card strong {
+  margin-top: 0.6rem;
+  font-size: clamp(1.7rem, 4vw, 2.8rem);
+  line-height: 1;
+  font-weight: 1000;
+  letter-spacing: -0.05em;
+}
+
+.freelance-estimate-card p {
+  margin-top: 0.55rem;
+  color: #94a3b8;
+}
+
+.freelance-calculator,
+.freelance-form {
+  display: grid;
+  gap: 0.9rem;
+  border-radius: 1.8rem;
+  background: rgba(255, 255, 255, 0.68);
+  padding: clamp(1rem, 2vw, 1.2rem);
+}
+
+.dark .freelance-calculator,
+.dark .freelance-form {
+  background: rgba(2, 6, 23, 0.34);
+}
+
+.freelance-calculator label,
+.freelance-form label {
+  display: grid;
+  gap: 0.45rem;
+  color: #334155;
+  font-size: 0.82rem;
+  font-weight: 1000;
+}
+
+.dark .freelance-calculator label,
+.dark .freelance-form label {
+  color: #e2e8f0;
+}
+
+.freelance-calculator input,
+.freelance-calculator select,
+.freelance-form input,
+.freelance-form select,
+.freelance-form textarea {
+  width: 100%;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 1rem;
+  outline: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: #020617;
+  padding: 0.9rem 1rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.dark .freelance-calculator input,
+.dark .freelance-calculator select,
+.dark .freelance-form input,
+.dark .freelance-form select,
+.dark .freelance-form textarea {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(15, 23, 42, 0.78);
+  color: white;
+}
+
+.freelance-calculator input:focus,
+.freelance-calculator select:focus,
+.freelance-form input:focus,
+.freelance-form select:focus,
+.freelance-form textarea:focus {
+  border-color: rgba(79, 70, 229, 0.55);
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.12);
+}
+
+.freelance-feature-options > span {
+  display: block;
+  color: #334155;
+  font-size: 0.82rem;
+  font-weight: 1000;
+}
+
+.dark .freelance-feature-options > span {
+  color: #e2e8f0;
+}
+
+.freelance-feature-options > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.65rem;
+}
+
+.freelance-feature-options button {
+  border: 1px solid rgba(15, 23, 42, 0.09);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  color: #334155;
+  padding: 0.6rem 0.82rem;
+  font-size: 0.78rem;
+  font-weight: 1000;
+}
+
+.dark .freelance-feature-options button {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(15, 23, 42, 0.78);
+  color: #cbd5e1;
+}
+
+.freelance-feature-options button.active {
+  color: white;
+  background: linear-gradient(135deg, #4f46e5, #0891b2);
+}
+
+.freelance-workflow-card > div {
+  display: grid;
+  width: 3.1rem;
+  height: 3.1rem;
+  place-items: center;
+  border-radius: 1.15rem;
+  color: white;
+  background: #020617;
+  font-size: 0.85rem;
+  font-weight: 1000;
+}
+
+.dark .freelance-workflow-card > div {
+  background: white;
+  color: #020617;
+}
+
+.freelance-deliverables-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.freelance-deliverables-grid div {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.62);
+  color: #475569;
+  padding: 1rem;
+  font-weight: 900;
+}
+
+.dark .freelance-deliverables-grid div {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(2, 6, 23, 0.3);
+  color: #cbd5e1;
+}
+
+.freelance-deliverables-grid svg {
+  flex: 0 0 auto;
+  color: #10b981;
+}
+
+.freelance-contact-cards {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 1.35rem;
+}
+
+.freelance-contact-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0.85rem;
+  align-items: center;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.58);
+  color: #0f172a;
+  padding: 1rem;
+}
+
+.dark .freelance-contact-card {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(2, 6, 23, 0.3);
+  color: white;
+}
+
+.freelance-contact-card > svg:first-child {
+  width: 2.65rem;
+  height: 2.65rem;
+  border-radius: 1rem;
+  color: white;
+  background: linear-gradient(135deg, #4f46e5, #0891b2);
+  padding: 0.72rem;
+}
+
+.freelance-contact-card strong,
+.freelance-contact-card span {
+  display: block;
+}
+
+.freelance-contact-card strong {
+  color: #020617;
+  font-weight: 1000;
+}
+
+.dark .freelance-contact-card strong {
+  color: white;
+}
+
+.freelance-contact-card span {
+  margin-top: 0.2rem;
+  color: #64748b;
+  font-size: 0.84rem;
+  font-weight: 750;
+}
+
+.dark .freelance-contact-card span {
+  color: #cbd5e1;
+}
+
+.freelance-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.freelance-form-estimate {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  border-radius: 1.2rem;
+  background: rgba(79, 70, 229, 0.1);
+  color: #4338ca;
+  padding: 1rem;
+}
+
+.dark .freelance-form-estimate {
+  background: rgba(129, 140, 248, 0.12);
+  color: #c7d2fe;
+}
+
+.freelance-form-estimate svg {
+  flex: 0 0 auto;
+  font-size: 1.35rem;
+}
+
+.freelance-form-estimate strong,
+.freelance-form-estimate span {
+  display: block;
+}
+
+.freelance-form-estimate strong {
+  font-size: 0.9rem;
+  font-weight: 1000;
+}
+
+.freelance-form-estimate span {
+  margin-top: 0.2rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.freelance-form-status {
+  border-radius: 1rem;
+  padding: 0.85rem 1rem;
+  font-size: 0.88rem;
+  font-weight: 900;
+}
+
+.freelance-form-status.success {
+  background: rgba(34, 197, 94, 0.12);
+  color: #15803d;
+}
+
+.freelance-form-status.error {
+  background: rgba(239, 68, 68, 0.12);
+  color: #dc2626;
+}
+
+.dark .freelance-form-status.success {
+  color: #86efac;
+}
+
+.dark .freelance-form-status.error {
+  color: #fca5a5;
+}
+
+.freelance-form button[type='submit'] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  min-height: 3.35rem;
+  border-radius: 999px;
+  color: white;
+  background: linear-gradient(135deg, #4f46e5, #0891b2);
+  font-size: 0.92rem;
+  font-weight: 1000;
+  box-shadow: 0 22px 55px rgba(37, 99, 235, 0.25);
+}
+
+.freelance-form button[type='submit']:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.freelance-final-cta {
+  align-items: center;
+  background:
+    linear-gradient(135deg, rgba(2, 6, 23, 0.96), rgba(15, 23, 42, 0.9)),
+    radial-gradient(circle at 100% 0%, rgba(34, 211, 238, 0.18), transparent 34%);
+}
+
+.freelance-final-cta h2,
+.freelance-final-cta p {
+  color: white;
+}
+
+.freelance-final-cta p {
+  color: #cbd5e1;
+}
+
+.freelance-final-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  justify-content: flex-end;
+}
+
+.freelance-final-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  min-height: 3.25rem;
+  border-radius: 999px;
+  padding: 0 1.15rem;
+  font-size: 0.9rem;
+  font-weight: 1000;
+}
+
+.freelance-final-actions a:first-child {
+  color: white;
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+}
+
+.freelance-final-actions a:last-child {
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.09);
+}
+
+@media (max-width: 1100px) {
+  .freelance-hero,
+  .freelance-calculator-section,
+  .freelance-deliverables-section,
+  .freelance-request-section,
+  .freelance-final-cta {
+    grid-template-columns: 1fr;
+  }
+
+  .freelance-services-grid,
+  .freelance-pricing-grid,
+  .freelance-workflow-grid,
+  .freelance-faq-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .freelance-section-head-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .freelance-final-actions {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 760px) {
+  .freelance-page {
+    padding-inline: 1rem;
+  }
+
+  .freelance-hero-copy h1 {
+    font-size: clamp(2.7rem, 14vw, 4.1rem);
+  }
+
+  .freelance-cta-row {
+    flex-direction: column;
+  }
+
+  .freelance-primary-btn,
+  .freelance-secondary-btn,
+  .freelance-ghost-btn {
+    width: 100%;
+  }
+
+  .freelance-trust-strip,
+  .freelance-services-grid,
+  .freelance-pricing-grid,
+  .freelance-workflow-grid,
+  .freelance-faq-grid,
+  .freelance-deliverables-grid,
+  .freelance-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .freelance-package-card.featured {
+    transform: none;
+  }
+
+  .freelance-calculator-section,
+  .freelance-deliverables-section,
+  .freelance-request-section,
+  .freelance-final-cta {
+    border-radius: 2rem;
+  }
+
+  .freelance-final-actions {
+    flex-direction: column;
+  }
+
+  .freelance-final-actions a {
+    width: 100%;
+  }
+}
