@@ -1,21 +1,28 @@
-import React from 'react'
+import React, { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   FiArrowRight,
   FiAward,
-  FiBarChart2,
+  FiBookOpen,
+  FiBriefcase,
   FiCheckCircle,
+  FiCloud,
   FiCode,
   FiCpu,
   FiDatabase,
   FiDownload,
   FiExternalLink,
+  FiFilter,
+  FiGithub,
   FiGitBranch,
-  FiGlobe,
+  FiGrid,
   FiLayers,
   FiMonitor,
+  FiSearch,
   FiServer,
+  FiSettings,
   FiShield,
+  FiStar,
   FiTarget,
   FiTerminal,
   FiTool,
@@ -23,307 +30,419 @@ import {
   FiZap,
 } from 'react-icons/fi'
 import SEO from '../components/SEO'
-import { websiteSchema } from '../seo/schema'
+import projects from '../data/projects'
+
+const categories = ['All', 'Frontend', 'Backend', 'Database', 'Tools', 'Core']
+
+const skills = [
+  {
+    name: 'React.js',
+    category: 'Frontend',
+    level: 82,
+    status: 'Strong',
+    icon: FiCode,
+    usedIn: ['Portfolio', 'E-Commerce Store', 'Zerodha Clone', 'Queens Arena'],
+    desc: 'Components, routing, state handling, forms, responsive UI and reusable layouts.',
+  },
+  {
+    name: 'JavaScript',
+    category: 'Frontend',
+    level: 80,
+    status: 'Strong',
+    icon: FiTerminal,
+    usedIn: ['Portfolio', 'E-Commerce Store', 'Queens Arena'],
+    desc: 'DOM logic, arrays, objects, async code, API handling and frontend interactions.',
+  },
+  {
+    name: 'HTML5',
+    category: 'Frontend',
+    level: 88,
+    status: 'Strong',
+    icon: FiMonitor,
+    usedIn: ['All Web Projects'],
+    desc: 'Semantic layout, page structure, SEO-friendly markup and clean section design.',
+  },
+  {
+    name: 'CSS3',
+    category: 'Frontend',
+    level: 84,
+    status: 'Strong',
+    icon: FiMonitor,
+    usedIn: ['Portfolio', 'Zerodha Clone', 'E-Commerce Store'],
+    desc: 'Responsive design, animations, cards, layouts, dark mode and modern UI styling.',
+  },
+  {
+    name: 'Tailwind CSS',
+    category: 'Frontend',
+    level: 76,
+    status: 'Good',
+    icon: FiZap,
+    usedIn: ['Portfolio'],
+    desc: 'Utility-first styling, responsive classes, spacing system and fast UI building.',
+  },
+  {
+    name: 'Node.js',
+    category: 'Backend',
+    level: 76,
+    status: 'Good',
+    icon: FiServer,
+    usedIn: ['E-Commerce Store', 'Queens Arena', 'Portfolio Backend'],
+    desc: 'Server-side JavaScript, backend structure, environment setup and API handling.',
+  },
+  {
+    name: 'Express.js',
+    category: 'Backend',
+    level: 78,
+    status: 'Good',
+    icon: FiServer,
+    usedIn: ['E-Commerce Store', 'Queens Arena', 'Portfolio Backend'],
+    desc: 'REST APIs, routes, middleware, request validation and backend endpoints.',
+  },
+  {
+    name: 'REST APIs',
+    category: 'Backend',
+    level: 78,
+    status: 'Good',
+    icon: FiCloud,
+    usedIn: ['E-Commerce Store', 'Queens Arena', 'Analytics Backend'],
+    desc: 'API routes, JSON request/response flow, frontend integration and testing.',
+  },
+  {
+    name: 'JWT Auth',
+    category: 'Backend',
+    level: 70,
+    status: 'Practicing',
+    icon: FiShield,
+    usedIn: ['E-Commerce Store', 'Zerodha Clone'],
+    desc: 'Authentication flow, protected routes, token handling and user sessions.',
+  },
+  {
+    name: 'MongoDB',
+    category: 'Database',
+    level: 76,
+    status: 'Good',
+    icon: FiDatabase,
+    usedIn: ['E-Commerce Store', 'Queens Arena', 'Portfolio Backend'],
+    desc: 'Collections, CRUD operations, database connection and document-based data modeling.',
+  },
+  {
+    name: 'Mongoose',
+    category: 'Database',
+    level: 72,
+    status: 'Good',
+    icon: FiDatabase,
+    usedIn: ['E-Commerce Store', 'Queens Arena', 'Analytics Backend'],
+    desc: 'Schemas, models, validation, timestamps and MongoDB structure using Node.js.',
+  },
+  {
+    name: 'MySQL',
+    category: 'Database',
+    level: 62,
+    status: 'Learning',
+    icon: FiDatabase,
+    usedIn: ['Academic Practice'],
+    desc: 'Tables, queries, relational concepts, joins and database fundamentals.',
+  },
+  {
+    name: 'Git',
+    category: 'Tools',
+    level: 75,
+    status: 'Good',
+    icon: FiGitBranch,
+    usedIn: ['All Projects'],
+    desc: 'Version control, commits, branches, restore, status checks and workflow discipline.',
+  },
+  {
+    name: 'GitHub',
+    category: 'Tools',
+    level: 78,
+    status: 'Good',
+    icon: FiGithub,
+    usedIn: ['All Projects'],
+    desc: 'Repository management, pushing code, project proof and public portfolio work.',
+  },
+  {
+    name: 'Vercel',
+    category: 'Tools',
+    level: 74,
+    status: 'Good',
+    icon: FiCloud,
+    usedIn: ['Portfolio', 'E-Commerce Store', 'Queens Arena'],
+    desc: 'Frontend deployment, environment setup, route handling and production build.',
+  },
+  {
+    name: 'Render',
+    category: 'Tools',
+    level: 66,
+    status: 'Practicing',
+    icon: FiCloud,
+    usedIn: ['Portfolio Backend', 'Queens Arena Backend'],
+    desc: 'Backend deployment, environment variables, server logs and live API hosting.',
+  },
+  {
+    name: 'C++',
+    category: 'Core',
+    level: 70,
+    status: 'Practicing',
+    icon: FiCpu,
+    usedIn: ['DSA Practice'],
+    desc: 'Problem solving, arrays, strings, recursion, sorting, searching and DSA practice.',
+  },
+  {
+    name: 'DSA',
+    category: 'Core',
+    level: 68,
+    status: 'Practicing',
+    icon: FiTarget,
+    usedIn: ['170+ LeetCode Problems'],
+    desc: 'Arrays, strings, two pointers, recursion, backtracking, sorting and problem solving.',
+  },
+  {
+    name: 'DBMS',
+    category: 'Core',
+    level: 66,
+    status: 'Practicing',
+    icon: FiDatabase,
+    usedIn: ['Academic + Project Design'],
+    desc: 'Schemas, normalization basics, relationships, transactions and database thinking.',
+  },
+  {
+    name: 'Software Engineering',
+    category: 'Core',
+    level: 64,
+    status: 'Learning',
+    icon: FiSettings,
+    usedIn: ['Project Planning'],
+    desc: 'Requirement analysis, design, implementation, testing, deployment and maintenance.',
+  },
+]
+
+const skillStats = [
+  {
+    value: '20+',
+    label: 'Skills Mapped',
+  },
+  {
+    value: 'MERN',
+    label: 'Primary Stack',
+  },
+  {
+    value: '170+',
+    label: 'DSA Problems',
+  },
+  {
+    value: 'Live',
+    label: 'Deployment Proof',
+  },
+]
 
 const skillGroups = [
   {
-    icon: FiMonitor,
+    icon: FiCode,
     title: 'Frontend Development',
-    level: 82,
-    desc: 'Building responsive, reusable and clean user interfaces with React and modern CSS.',
-    skills: ['React.js', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'Responsive Design'],
+    desc: 'React, JavaScript, HTML, CSS, Tailwind, routing, forms and responsive UI.',
   },
   {
     icon: FiServer,
     title: 'Backend Development',
-    level: 76,
-    desc: 'Creating REST APIs, route handling, authentication and backend logic with Node and Express.',
-    skills: ['Node.js', 'Express.js', 'REST APIs', 'JWT Auth', 'Validation', 'MVC Structure'],
+    desc: 'Node.js, Express.js, REST APIs, JWT auth, validation and backend structure.',
   },
   {
     icon: FiDatabase,
-    title: 'Database & Data',
-    level: 72,
-    desc: 'Designing MongoDB schemas, CRUD operations and practical app data flows.',
-    skills: ['MongoDB', 'Mongoose', 'CRUD', 'Schema Design', 'MongoDB Atlas', 'Data Modelling'],
+    title: 'Database Handling',
+    desc: 'MongoDB, Mongoose schemas, CRUD operations and database-driven features.',
   },
   {
-    icon: FiGitBranch,
+    icon: FiTool,
     title: 'Tools & Deployment',
-    level: 78,
-    desc: 'Using Git, GitHub, Vercel, Render and Postman to ship and test projects.',
-    skills: ['Git', 'GitHub', 'Vercel', 'Render', 'Postman', 'VS Code'],
+    desc: 'Git, GitHub, Vercel, Render, environment variables and production builds.',
   },
 ]
 
-const coreStack = [
-  {
-    title: 'React.js',
-    type: 'Frontend',
-    desc: 'Components, routing, state, hooks, UI sections and reusable design patterns.',
-  },
-  {
-    title: 'Node.js',
-    type: 'Backend',
-    desc: 'Server-side logic, API structure, middleware and backend project setup.',
-  },
-  {
-    title: 'Express.js',
-    type: 'Backend',
-    desc: 'Routes, controllers, validation, API endpoints and request/response handling.',
-  },
-  {
-    title: 'MongoDB',
-    type: 'Database',
-    desc: 'Collections, schemas, CRUD operations and app-level data persistence.',
-  },
-  {
-    title: 'JavaScript',
-    type: 'Language',
-    desc: 'DOM, async workflows, arrays, objects, functions, APIs and app logic.',
-  },
-  {
-    title: 'C++',
-    type: 'DSA',
-    desc: 'Problem solving, data structures, algorithms and LeetCode practice.',
-  },
-]
-
-const proofPoints = [
-  '170+ LeetCode problems solved',
-  'MERN stack project development',
-  'Frontend + backend integration',
-  'Authentication and protected routes',
-  'MongoDB schema design',
-  'Vercel and Render deployment',
-  'REST API development',
-  'Responsive UI implementation',
-]
-
-const workflow = [
+const interviewReadiness = [
   {
     icon: FiTarget,
-    title: 'Plan',
-    desc: 'Understand requirement, user flow, features and data structure.',
+    title: 'DSA Practice',
+    desc: '170+ LeetCode problems solved with regular improvement in problem-solving.',
   },
   {
     icon: FiLayers,
-    title: 'Design',
-    desc: 'Break UI into sections, components, cards, forms and responsive layouts.',
-  },
-  {
-    icon: FiCode,
-    title: 'Build',
-    desc: 'Develop React frontend, APIs, backend logic and MongoDB models.',
+    title: 'Project Explanation',
+    desc: 'Can explain project architecture, APIs, database schema and feature flow.',
   },
   {
     icon: FiShield,
-    title: 'Test & Deploy',
-    desc: 'Check forms, routes, responsiveness, build output and deployment.',
+    title: 'Backend Concepts',
+    desc: 'Understands auth flow, routes, CRUD APIs, MongoDB schemas and deployments.',
+  },
+  {
+    icon: FiMonitor,
+    title: 'Frontend Confidence',
+    desc: 'Can build responsive UI, forms, pages, reusable components and clean layouts.',
   },
 ]
 
-const learningNow = [
-  'Advanced React patterns',
-  'Backend architecture',
-  'DSA consistency',
-  'System design basics',
-  'API security',
-  'SEO and performance',
+const learningRoadmap = [
+  {
+    title: 'Current Focus',
+    points: ['DSA consistency', 'MERN project polish', 'API debugging', 'Resume improvement'],
+  },
+  {
+    title: 'Next Learning',
+    points: ['TypeScript basics', 'Testing fundamentals', 'System design basics', 'Advanced MongoDB'],
+  },
+  {
+    title: 'Career Focus',
+    points: ['Internship applications', 'Project case studies', 'GitHub proof', 'Interview practice'],
+  },
 ]
 
+function getLevelClass(level) {
+  if (level >= 80) return 'strong'
+  if (level >= 70) return 'good'
+  if (level >= 60) return 'practice'
+  return 'learning'
+}
+
 export default function Skills() {
+  const [activeCategory, setActiveCategory] = useState('All')
+  const [query, setQuery] = useState('')
+
+  const filteredSkills = useMemo(() => {
+    return skills.filter((skill) => {
+      const matchesCategory =
+        activeCategory === 'All' || skill.category === activeCategory
+
+      const searchText = [
+        skill.name,
+        skill.category,
+        skill.status,
+        skill.desc,
+        ...(skill.usedIn || []),
+      ]
+        .join(' ')
+        .toLowerCase()
+
+      const matchesQuery = searchText.includes(query.toLowerCase())
+
+      return matchesCategory && matchesQuery
+    })
+  }, [activeCategory, query])
+
+  const projectSkillMap = useMemo(() => {
+    return projects.map((project) => ({
+      title: project.title,
+      description: project.description,
+      image: project.image,
+      demo: project.demo,
+      github: project.github,
+      techStack: project.techStack || [],
+    }))
+  }, [])
+
   return (
     <>
       <SEO
         title="Skills | Devesh Sahu MERN Stack Developer"
-        description="Technical skills of Devesh Sahu: React.js, Node.js, Express.js, MongoDB, JavaScript, C++, REST APIs, JWT, Git, GitHub, Vercel and Render."
+        description="Explore technical skills of Devesh Sahu including React, Node.js, Express, MongoDB, JavaScript, REST APIs, Git, GitHub, DSA and deployment tools."
         path="/skills"
-        schema={websiteSchema}
       />
 
-      <main className="skills-premium-page">
-        <section className="skills-premium-hero">
-          <div className="skills-premium-copy">
-            <div className="skills-premium-badge">
+      <main className="skillsx-page">
+        <section className="skillsx-hero">
+          <div className="skillsx-hero-copy">
+            <div className="skillsx-kicker">
               <span />
-              Engineering Skills
+              Technical Skills
             </div>
 
             <h1>
-              Skills organized like an{' '}
-              <span>engineering capability dashboard.</span>
+              Skills mapped with real projects, not only resume keywords.
             </h1>
 
             <p>
-              My skills are focused on building complete web products: React
-              frontend, Node.js backend, Express APIs, MongoDB database,
-              authentication, deployment and problem solving with DSA.
+              I’m focused on MERN Stack Development with React, Node.js, Express,
+              MongoDB, REST APIs, GitHub, deployment and DSA practice. This page
+              shows what I know, where I used it and what I am improving.
             </p>
 
-            <div className="skills-premium-actions">
-              <Link to="/projects" className="skills-premium-primary-btn">
-                See Project Proof <FiArrowRight />
+            <div className="skillsx-actions">
+              <Link to="/projects" className="skillsx-primary-btn">
+                View Project Proof <FiArrowRight />
               </Link>
 
-              <a href="/resume.pdf" download className="skills-premium-secondary-btn">
+              <Link to="/recruiter" className="skillsx-secondary-btn">
+                <FiBriefcase /> Recruiter Hub
+              </Link>
+
+              <a href="/resume.pdf" download className="skillsx-secondary-btn">
                 <FiDownload /> Resume
               </a>
             </div>
           </div>
 
-          <aside className="skills-premium-score-card">
-            <div className="skills-premium-score-top">
-              <span>Skill Snapshot</span>
-              <h2>MERN Stack Focus</h2>
-              <p>React · Node · Express · MongoDB</p>
+          <aside className="skillsx-summary-card">
+            <span>Skill Snapshot</span>
+            <h2>MERN Stack Focus</h2>
+
+            <div className="skillsx-summary-list">
+              <div>
+                <FiCheckCircle />
+                <strong>Frontend + backend development</strong>
+              </div>
+
+              <div>
+                <FiCheckCircle />
+                <strong>Database + API integration</strong>
+              </div>
+
+              <div>
+                <FiCheckCircle />
+                <strong>GitHub + deployment workflow</strong>
+              </div>
+
+              <div>
+                <FiCheckCircle />
+                <strong>DSA + interview preparation</strong>
+              </div>
             </div>
 
-            <div className="skills-premium-score-grid">
+            <div className="skillsx-mini-proof">
+              <FiAward />
               <div>
-                <FiCode />
-                <strong>170+</strong>
-                <span>LeetCode solved</span>
-              </div>
-
-              <div>
-                <FiZap />
-                <strong>4+</strong>
-                <span>Projects built</span>
-              </div>
-
-              <div>
-                <FiGlobe />
-                <strong>Live</strong>
-                <span>Deployments</span>
-              </div>
-
-              <div>
-                <FiTerminal />
-                <strong>API</strong>
-                <span>Backend work</span>
+                <strong>Recruiter-ready profile</strong>
+                <span>Skills are connected with projects, proof and real usage.</span>
               </div>
             </div>
           </aside>
         </section>
 
-        <section className="skills-premium-section">
-          <div className="skills-premium-section-head">
-            <span>Skill matrix</span>
-            <h2>Core technical capabilities.</h2>
-            <p>
-              These are the areas I currently use across my portfolio projects
-              and internship preparation.
-            </p>
-          </div>
-
-          <div className="skills-premium-matrix">
-            {skillGroups.map(({ icon: Icon, title, level, desc, skills }) => (
-              <article key={title} className="skills-premium-skill-card">
-                <div className="skills-premium-skill-head">
-                  <div>
-                    <Icon />
-                  </div>
-
-                  <section>
-                    <h3>{title}</h3>
-                    <p>{desc}</p>
-                  </section>
-                </div>
-
-                <div className="skills-premium-progress">
-                  <div>
-                    <span>Current confidence</span>
-                    <strong>{level}%</strong>
-                  </div>
-
-                  <div className="skills-premium-progress-track">
-                    <span style={{ width: `${level}%` }} />
-                  </div>
-                </div>
-
-                <div className="skills-premium-tags">
-                  {skills.map((skill) => (
-                    <span key={skill}>{skill}</span>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="skills-premium-section">
-          <div className="skills-premium-section-head skills-premium-section-head-row">
-            <div>
-              <span>Core stack</span>
-              <h2>Technologies I use to build products.</h2>
-              <p>
-                This stack helps me build frontend, backend, database and
-                deployment-ready applications.
-              </p>
+        <section className="skillsx-stats">
+          {skillStats.map((item) => (
+            <div key={item.label}>
+              <strong>{item.value}</strong>
+              <span>{item.label}</span>
             </div>
-
-            <Link to="/projects" className="skills-premium-secondary-btn">
-              View Projects <FiExternalLink />
-            </Link>
-          </div>
-
-          <div className="skills-premium-stack-grid">
-            {coreStack.map((item) => (
-              <article key={item.title} className="skills-premium-stack-card">
-                <span>{item.type}</span>
-                <h3>{item.title}</h3>
-                <p>{item.desc}</p>
-              </article>
-            ))}
-          </div>
+          ))}
         </section>
 
-        <section className="skills-premium-section skills-premium-proof-section">
-          <div className="skills-premium-proof-copy">
-            <span>Proof layer</span>
-            <h2>Skills backed by real work.</h2>
+        <section className="skillsx-section">
+          <div className="skillsx-section-head">
+            <span>Skill Dashboard</span>
+            <h2>My development skill areas.</h2>
             <p>
-              Recruiters do not shortlist only based on skill names. They look for
-              proof. My portfolio connects skills with projects, APIs, deployment
-              and DSA practice.
-            </p>
-
-            <div className="skills-premium-proof-actions">
-              <Link to="/recruiter" className="skills-premium-primary-btn">
-                Recruiter Hub <FiArrowRight />
-              </Link>
-
-              <a href="/resume.pdf" download className="skills-premium-secondary-btn">
-                Resume <FiDownload />
-              </a>
-            </div>
-          </div>
-
-          <div className="skills-premium-proof-list">
-            {proofPoints.map((item) => (
-              <div key={item}>
-                <FiCheckCircle />
-                <span>{item}</span>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="skills-premium-section">
-          <div className="skills-premium-section-head">
-            <span>Execution process</span>
-            <h2>How I apply my skills in projects.</h2>
-            <p>
-              A practical workflow helps me move from idea to deployed product
-              with better clarity.
+              These are the main areas I use while building full-stack web apps,
+              dashboards, APIs and deployed projects.
             </p>
           </div>
 
-          <div className="skills-premium-workflow">
-            {workflow.map(({ icon: Icon, title, desc }) => (
-              <article key={title}>
-                <Icon />
+          <div className="skillsx-group-grid">
+            {skillGroups.map(({ icon: Icon, title, desc }) => (
+              <article key={title} className="skillsx-group-card">
+                <div className="skillsx-icon">
+                  <Icon />
+                </div>
+
                 <h3>{title}</h3>
                 <p>{desc}</p>
               </article>
@@ -331,43 +450,258 @@ export default function Skills() {
           </div>
         </section>
 
-        <section className="skills-premium-section skills-premium-learning">
-          <div>
-            <span>Currently improving</span>
-            <h2>Skills I am actively upgrading.</h2>
+        <section className="skillsx-section">
+          <div className="skillsx-skill-head">
+            <div>
+              <span>Skill Matrix</span>
+              <h2>Filter and review skills.</h2>
+              <p>
+                Search by technology, project usage or category to quickly verify
+                my technical profile.
+              </p>
+            </div>
+
+            <div className="skillsx-search">
+              <FiSearch />
+              <input
+                type="text"
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="Search React, API, MongoDB..."
+              />
+            </div>
+          </div>
+
+          <div className="skillsx-filter-bar">
+            <div>
+              <FiFilter />
+              <span>Category</span>
+            </div>
+
+            <div className="skillsx-tabs">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  type="button"
+                  onClick={() => setActiveCategory(category)}
+                  className={activeCategory === category ? 'active' : ''}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="skillsx-card-grid">
+            {filteredSkills.map(({ icon: Icon, name, category, level, status, usedIn, desc }) => (
+              <article key={name} className="skillsx-skill-card">
+                <div className="skillsx-skill-top">
+                  <div className="skillsx-icon">
+                    <Icon />
+                  </div>
+
+                  <span className={`skillsx-level ${getLevelClass(level)}`}>
+                    {status}
+                  </span>
+                </div>
+
+                <h3>{name}</h3>
+                <p>{desc}</p>
+
+                <div className="skillsx-progress">
+                  <div>
+                    <span>Confidence</span>
+                    <strong>{level}%</strong>
+                  </div>
+
+                  <div className="skillsx-progress-track">
+                    <span style={{ width: `${level}%` }} />
+                  </div>
+                </div>
+
+                <div className="skillsx-used">
+                  <strong>Used in</strong>
+
+                  <div>
+                    {usedIn.slice(0, 4).map((item) => (
+                      <span key={item}>{item}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="skillsx-category-pill">
+                  <FiGrid />
+                  {category}
+                </div>
+              </article>
+            ))}
+          </div>
+
+          {filteredSkills.length === 0 && (
+            <div className="skillsx-empty">
+              <FiSearch />
+              <h3>No skill found</h3>
+              <p>Try another keyword or category.</p>
+            </div>
+          )}
+        </section>
+
+        <section className="skillsx-section">
+          <div className="skillsx-section-head">
+            <span>Project Mapping</span>
+            <h2>Skills connected with project proof.</h2>
             <p>
-              I am improving both interview preparation and production
-              development skills to become internship-ready and job-ready.
+              Recruiters can quickly see which technologies are used in my real
+              projects.
             </p>
           </div>
 
-          <div className="skills-premium-learning-list">
-            {learningNow.map((item) => (
-              <div key={item}>
-                <FiTrendingUp />
-                <span>{item}</span>
-              </div>
+          <div className="skillsx-project-map">
+            {projectSkillMap.map((project) => (
+              <article key={project.title}>
+                <div className="skillsx-project-image">
+                  {project.image ? (
+                    <img
+                      src={project.image}
+                      alt={`${project.title} preview`}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <FiLayers />
+                  )}
+                </div>
+
+                <div className="skillsx-project-body">
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+
+                  <div className="skillsx-project-tech">
+                    {project.techStack.slice(0, 7).map((tech) => (
+                      <span key={tech}>{tech}</span>
+                    ))}
+                  </div>
+
+                  <div className="skillsx-project-actions">
+                    {project.demo && (
+                      <a href={project.demo} target="_blank" rel="noreferrer">
+                        Live <FiExternalLink />
+                      </a>
+                    )}
+
+                    {project.github && (
+                      <a href={project.github} target="_blank" rel="noreferrer">
+                        Code <FiGithub />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </article>
             ))}
           </div>
         </section>
 
-        <section className="skills-premium-final-cta">
+        <section className="skillsx-section">
+          <div className="skillsx-section-head">
+            <span>Interview Readiness</span>
+            <h2>What I can discuss in an interview.</h2>
+          </div>
+
+          <div className="skillsx-readiness-grid">
+            {interviewReadiness.map(({ icon: Icon, title, desc }) => (
+              <article key={title}>
+                <Icon />
+
+                <div>
+                  <h3>{title}</h3>
+                  <p>{desc}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="skillsx-two-col">
+          <div className="skillsx-panel">
+            <div className="skillsx-section-head small">
+              <span>Learning Roadmap</span>
+              <h2>What I am improving next.</h2>
+            </div>
+
+            <div className="skillsx-roadmap">
+              {learningRoadmap.map((item) => (
+                <article key={item.title}>
+                  <div>
+                    <FiBookOpen />
+                    <h3>{item.title}</h3>
+                  </div>
+
+                  <ul>
+                    {item.points.map((point) => (
+                      <li key={point}>
+                        <FiCheckCircle />
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="skillsx-panel">
+            <div className="skillsx-section-head small">
+              <span>Recruiter Summary</span>
+              <h2>Best fit roles.</h2>
+            </div>
+
+            <div className="skillsx-fit-list">
+              {[
+                'Software Development Intern',
+                'MERN Stack Developer Intern',
+                'Frontend Developer Intern',
+                'Backend Developer Intern',
+                'Full Stack Developer Intern',
+              ].map((role) => (
+                <div key={role}>
+                  <FiStar />
+                  <span>{role}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="skillsx-note">
+              <FiTrendingUp />
+              <p>
+                My strongest profile is MERN stack internship where I can work
+                on React UI, backend APIs, MongoDB, dashboards and real product
+                features.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="skillsx-final-cta">
           <div>
-            <span>Want proof?</span>
-            <h2>Skills become stronger when they are visible in projects.</h2>
+            <span>Want to verify my work?</span>
+            <h2>Check projects, resume and recruiter hub.</h2>
             <p>
-              Open my project case studies to see how these skills are applied in
-              real frontend, backend and database flows.
+              My skills are supported by live projects, GitHub repositories,
+              API structure and deployment proof.
             </p>
           </div>
 
-          <div className="skills-premium-final-actions">
+          <div>
             <Link to="/projects">
-              Project Case Studies <FiArrowRight />
+              Projects <FiLayers />
+            </Link>
+
+            <Link to="/recruiter">
+              Recruiter Hub <FiBriefcase />
             </Link>
 
             <Link to="/contact">
-              Contact Me <FiExternalLink />
+              Contact Me <FiArrowRight />
             </Link>
           </div>
         </section>
