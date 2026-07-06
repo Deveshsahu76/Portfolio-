@@ -305,8 +305,8 @@ export default function Home() {
             </div>
           ))}
 
-          <LivePortfolioStats />
         </section>
+         <LivePortfolioStats />
 
         <section className="premium-section premium-audience-section">
           <div className="premium-section-head">
