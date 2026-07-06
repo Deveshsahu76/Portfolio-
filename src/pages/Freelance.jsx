@@ -5,270 +5,199 @@ import {
   FiCheckCircle,
   FiClock,
   FiCode,
-  FiCreditCard,
   FiDatabase,
+  FiDollarSign,
   FiExternalLink,
   FiGlobe,
   FiLayers,
   FiMail,
-  FiMessageSquare,
+  FiMessageCircle,
   FiMonitor,
-  FiPackage,
-  FiPenTool,
   FiSend,
-  FiServer,
   FiShield,
   FiShoppingCart,
   FiSmartphone,
   FiStar,
+  FiTarget,
   FiTrendingUp,
   FiZap,
 } from 'react-icons/fi'
-import { FaWhatsapp, FaGithub, FaLinkedin } from 'react-icons/fa'
 import SEO from '../components/SEO'
-import { freelanceSchema } from '../seo/schema'
+import projects from '../data/projects'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+const API_URL =
+  import.meta.env.VITE_API_URL || 'https://portfolio-backend-4b9u.onrender.com'
 
 const services = [
   {
     icon: FiGlobe,
-    title: 'Portfolio Website',
-    desc: 'Premium personal brand portfolio for students, developers, freelancers and professionals.',
-    price: '₹2,999+',
-  },
-  {
-    icon: FiBriefcase,
     title: 'Business Website',
-    desc: 'Modern website for local business, shop, coaching, service brand or startup landing page.',
-    price: '₹4,999+',
+    desc: 'Modern responsive website for shops, startups, coaching, portfolio, local business and service providers.',
+    features: ['Responsive UI', 'SEO setup', 'Contact form', 'Fast deployment'],
   },
   {
     icon: FiShoppingCart,
-    title: 'E-Commerce Website',
-    desc: 'Product listing, cart, order flow, admin-ready structure and payment gateway-ready setup.',
-    price: '₹9,999+',
+    title: 'E-Commerce Store',
+    desc: 'Product listing, cart, orders, authentication and payment gateway ready shopping website.',
+    features: ['Products', 'Cart', 'Orders', 'Admin-ready structure'],
   },
   {
     icon: FiMonitor,
-    title: 'Admin Dashboard',
-    desc: 'Clean dashboard with charts, tables, CRUD, filters, authentication and protected routes.',
-    price: '₹7,999+',
+    title: 'Dashboard UI',
+    desc: 'Clean dashboard for admin panels, analytics, orders, users, reports and internal business tools.',
+    features: ['Charts-ready UI', 'Tables', 'Filters', 'Protected layout'],
   },
   {
-    icon: FiServer,
-    title: 'Backend APIs',
-    desc: 'Node.js, Express, MongoDB, REST APIs, authentication, validation and deployment support.',
-    price: '₹5,999+',
-  },
-  {
-    icon: FiLayers,
+    icon: FiCode,
     title: 'MERN Web App',
-    desc: 'Full-stack React + Node + MongoDB application with frontend, backend and database flow.',
-    price: '₹14,999+',
+    desc: 'Full-stack app with React frontend, Node/Express backend, MongoDB database and REST APIs.',
+    features: ['Frontend', 'Backend APIs', 'Database', 'Deployment'],
   },
 ]
 
 const packages = [
   {
     name: 'Starter',
-    price: '₹2,999',
-    timeline: '3 - 5 days',
-    bestFor: 'Portfolio / Simple landing page',
-    highlighted: false,
-    features: [
-      '1 - 3 pages',
-      'Responsive design',
-      'Modern UI sections',
-      'Contact CTA',
+    price: '₹2,999 - ₹5,999',
+    bestFor: 'Portfolio / landing page / basic business site',
+    timeline: '2 - 4 days',
+    points: [
+      '1-3 responsive pages',
+      'Modern UI design',
+      'Contact section',
       'Basic SEO setup',
-      'Deployment support',
-    ],
-  },
-  {
-    name: 'Professional',
-    price: '₹7,999',
-    timeline: '7 - 12 days',
-    bestFor: 'Business website / Service brand',
-    highlighted: true,
-    features: [
-      '5 - 8 premium pages',
-      'Contact form integration',
-      'SEO metadata',
-      'Animations and sections',
-      'Google-ready structure',
       'Vercel deployment',
-      'WhatsApp CTA',
     ],
   },
   {
-    name: 'Full Stack',
-    price: '₹14,999+',
-    timeline: '15 - 25 days',
-    bestFor: 'Dashboard / MERN app / E-Commerce',
-    highlighted: false,
-    features: [
-      'React frontend',
-      'Node + Express backend',
-      'MongoDB database',
-      'Authentication',
-      'Admin dashboard',
-      'API integration',
+    name: 'Growth',
+    price: '₹6,999 - ₹14,999',
+    bestFor: 'Business website / service website / small web app',
+    timeline: '5 - 10 days',
+    points: [
+      '4-8 responsive pages',
+      'Contact form integration',
+      'Reusable React components',
+      'SEO + performance basics',
       'Deployment support',
+    ],
+    popular: true,
+  },
+  {
+    name: 'Pro MERN',
+    price: '₹15,000+',
+    bestFor: 'Full-stack app / dashboard / e-commerce structure',
+    timeline: '10+ days',
+    points: [
+      'Frontend + backend',
+      'MongoDB database',
+      'REST API integration',
+      'Authentication flow',
+      'Frontend and backend deployment',
     ],
   },
 ]
 
-const projectTypes = [
-  { label: 'Portfolio Website', value: 'portfolio', base: 2999 },
-  { label: 'Business Website', value: 'business', base: 4999 },
-  { label: 'Landing Page', value: 'landing', base: 3499 },
-  { label: 'Admin Dashboard', value: 'dashboard', base: 7999 },
-  { label: 'E-Commerce Website', value: 'ecommerce', base: 9999 },
-  { label: 'MERN Web App', value: 'mern', base: 14999 },
-]
-
-const featureOptions = [
-  { label: 'Contact Form', value: 'contactForm', price: 1000 },
-  { label: 'Backend API', value: 'backendApi', price: 4000 },
-  { label: 'Authentication', value: 'auth', price: 3000 },
-  { label: 'Admin Panel', value: 'adminPanel', price: 5000 },
-  { label: 'Payment Gateway Ready', value: 'payment', price: 3500 },
-  { label: 'SEO Setup', value: 'seo', price: 1500 },
-]
-
-const workflow = [
+const process = [
   {
     step: '01',
     title: 'Requirement Discussion',
-    desc: 'We discuss your business, goal, pages, features, timeline and expected outcome.',
+    desc: 'We discuss business goal, pages, features, design style, deadline and budget.',
   },
   {
     step: '02',
-    title: 'Design Direction',
-    desc: 'I plan layout, sections, content flow, CTA placement and premium UI direction.',
+    title: 'UI + Structure Planning',
+    desc: 'I plan page sections, user flow, CTA placement, tech stack and project structure.',
   },
   {
     step: '03',
     title: 'Development',
-    desc: 'Frontend, backend, database and integrations are built based on the project scope.',
+    desc: 'Frontend, backend, APIs, database and responsive UI are built step by step.',
   },
   {
     step: '04',
-    title: 'Testing & Delivery',
-    desc: 'Responsive testing, deployment, final changes and handover are completed.',
+    title: 'Testing + Deployment',
+    desc: 'Final testing, bug fixing, deployment and handover with source code or live link.',
   },
 ]
 
-const faqs = [
+const trustPoints = [
   {
-    q: 'Can you build a complete MERN stack website?',
-    a: 'Yes. I can build React frontend, Node.js backend, Express APIs, MongoDB database and deployment-ready structure.',
+    icon: FiZap,
+    title: 'Fast Delivery',
+    desc: 'Focused delivery with clear milestones and regular updates.',
   },
   {
-    q: 'Do you provide deployment support?',
-    a: 'Yes. I can help deploy frontend on Vercel and backend on Render or similar platforms.',
+    icon: FiShield,
+    title: 'Clean Code',
+    desc: 'Readable file structure, reusable components and maintainable code.',
   },
   {
-    q: 'Can you add payment gateway?',
-    a: 'I can create payment gateway-ready structure and integrate Razorpay-style flow based on project need.',
+    icon: FiTrendingUp,
+    title: 'Business Focused',
+    desc: 'Website is built for trust, conversions, leads and real users.',
   },
   {
-    q: 'Will the website be responsive?',
-    a: 'Yes. Every website will be responsive for mobile, tablet and desktop.',
-  },
-  {
-    q: 'Do you provide source code?',
-    a: 'Yes. Source code can be shared through GitHub or ZIP after project completion based on agreement.',
+    icon: FiDatabase,
+    title: 'Backend Ready',
+    desc: 'Can build APIs, MongoDB schema and full-stack logic when needed.',
   },
 ]
 
-const deliverables = [
-  'Responsive frontend',
-  'Clean UI sections',
-  'Reusable React components',
-  'Backend API setup',
-  'MongoDB schema design',
-  'Deployment guidance',
-  'SEO metadata',
-  'Contact / inquiry flow',
+const defaultForm = {
+  name: '',
+  email: '',
+  whatsapp: '',
+  projectType: '',
+  budget: '',
+  timeline: '',
+  message: '',
+}
+
+const projectTypes = [
+  'Business Website',
+  'Portfolio Website',
+  'E-Commerce Website',
+  'Dashboard / Admin Panel',
+  'MERN Web App',
+  'Bug Fixing / UI Improvement',
+]
+
+const budgetOptions = [
+  'Below ₹3,000',
+  '₹3,000 - ₹7,000',
+  '₹7,000 - ₹15,000',
+  '₹15,000+',
+  'Need discussion',
+]
+
+const timelineOptions = [
+  'Urgent',
+  'Within 3-5 days',
+  'Within 1-2 weeks',
+  'Flexible',
 ]
 
 export default function Freelance() {
-  const [calculator, setCalculator] = useState({
-    projectType: 'business',
-    pages: 5,
-    speed: 'normal',
-    features: ['contactForm', 'seo'],
-  })
-
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    projectType: 'Business Website',
-    budget: '',
-    timeline: '',
-    message: '',
-  })
-
+  const [form, setForm] = useState(defaultForm)
   const [status, setStatus] = useState({
     type: '',
     message: '',
   })
 
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const featuredProjects = useMemo(() => projects.slice(0, 3), [])
 
-  const estimate = useMemo(() => {
-    const selectedProject =
-      projectTypes.find((item) => item.value === calculator.projectType) ||
-      projectTypes[0]
+  const email = 'deveshsahu567@gmail.com'
+  const whatsappLink =
+    'https://wa.me/917607997416?text=Hi%20Devesh%2C%20I%20visited%20your%20portfolio%20and%20want%20to%20discuss%20a%20freelance%20project.'
 
-    const pageCost = Math.max(Number(calculator.pages) - 3, 0) * 700
+  const mailLink =
+    'mailto:deveshsahu567@gmail.com?subject=Freelance%20Project%20Inquiry&body=Hi%20Devesh%2C%0A%0AI%20visited%20your%20portfolio%20and%20want%20to%20discuss%20a%20project.%0A%0AProject%20Type%3A%0ABudget%3A%0ATimeline%3A%0ARequirements%3A%0A%0ARegards%2C'
 
-    const featuresCost = calculator.features.reduce((total, feature) => {
-      const item = featureOptions.find((option) => option.value === feature)
-      return total + (item?.price || 0)
-    }, 0)
-
-    const speedMultiplier = calculator.speed === 'urgent' ? 1.25 : 1
-
-    const total = Math.round(
-      (selectedProject.base + pageCost + featuresCost) * speedMultiplier
-    )
-
-    return {
-      min: total,
-      max: total + 5000,
-    }
-  }, [calculator])
-
-  const handleCalculatorChange = (event) => {
+  const handleChange = (event) => {
     const { name, value } = event.target
 
-    setCalculator((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
-  }
-
-  const toggleFeature = (value) => {
-    setCalculator((prev) => {
-      const exists = prev.features.includes(value)
-
-      return {
-        ...prev,
-        features: exists
-          ? prev.features.filter((item) => item !== value)
-          : [...prev.features, value],
-      }
-    })
-  }
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target
-
-    setFormData((prev) => ({
+    setForm((prev) => ({
       ...prev,
       [name]: value,
     }))
@@ -276,8 +205,11 @@ export default function Freelance() {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    setIsSubmitting(true)
-    setStatus({ type: '', message: '' })
+
+    setStatus({
+      type: 'loading',
+      message: 'Sending project request...',
+    })
 
     try {
       const response = await fetch(`${API_URL}/api/freelance/request`, {
@@ -285,329 +217,224 @@ export default function Freelance() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          ...formData,
-          estimatedBudget: `₹${estimate.min.toLocaleString('en-IN')} - ₹${estimate.max.toLocaleString('en-IN')}`,
-          calculator,
-          source: 'Freelance Page',
-        }),
+        body: JSON.stringify(form),
       })
 
-      const data = await response.json().catch(() => ({}))
-
       if (!response.ok) {
-        throw new Error(data.message || 'Unable to submit request right now.')
+        throw new Error('Request failed')
       }
 
       setStatus({
         type: 'success',
-        message:
-          'Your project request has been submitted successfully. I will contact you soon.',
+        message: 'Project request sent successfully. I will respond soon.',
       })
 
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        projectType: 'Business Website',
-        budget: '',
-        timeline: '',
-        message: '',
-      })
-    } catch (error) {
+      setForm(defaultForm)
+    } catch {
+      const fallbackSubject = encodeURIComponent(
+        `Freelance Project Inquiry - ${form.projectType || 'Website Project'}`
+      )
+
+      const fallbackBody = encodeURIComponent(
+        `Hi Devesh,\n\nI visited your portfolio and want to discuss a freelance project.\n\nName: ${form.name}\nEmail: ${form.email}\nWhatsApp: ${form.whatsapp}\nProject Type: ${form.projectType}\nBudget: ${form.budget}\nTimeline: ${form.timeline}\nRequirements: ${form.message}\n\nRegards,\n${form.name}`
+      )
+
+      window.location.href = `mailto:${email}?subject=${fallbackSubject}&body=${fallbackBody}`
+
       setStatus({
-        type: 'error',
+        type: 'success',
         message:
-          error.message ||
-          'Something went wrong. You can also message directly on WhatsApp.',
+          'Backend is unavailable right now, so your email app has been opened.',
       })
-    } finally {
-      setIsSubmitting(false)
     }
   }
 
   return (
     <>
       <SEO
-        title="Freelance Web Development Services | Devesh Sahu"
-        description="Hire Devesh Sahu for portfolio websites, business websites, MERN apps, dashboards, admin panels, backend APIs and e-commerce development."
+        title="Freelance Services | Devesh Sahu"
+        description="Hire Devesh Sahu for freelance website development, MERN stack web apps, business websites, dashboard UI, e-commerce websites and React projects."
         path="/freelance"
-        schema={freelanceSchema}
       />
 
-      <main className="freelance-page">
-        <section className="freelance-hero">
-          <div className="freelance-hero-copy">
-            <div className="freelance-badge">
+      <main className="freelancex-page">
+        <section className="freelancex-hero">
+          <div className="freelancex-hero-copy">
+            <div className="freelancex-kicker">
               <span />
               Freelance Web Development
             </div>
 
             <h1>
-              Premium websites and full-stack apps for{' '}
-              <span>brands, startups and professionals.</span>
+              Need a website or web app? I can build it with clean UI and real
+              deployment.
             </h1>
 
             <p>
-              I build clean, responsive and conversion-focused websites using
-              React, Node.js, Express and MongoDB. From portfolio websites to
-              dashboards and MERN applications, I help turn ideas into deployed
-              products.
+              I build responsive websites, business landing pages, dashboards,
+              e-commerce structures and MERN stack apps using React, Node.js,
+              Express and MongoDB.
             </p>
 
-            <div className="freelance-cta-row">
-              <a href="#project-request" className="freelance-primary-btn">
-                Start Project <FiArrowRight />
+            <div className="freelancex-actions">
+              <a href="#project-request" className="freelancex-primary-btn">
+                Start a Project <FiArrowRight />
               </a>
 
-              <a
-                href="https://wa.me/917607997416?text=Hi%20Devesh%2C%20I%20want%20to%20discuss%20a%20website%20project."
-                target="_blank"
-                rel="noreferrer"
-                className="freelance-secondary-btn"
-              >
-                <FaWhatsapp /> WhatsApp
+              <a href={whatsappLink} target="_blank" rel="noreferrer" className="freelancex-secondary-btn">
+                <FiMessageCircle /> WhatsApp
               </a>
 
-              <a href="#pricing" className="freelance-ghost-btn">
-                View Pricing
+              <a href={mailLink} className="freelancex-secondary-btn">
+                <FiMail /> Email
               </a>
-            </div>
-
-            <div className="freelance-trust-strip">
-              <div>
-                <strong>MERN</strong>
-                <span>Full-stack</span>
-              </div>
-              <div>
-                <strong>SEO</strong>
-                <span>Ready pages</span>
-              </div>
-              <div>
-                <strong>Fast</strong>
-                <span>Delivery focus</span>
-              </div>
             </div>
           </div>
 
-          <aside className="freelance-hero-card">
-            <div className="freelance-card-top">
-              <span>Client Project Flow</span>
-              <h2>From idea to live website</h2>
-              <p>Design, development, deployment and handover.</p>
+          <aside className="freelancex-quote-card">
+            <span>Client Snapshot</span>
+            <h2>What I can deliver</h2>
+
+            <div className="freelancex-quote-list">
+              <div>
+                <FiCheckCircle />
+                <strong>Responsive website</strong>
+              </div>
+
+              <div>
+                <FiCheckCircle />
+                <strong>Frontend + backend</strong>
+              </div>
+
+              <div>
+                <FiCheckCircle />
+                <strong>Contact form / lead form</strong>
+              </div>
+
+              <div>
+                <FiCheckCircle />
+                <strong>Deployment support</strong>
+              </div>
             </div>
 
-            <div className="freelance-mini-board">
+            <div className="freelancex-mini-price">
+              <FiDollarSign />
               <div>
-                <FiPenTool />
-                <strong>Design</strong>
-                <span>Premium UI layout</span>
-              </div>
-
-              <div>
-                <FiCode />
-                <strong>Build</strong>
-                <span>React + Node</span>
-              </div>
-
-              <div>
-                <FiZap />
-                <strong>Deploy</strong>
-                <span>Vercel / Render</span>
-              </div>
-            </div>
-
-            <div className="freelance-live-card">
-              <FiTrendingUp />
-              <div>
-                <strong>Best for</strong>
-                <span>Portfolio, business websites, dashboards and MERN apps</span>
+                <strong>Starting from ₹2,999</strong>
+                <span>Final cost depends on features and timeline.</span>
               </div>
             </div>
           </aside>
         </section>
 
-        <section className="freelance-section">
-          <div className="freelance-section-head">
+        <section className="freelancex-stats">
+          <div>
+            <strong>4+</strong>
+            <span>Project types</span>
+          </div>
+
+          <div>
+            <strong>MERN</strong>
+            <span>Full stack</span>
+          </div>
+
+          <div>
+            <strong>SEO</strong>
+            <span>Basic setup</span>
+          </div>
+
+          <div>
+            <strong>Live</strong>
+            <span>Deployment</span>
+          </div>
+        </section>
+
+        <section className="freelancex-section">
+          <div className="freelancex-section-head">
             <span>Services</span>
-            <h2>What I can build for you.</h2>
+            <h2>Freelance services I can build for clients.</h2>
             <p>
-              Services are designed for students, freelancers, local businesses,
-              coaches, startups and early-stage product ideas.
+              Choose a simple website, business website, dashboard or complete
+              MERN stack application based on your requirement.
             </p>
           </div>
 
-          <div className="freelance-services-grid">
-            {services.map(({ icon: Icon, title, desc, price }) => (
-              <article key={title} className="freelance-service-card">
-                <div className="freelance-icon">
+          <div className="freelancex-service-grid">
+            {services.map(({ icon: Icon, title, desc, features }) => (
+              <article key={title} className="freelancex-service-card">
+                <div className="freelancex-icon">
                   <Icon />
                 </div>
 
                 <h3>{title}</h3>
                 <p>{desc}</p>
 
-                <div className="freelance-price-pill">{price}</div>
+                <div className="freelancex-feature-list">
+                  {features.map((feature) => (
+                    <span key={feature}>
+                      <FiCheckCircle /> {feature}
+                    </span>
+                  ))}
+                </div>
               </article>
             ))}
           </div>
         </section>
 
-        <section id="pricing" className="freelance-section">
-          <div className="freelance-section-head freelance-section-head-row">
-            <div>
-              <span>Pricing</span>
-              <h2>Simple packages to start fast.</h2>
-              <p>
-                Final pricing depends on pages, features, backend work and
-                timeline. These packages give a clear starting point.
-              </p>
-            </div>
-
-            <a
-              href="https://wa.me/917607997416?text=Hi%20Devesh%2C%20I%20want%20a%20quotation%20for%20my%20website."
-              target="_blank"
-              rel="noreferrer"
-              className="freelance-secondary-btn"
-            >
-              Get Quote <FiExternalLink />
-            </a>
+        <section className="freelancex-section">
+          <div className="freelancex-section-head">
+            <span>Packages</span>
+            <h2>Simple pricing structure for quick decision.</h2>
+            <p>
+              These are starting ranges. Final price depends on pages, backend,
+              deadline, design complexity and integrations.
+            </p>
           </div>
 
-          <div className="freelance-pricing-grid">
+          <div className="freelancex-package-grid">
             {packages.map((item) => (
               <article
                 key={item.name}
-                className={`freelance-package-card ${
-                  item.highlighted ? 'featured' : ''
-                }`}
+                className={`freelancex-package-card ${item.popular ? 'popular' : ''}`}
               >
-                {item.highlighted && (
-                  <div className="freelance-popular-badge">
-                    <FiStar /> Most useful
-                  </div>
-                )}
+                {item.popular && <div className="freelancex-popular">Most Popular</div>}
 
-                <span>{item.bestFor}</span>
                 <h3>{item.name}</h3>
+                <strong>{item.price}</strong>
+                <p>{item.bestFor}</p>
 
-                <div className="freelance-package-price">{item.price}</div>
-
-                <p>
-                  <FiClock /> {item.timeline}
-                </p>
-
-                <div className="freelance-feature-list">
-                  {item.features.map((feature) => (
-                    <div key={feature}>
-                      <FiCheckCircle />
-                      <span>{feature}</span>
-                    </div>
-                  ))}
+                <div className="freelancex-timeline">
+                  <FiClock />
+                  <span>{item.timeline}</span>
                 </div>
 
+                <ul>
+                  {item.points.map((point) => (
+                    <li key={point}>
+                      <FiCheckCircle />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+
                 <a href="#project-request">
-                  Choose {item.name} <FiArrowRight />
+                  Choose Plan <FiArrowRight />
                 </a>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="freelance-section freelance-calculator-section">
-          <div className="freelance-calculator-copy">
-            <span>Budget estimator</span>
-            <h2>Estimate your project cost instantly.</h2>
-            <p>
-              This calculator gives an approximate range. Final quotation depends
-              on exact features, content, pages and integrations.
-            </p>
-
-            <div className="freelance-estimate-card">
-              <span>Estimated range</span>
-              <strong>
-                ₹{estimate.min.toLocaleString('en-IN')} - ₹
-                {estimate.max.toLocaleString('en-IN')}
-              </strong>
-              <p>Approximate only. Final quote after discussion.</p>
-            </div>
+        <section className="freelancex-section freelancex-process-section">
+          <div className="freelancex-section-head">
+            <span>Process</span>
+            <h2>How your project will move from idea to live website.</h2>
           </div>
 
-          <div className="freelance-calculator">
-            <label>
-              Project Type
-              <select
-                name="projectType"
-                value={calculator.projectType}
-                onChange={handleCalculatorChange}
-              >
-                {projectTypes.map((item) => (
-                  <option key={item.value} value={item.value}>
-                    {item.label}
-                  </option>
-                ))}
-              </select>
-            </label>
-
-            <label>
-              Number of Pages
-              <input
-                type="number"
-                name="pages"
-                min="1"
-                max="30"
-                value={calculator.pages}
-                onChange={handleCalculatorChange}
-              />
-            </label>
-
-            <label>
-              Timeline
-              <select
-                name="speed"
-                value={calculator.speed}
-                onChange={handleCalculatorChange}
-              >
-                <option value="normal">Normal timeline</option>
-                <option value="urgent">Urgent delivery</option>
-              </select>
-            </label>
-
-            <div className="freelance-feature-options">
-              <span>Extra Features</span>
-
-              <div>
-                {featureOptions.map((feature) => (
-                  <button
-                    type="button"
-                    key={feature.value}
-                    onClick={() => toggleFeature(feature.value)}
-                    className={
-                      calculator.features.includes(feature.value) ? 'active' : ''
-                    }
-                  >
-                    {feature.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="freelance-section freelance-workflow-section">
-          <div className="freelance-section-head">
-            <span>Workflow</span>
-            <h2>Clear process. No confusion.</h2>
-            <p>
-              A simple project flow helps avoid delays and keeps both sides
-              aligned from day one.
-            </p>
-          </div>
-
-          <div className="freelance-workflow-grid">
-            {workflow.map((item) => (
-              <article key={item.step} className="freelance-workflow-card">
-                <div>{item.step}</div>
+          <div className="freelancex-process-grid">
+            {process.map((item) => (
+              <article key={item.step}>
+                <strong>{item.step}</strong>
                 <h3>{item.title}</h3>
                 <p>{item.desc}</p>
               </article>
@@ -615,86 +442,129 @@ export default function Freelance() {
           </div>
         </section>
 
-        <section className="freelance-section freelance-deliverables-section">
-          <div className="freelance-deliverables-copy">
-            <span>Deliverables</span>
-            <h2>What you can expect in delivery.</h2>
-            <p>
-              Every project is built with a clean structure, responsive UI and
-              practical deployment focus.
-            </p>
+        <section className="freelancex-two-col">
+          <div className="freelancex-panel">
+            <div className="freelancex-section-head small">
+              <span>Why work with me</span>
+              <h2>Client-friendly development approach.</h2>
+            </div>
+
+            <div className="freelancex-trust-grid">
+              {trustPoints.map(({ icon: Icon, title, desc }) => (
+                <article key={title}>
+                  <Icon />
+                  <div>
+                    <h3>{title}</h3>
+                    <p>{desc}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
 
-          <div className="freelance-deliverables-grid">
-            {deliverables.map((item) => (
-              <div key={item}>
-                <FiCheckCircle />
-                <span>{item}</span>
-              </div>
+          <div className="freelancex-panel">
+            <div className="freelancex-section-head small">
+              <span>Deliverables</span>
+              <h2>What you can expect.</h2>
+            </div>
+
+            <div className="freelancex-deliverables">
+              {[
+                'Responsive UI for mobile and desktop',
+                'Clean React component structure',
+                'Backend APIs when required',
+                'MongoDB schema when required',
+                'Basic SEO and meta tags',
+                'Deployment support',
+                'Source code handover',
+              ].map((item) => (
+                <div key={item}>
+                  <FiCheckCircle />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="freelancex-section">
+          <div className="freelancex-section-head">
+            <span>Proof of Work</span>
+            <h2>Projects that show my development ability.</h2>
+          </div>
+
+          <div className="freelancex-project-grid">
+            {featuredProjects.map((project) => (
+              <article key={project.id || project.title}>
+                <div className="freelancex-project-image">
+                  {project.image ? (
+                    <img
+                      src={project.image}
+                      alt={`${project.title} preview`}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <FiLayers />
+                  )}
+                </div>
+
+                <div className="freelancex-project-body">
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+
+                  <div className="freelancex-project-actions">
+                    {project.demo && (
+                      <a href={project.demo} target="_blank" rel="noreferrer">
+                        Live <FiExternalLink />
+                      </a>
+                    )}
+
+                    {project.github && (
+                      <a href={project.github} target="_blank" rel="noreferrer">
+                        Code <FiExternalLink />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </article>
             ))}
           </div>
         </section>
 
-        <section id="project-request" className="freelance-section freelance-request-section">
-          <div className="freelance-request-copy">
-            <span>Project inquiry</span>
+        <section id="project-request" className="freelancex-contact-section">
+          <div className="freelancex-contact-copy">
+            <span>Project Request</span>
             <h2>Tell me what you want to build.</h2>
             <p>
-              Share your project idea, budget, timeline and required features. I
-              will review it and contact you with the next step.
+              Share project type, budget, timeline and requirements. I will reply
+              with a practical plan and next steps.
             </p>
 
-            <div className="freelance-contact-cards">
-              <a
-                href="mailto:deveshsahu567@gmail.com"
-                className="freelance-contact-card"
-              >
-                <FiMail />
-                <div>
-                  <strong>Email</strong>
-                  <span>deveshsahu567@gmail.com</span>
-                </div>
-                <FiArrowRight />
+            <div className="freelancex-contact-pills">
+              <a href={whatsappLink} target="_blank" rel="noreferrer">
+                <FiMessageCircle /> WhatsApp directly
               </a>
 
-              <a
-                href="https://wa.me/917607997416?text=Hi%20Devesh%2C%20I%20want%20to%20discuss%20a%20freelance%20project."
-                target="_blank"
-                rel="noreferrer"
-                className="freelance-contact-card"
-              >
-                <FaWhatsapp />
-                <div>
-                  <strong>WhatsApp</strong>
-                  <span>Direct project discussion</span>
-                </div>
-                <FiArrowRight />
+              <a href={mailLink}>
+                <FiMail /> Send email
               </a>
 
-              <a
-                href="https://www.linkedin.com/in/devesh-sahu-560608270/"
-                target="_blank"
-                rel="noreferrer"
-                className="freelance-contact-card"
-              >
-                <FaLinkedin />
-                <div>
-                  <strong>LinkedIn</strong>
-                  <span>Professional connection</span>
-                </div>
-                <FiArrowRight />
+              <a href="/projects">
+                <FiTarget /> View projects
               </a>
             </div>
           </div>
 
-          <form className="freelance-form" onSubmit={handleSubmit}>
-            <div className="freelance-form-grid">
+          <form className="freelancex-form" onSubmit={handleSubmit}>
+            <div className="freelancex-form-grid">
               <label>
                 Name
                 <input
+                  type="text"
                   name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
+                  value={form.name}
+                  onChange={handleChange}
                   placeholder="Your name"
                   required
                 />
@@ -705,134 +575,120 @@ export default function Freelance() {
                 <input
                   type="email"
                   name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder="you@email.com"
+                  value={form.email}
+                  onChange={handleChange}
+                  placeholder="your@email.com"
                   required
-                />
-              </label>
-
-              <label>
-                Phone / WhatsApp
-                <input
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  placeholder="+91..."
-                />
-              </label>
-
-              <label>
-                Project Type
-                <select
-                  name="projectType"
-                  value={formData.projectType}
-                  onChange={handleInputChange}
-                >
-                  <option>Portfolio Website</option>
-                  <option>Business Website</option>
-                  <option>Landing Page</option>
-                  <option>Admin Dashboard</option>
-                  <option>E-Commerce Website</option>
-                  <option>MERN Web App</option>
-                  <option>Backend API</option>
-                </select>
-              </label>
-
-              <label>
-                Budget
-                <input
-                  name="budget"
-                  value={formData.budget}
-                  onChange={handleInputChange}
-                  placeholder="Example: ₹5,000 - ₹10,000"
-                />
-              </label>
-
-              <label>
-                Timeline
-                <input
-                  name="timeline"
-                  value={formData.timeline}
-                  onChange={handleInputChange}
-                  placeholder="Example: 7 days"
                 />
               </label>
             </div>
 
             <label>
-              Project Details
+              WhatsApp Number
+              <input
+                type="text"
+                name="whatsapp"
+                value={form.whatsapp}
+                onChange={handleChange}
+                placeholder="+91 XXXXX XXXXX"
+              />
+            </label>
+
+            <div className="freelancex-form-grid">
+              <label>
+                Project Type
+                <select
+                  name="projectType"
+                  value={form.projectType}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="">Select project type</option>
+                  {projectTypes.map((item) => (
+                    <option key={item} value={item}>
+                      {item}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              <label>
+                Budget
+                <select
+                  name="budget"
+                  value={form.budget}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="">Select budget</option>
+                  {budgetOptions.map((item) => (
+                    <option key={item} value={item}>
+                      {item}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
+
+            <label>
+              Timeline
+              <select
+                name="timeline"
+                value={form.timeline}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select timeline</option>
+                {timelineOptions.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label>
+              Requirements
               <textarea
                 name="message"
-                value={formData.message}
-                onChange={handleInputChange}
+                value={form.message}
+                onChange={handleChange}
+                placeholder="Example: I need a business website with home, about, services, contact form and WhatsApp button..."
                 rows="5"
-                placeholder="Describe your website/app idea, pages, features, references and deadline..."
                 required
               />
             </label>
 
-            <div className="freelance-form-estimate">
-              <FiCreditCard />
-              <div>
-                <strong>
-                  Calculator estimate: ₹{estimate.min.toLocaleString('en-IN')} - ₹
-                  {estimate.max.toLocaleString('en-IN')}
-                </strong>
-                <span>This estimate will be sent with your request.</span>
-              </div>
-            </div>
-
             {status.message && (
-              <div className={`freelance-form-status ${status.type}`}>
+              <div className={`freelancex-status ${status.type}`}>
                 {status.message}
               </div>
             )}
 
-            <button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? 'Submitting...' : 'Send Project Request'}
+            <button type="submit" className="freelancex-submit">
               <FiSend />
+              {status.type === 'loading' ? 'Sending...' : 'Send Project Request'}
             </button>
           </form>
         </section>
 
-        <section className="freelance-section freelance-faq-section">
-          <div className="freelance-section-head">
-            <span>FAQs</span>
-            <h2>Questions clients usually ask.</h2>
-          </div>
-
-          <div className="freelance-faq-grid">
-            {faqs.map((item) => (
-              <article key={item.q} className="freelance-faq-card">
-                <h3>{item.q}</h3>
-                <p>{item.a}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="freelance-final-cta">
+        <section className="freelancex-final-cta">
           <div>
             <span>Ready to build?</span>
-            <h2>Let’s turn your idea into a live product.</h2>
+            <h2>Let’s turn your idea into a live website.</h2>
             <p>
-              Message me with your project idea and I will help you choose the
-              best scope, budget and timeline.
+              Send your project details and I will suggest the best plan, timeline
+              and budget range.
             </p>
           </div>
 
-          <div className="freelance-final-actions">
-            <a
-              href="https://wa.me/917607997416?text=Hi%20Devesh%2C%20I%20want%20to%20start%20a%20project."
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FaWhatsapp /> WhatsApp Now
+          <div>
+            <a href="#project-request">
+              Start Project <FiArrowRight />
             </a>
 
-            <a href="mailto:deveshsahu567@gmail.com">
-              <FiMail /> Email Project
+            <a href={whatsappLink} target="_blank" rel="noreferrer">
+              WhatsApp <FiMessageCircle />
             </a>
           </div>
         </section>

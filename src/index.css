@@ -9523,3 +9523,841 @@ html.dark .simple-footer-socials a {
     height: 180px;
   }
 }
+/* Freelance Client Conversion Upgrade */
+.freelancex-page {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 48px 0 80px;
+}
+
+.freelancex-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(340px, 0.75fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+.freelancex-hero-copy,
+.freelancex-quote-card,
+.freelancex-service-card,
+.freelancex-package-card,
+.freelancex-process-grid article,
+.freelancex-panel,
+.freelancex-project-grid article,
+.freelancex-contact-section,
+.freelancex-final-cta {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background:
+    radial-gradient(circle at top left, rgba(14, 165, 233, 0.14), transparent 32%),
+    rgba(255, 255, 255, 0.88);
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(18px);
+}
+
+.dark .freelancex-hero-copy,
+.dark .freelancex-quote-card,
+.dark .freelancex-service-card,
+.dark .freelancex-package-card,
+.dark .freelancex-process-grid article,
+.dark .freelancex-panel,
+.dark .freelancex-project-grid article,
+.dark .freelancex-contact-section,
+.dark .freelancex-final-cta {
+  border-color: rgba(255, 255, 255, 0.1);
+  background:
+    radial-gradient(circle at top left, rgba(34, 211, 238, 0.12), transparent 32%),
+    rgba(15, 23, 42, 0.72);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25);
+}
+
+.freelancex-hero-copy {
+  border-radius: 34px;
+  padding: clamp(28px, 5vw, 54px);
+}
+
+.freelancex-kicker,
+.freelancex-section-head span,
+.freelancex-contact-copy > span,
+.freelancex-final-cta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #0284c7;
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.dark .freelancex-kicker,
+.dark .freelancex-section-head span,
+.dark .freelancex-contact-copy > span,
+.dark .freelancex-final-cta span {
+  color: #67e8f9;
+}
+
+.freelancex-kicker span {
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  background: #22c55e;
+  box-shadow: 0 0 0 7px rgba(34, 197, 94, 0.14);
+}
+
+.freelancex-hero h1 {
+  margin-top: 18px;
+  max-width: 880px;
+  font-size: clamp(2.35rem, 5.8vw, 5.2rem);
+  line-height: 0.95;
+  letter-spacing: -0.08em;
+  font-weight: 1000;
+  color: #020617;
+}
+
+.dark .freelancex-hero h1 {
+  color: #ffffff;
+}
+
+.freelancex-hero-copy > p {
+  margin-top: 22px;
+  max-width: 760px;
+  color: #475569;
+  font-size: 1.05rem;
+  line-height: 1.9;
+}
+
+.dark .freelancex-hero-copy > p {
+  color: #cbd5e1;
+}
+
+.freelancex-actions,
+.freelancex-project-actions,
+.freelancex-contact-pills,
+.freelancex-final-cta div:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.freelancex-actions {
+  margin-top: 30px;
+}
+
+.freelancex-primary-btn,
+.freelancex-secondary-btn,
+.freelancex-submit,
+.freelancex-package-card a,
+.freelancex-project-actions a,
+.freelancex-contact-pills a,
+.freelancex-final-cta a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border-radius: 999px;
+  font-weight: 950;
+  transition: 0.22s ease;
+}
+
+.freelancex-primary-btn,
+.freelancex-submit,
+.freelancex-package-card a,
+.freelancex-final-cta a:first-child {
+  border: none;
+  background: linear-gradient(135deg, #0284c7, #06b6d4);
+  color: #ffffff;
+  box-shadow: 0 18px 40px rgba(2, 132, 199, 0.24);
+}
+
+.freelancex-primary-btn,
+.freelancex-secondary-btn {
+  min-height: 50px;
+  padding: 0 20px;
+}
+
+.freelancex-secondary-btn,
+.freelancex-project-actions a,
+.freelancex-contact-pills a,
+.freelancex-final-cta a {
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: rgba(255, 255, 255, 0.72);
+  color: #020617;
+}
+
+.dark .freelancex-secondary-btn,
+.dark .freelancex-project-actions a,
+.dark .freelancex-contact-pills a,
+.dark .freelancex-final-cta a {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+.freelancex-primary-btn:hover,
+.freelancex-secondary-btn:hover,
+.freelancex-submit:hover,
+.freelancex-package-card a:hover,
+.freelancex-project-actions a:hover,
+.freelancex-contact-pills a:hover,
+.freelancex-final-cta a:hover {
+  transform: translateY(-2px);
+}
+
+.freelancex-quote-card {
+  border-radius: 34px;
+  padding: 28px;
+}
+
+.freelancex-quote-card > span {
+  display: inline-flex;
+  border-radius: 999px;
+  background: rgba(2, 132, 199, 0.1);
+  color: #0369a1;
+  padding: 8px 12px;
+  font-size: 0.76rem;
+  font-weight: 950;
+}
+
+.dark .freelancex-quote-card > span {
+  color: #67e8f9;
+  background: rgba(34, 211, 238, 0.12);
+}
+
+.freelancex-quote-card h2 {
+  margin-top: 18px;
+  color: #020617;
+  font-size: 2.3rem;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  font-weight: 1000;
+}
+
+.dark .freelancex-quote-card h2 {
+  color: #ffffff;
+}
+
+.freelancex-quote-list {
+  margin-top: 22px;
+  display: grid;
+  gap: 12px;
+}
+
+.freelancex-quote-list div,
+.freelancex-deliverables div,
+.freelancex-trust-grid article,
+.freelancex-contact-pills a {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.04);
+  padding: 13px 14px;
+  color: #334155;
+  font-weight: 850;
+}
+
+.dark .freelancex-quote-list div,
+.dark .freelancex-deliverables div,
+.dark .freelancex-trust-grid article,
+.dark .freelancex-contact-pills a {
+  background: rgba(255, 255, 255, 0.06);
+  color: #e2e8f0;
+}
+
+.freelancex-quote-list svg,
+.freelancex-deliverables svg {
+  color: #22c55e;
+  flex: 0 0 auto;
+}
+
+.freelancex-mini-price {
+  margin-top: 18px;
+  display: flex;
+  gap: 13px;
+  border-radius: 24px;
+  background: rgba(34, 197, 94, 0.1);
+  padding: 18px;
+  color: #166534;
+}
+
+.dark .freelancex-mini-price {
+  color: #bbf7d0;
+  background: rgba(34, 197, 94, 0.12);
+}
+
+.freelancex-mini-price svg {
+  flex: 0 0 auto;
+  font-size: 1.7rem;
+}
+
+.freelancex-mini-price strong,
+.freelancex-mini-price span {
+  display: block;
+}
+
+.freelancex-mini-price strong {
+  font-weight: 1000;
+}
+
+.freelancex-mini-price span {
+  margin-top: 5px;
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+
+.freelancex-stats {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.freelancex-stats div {
+  border-radius: 26px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.78);
+  padding: 22px;
+  box-shadow: 0 16px 50px rgba(15, 23, 42, 0.06);
+}
+
+.dark .freelancex-stats div {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.68);
+}
+
+.freelancex-stats strong {
+  display: block;
+  color: #020617;
+  font-size: 2rem;
+  line-height: 1;
+  font-weight: 1000;
+}
+
+.dark .freelancex-stats strong {
+  color: #ffffff;
+}
+
+.freelancex-stats span {
+  display: block;
+  margin-top: 8px;
+  color: #64748b;
+  font-size: 0.84rem;
+  font-weight: 850;
+}
+
+.dark .freelancex-stats span {
+  color: #94a3b8;
+}
+
+.freelancex-section {
+  margin-top: 60px;
+}
+
+.freelancex-section-head {
+  max-width: 780px;
+  margin-bottom: 24px;
+}
+
+.freelancex-section-head.small {
+  margin-bottom: 18px;
+}
+
+.freelancex-section-head h2,
+.freelancex-contact-copy h2,
+.freelancex-final-cta h2 {
+  margin-top: 10px;
+  color: #020617;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1;
+  letter-spacing: -0.06em;
+  font-weight: 1000;
+}
+
+.freelancex-section-head.small h2 {
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+}
+
+.dark .freelancex-section-head h2,
+.dark .freelancex-contact-copy h2,
+.dark .freelancex-final-cta h2 {
+  color: #ffffff;
+}
+
+.freelancex-section-head p,
+.freelancex-contact-copy p,
+.freelancex-final-cta p {
+  margin-top: 12px;
+  color: #64748b;
+  line-height: 1.8;
+}
+
+.dark .freelancex-section-head p,
+.dark .freelancex-contact-copy p,
+.dark .freelancex-final-cta p {
+  color: #94a3b8;
+}
+
+.freelancex-service-grid,
+.freelancex-package-grid,
+.freelancex-process-grid,
+.freelancex-project-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.freelancex-service-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.freelancex-package-grid,
+.freelancex-process-grid,
+.freelancex-project-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.freelancex-service-card,
+.freelancex-package-card,
+.freelancex-process-grid article,
+.freelancex-panel {
+  border-radius: 30px;
+  padding: 24px;
+}
+
+.freelancex-icon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(2, 132, 199, 0.14), rgba(6, 182, 212, 0.14));
+  color: #0284c7;
+  font-size: 1.35rem;
+}
+
+.dark .freelancex-icon {
+  color: #67e8f9;
+}
+
+.freelancex-service-card h3,
+.freelancex-package-card h3,
+.freelancex-process-grid h3,
+.freelancex-trust-grid h3,
+.freelancex-project-body h3 {
+  margin-top: 18px;
+  color: #020617;
+  font-size: 1.2rem;
+  font-weight: 1000;
+}
+
+.dark .freelancex-service-card h3,
+.dark .freelancex-package-card h3,
+.dark .freelancex-process-grid h3,
+.dark .freelancex-trust-grid h3,
+.dark .freelancex-project-body h3 {
+  color: #ffffff;
+}
+
+.freelancex-service-card p,
+.freelancex-package-card p,
+.freelancex-process-grid p,
+.freelancex-trust-grid p,
+.freelancex-project-body p {
+  margin-top: 10px;
+  color: #64748b;
+  line-height: 1.7;
+  font-size: 0.94rem;
+}
+
+.dark .freelancex-service-card p,
+.dark .freelancex-package-card p,
+.dark .freelancex-process-grid p,
+.dark .freelancex-trust-grid p,
+.dark .freelancex-project-body p {
+  color: #94a3b8;
+}
+
+.freelancex-feature-list {
+  margin-top: 16px;
+  display: grid;
+  gap: 9px;
+}
+
+.freelancex-feature-list span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #334155;
+  font-size: 0.84rem;
+  font-weight: 850;
+}
+
+.dark .freelancex-feature-list span {
+  color: #e2e8f0;
+}
+
+.freelancex-feature-list svg {
+  color: #22c55e;
+}
+
+.freelancex-package-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.freelancex-package-card.popular {
+  border-color: rgba(2, 132, 199, 0.35);
+  box-shadow: 0 24px 80px rgba(2, 132, 199, 0.16);
+}
+
+.freelancex-popular {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #0284c7, #06b6d4);
+  color: #ffffff;
+  padding: 7px 11px;
+  font-size: 0.72rem;
+  font-weight: 950;
+}
+
+.freelancex-package-card strong {
+  display: block;
+  margin-top: 12px;
+  color: #0284c7;
+  font-size: 1.8rem;
+  line-height: 1;
+  font-weight: 1000;
+}
+
+.dark .freelancex-package-card strong {
+  color: #67e8f9;
+}
+
+.freelancex-timeline {
+  margin-top: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  background: rgba(2, 132, 199, 0.1);
+  color: #075985;
+  padding: 8px 12px;
+  font-size: 0.82rem;
+  font-weight: 950;
+}
+
+.dark .freelancex-timeline {
+  color: #bae6fd;
+  background: rgba(14, 165, 233, 0.12);
+}
+
+.freelancex-package-card ul {
+  margin-top: 18px;
+  display: grid;
+  gap: 11px;
+}
+
+.freelancex-package-card li {
+  display: flex;
+  gap: 9px;
+  color: #334155;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.dark .freelancex-package-card li {
+  color: #e2e8f0;
+}
+
+.freelancex-package-card li svg {
+  color: #22c55e;
+  flex: 0 0 auto;
+  margin-top: 3px;
+}
+
+.freelancex-package-card a {
+  margin-top: 22px;
+  min-height: 46px;
+  padding: 0 17px;
+  width: 100%;
+}
+
+.freelancex-process-grid article strong {
+  display: inline-flex;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #0284c7, #06b6d4);
+  color: #ffffff;
+  font-weight: 1000;
+}
+
+.freelancex-two-col {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.freelancex-trust-grid,
+.freelancex-deliverables {
+  display: grid;
+  gap: 12px;
+}
+
+.freelancex-trust-grid article svg {
+  color: #0284c7;
+  flex: 0 0 auto;
+  font-size: 1.3rem;
+}
+
+.dark .freelancex-trust-grid article svg {
+  color: #67e8f9;
+}
+
+.freelancex-trust-grid h3 {
+  margin-top: 0;
+  font-size: 1rem;
+}
+
+.freelancex-trust-grid p {
+  margin-top: 4px;
+  font-size: 0.86rem;
+}
+
+.freelancex-project-grid article {
+  overflow: hidden;
+  border-radius: 30px;
+}
+
+.freelancex-project-image {
+  height: 210px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #e2e8f0;
+}
+
+.dark .freelancex-project-image {
+  background: #0f172a;
+}
+
+.freelancex-project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: 0.35s ease;
+}
+
+.freelancex-project-grid article:hover .freelancex-project-image img {
+  transform: scale(1.04);
+}
+
+.freelancex-project-image svg {
+  font-size: 3rem;
+  color: #94a3b8;
+}
+
+.freelancex-project-body {
+  padding: 22px;
+}
+
+.freelancex-project-actions {
+  margin-top: 16px;
+}
+
+.freelancex-project-actions a {
+  min-height: 40px;
+  padding: 0 14px;
+  font-size: 0.84rem;
+}
+
+.freelancex-contact-section {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(360px, 1fr);
+  gap: 24px;
+  border-radius: 34px;
+  padding: clamp(24px, 4vw, 38px);
+  scroll-margin-top: 110px;
+}
+
+.freelancex-contact-pills {
+  margin-top: 24px;
+}
+
+.freelancex-contact-pills a {
+  min-height: 44px;
+  padding: 0 15px;
+  width: fit-content;
+}
+
+.freelancex-form {
+  display: grid;
+  gap: 14px;
+}
+
+.freelancex-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.freelancex-form label {
+  display: grid;
+  gap: 8px;
+  color: #334155;
+  font-size: 0.84rem;
+  font-weight: 950;
+}
+
+.dark .freelancex-form label {
+  color: #e2e8f0;
+}
+
+.freelancex-form input,
+.freelancex-form textarea,
+.freelancex-form select {
+  width: 100%;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  outline: none;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.82);
+  padding: 14px 16px;
+  color: #020617;
+  font-weight: 700;
+}
+
+.dark .freelancex-form input,
+.dark .freelancex-form textarea,
+.dark .freelancex-form select {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(2, 6, 23, 0.5);
+  color: #ffffff;
+}
+
+.freelancex-form input:focus,
+.freelancex-form textarea:focus,
+.freelancex-form select:focus {
+  border-color: rgba(2, 132, 199, 0.55);
+  box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.12);
+}
+
+.freelancex-submit {
+  min-height: 52px;
+  padding: 0 20px;
+  cursor: pointer;
+}
+
+.freelancex-status {
+  border-radius: 18px;
+  padding: 13px 15px;
+  font-size: 0.9rem;
+  font-weight: 850;
+}
+
+.freelancex-status.loading {
+  color: #1d4ed8;
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.freelancex-status.success {
+  color: #166534;
+  background: rgba(34, 197, 94, 0.1);
+}
+
+.freelancex-status.error {
+  color: #991b1b;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.freelancex-final-cta {
+  margin-top: 28px;
+  border-radius: 34px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.freelancex-final-cta h2 {
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+}
+
+.freelancex-final-cta a {
+  min-height: 48px;
+  padding: 0 18px;
+}
+
+@media (max-width: 1024px) {
+  .freelancex-hero,
+  .freelancex-contact-section {
+    grid-template-columns: 1fr;
+  }
+
+  .freelancex-service-grid,
+  .freelancex-package-grid,
+  .freelancex-process-grid,
+  .freelancex-project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .freelancex-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .freelancex-two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .freelancex-page {
+    width: min(100% - 22px, 1180px);
+    padding-top: 24px;
+  }
+
+  .freelancex-hero-copy,
+  .freelancex-quote-card,
+  .freelancex-contact-section,
+  .freelancex-final-cta {
+    border-radius: 26px;
+  }
+
+  .freelancex-hero h1 {
+    font-size: clamp(2.25rem, 13vw, 3.4rem);
+  }
+
+  .freelancex-actions,
+  .freelancex-contact-pills,
+  .freelancex-final-cta,
+  .freelancex-final-cta div:last-child {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .freelancex-primary-btn,
+  .freelancex-secondary-btn,
+  .freelancex-contact-pills a,
+  .freelancex-final-cta a {
+    width: 100%;
+  }
+
+  .freelancex-service-grid,
+  .freelancex-package-grid,
+  .freelancex-process-grid,
+  .freelancex-project-grid,
+  .freelancex-stats,
+  .freelancex-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .freelancex-project-image {
+    height: 180px;
+  }
+}
