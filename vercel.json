@@ -51,7 +51,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!api|assets|sitemap.xml|sitemap.txt|robots.txt|site.webmanifest|logo.png|og-image.png|profile-image.png|googlef214c865e9b51086.html|apk|projects).*)",
+      "source": "/((?!.*\\..*).*)",
       "destination": "/index.html"
     }
   ]
