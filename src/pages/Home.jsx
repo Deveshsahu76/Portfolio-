@@ -12,7 +12,6 @@ import {
   FiSend,
   FiServer,
   FiShield,
-  FiZap,
 } from 'react-icons/fi'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import SEO from '../components/SEO'
@@ -26,13 +25,6 @@ const proofPoints = [
   'React + Node + MongoDB',
   'Backend APIs deployed',
   'Recruiter & freelance forms',
-]
-
-const heroStats = [
-  { value: '170+', label: 'LeetCode Problems' },
-  { value: '4+', label: 'Projects Built' },
-  { value: 'MERN', label: 'Primary Stack' },
-  { value: 'Live', label: 'Deployments' },
 ]
 
 const snapshot = [
@@ -108,12 +100,12 @@ export default function Home() {
           >
             <div className="pro-kicker">
               <span />
-              Available for MERN Stack Internship & Freelance Work
+              Available for MERN Stack Internship
             </div>
 
             <h1 className="pro-title">
-              Developer portfolio built like a{' '}
-              <strong>premium product.</strong>
+              I build clean, usable and deployable{' '}
+              <strong>full-stack web products.</strong>
             </h1>
 
             <p className="pro-subtitle">
@@ -206,15 +198,6 @@ export default function Home() {
               ))}
             </div>
           </motion.div>
-        </section>
-
-        <section className="premium-stats-strip">
-          {heroStats.map((stat) => (
-            <div key={stat.label} className="premium-stat-card">
-              <strong>{stat.value}</strong>
-              <span>{stat.label}</span>
-            </div>
-          ))}
         </section>
 
         <LivePortfolioStats />
