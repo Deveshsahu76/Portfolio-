@@ -8706,3 +8706,29 @@ html.dark .simple-footer-socials a {
     width: 100%;
   }
 }
+/* Force fix live analytics widget layout */
+.live-stats-widget {
+  width: min(100%, 1240px) !important;
+  max-width: 1240px !important;
+  margin: clamp(3rem, 6vw, 5rem) auto 0 !important;
+  display: block !important;
+}
+
+.live-stats-grid {
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  gap: 0.85rem !important;
+  width: 100% !important;
+}
+
+@media (max-width: 1100px) {
+  .live-stats-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .live-stats-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
