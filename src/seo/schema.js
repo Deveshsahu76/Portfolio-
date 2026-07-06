@@ -13,6 +13,10 @@ export const personSchema = {
     'https://github.com/Deveshsahu76',
     'https://www.linkedin.com/in/devesh-sahu-560608270/',
   ],
+  alumniOf: {
+    '@type': 'CollegeOrUniversity',
+    name: 'Kanpur Institute of Technology',
+  },
   knowsAbout: [
     'React.js',
     'Node.js',
@@ -22,6 +26,10 @@ export const personSchema = {
     'REST APIs',
     'JWT Authentication',
     'Full Stack Development',
+    'MERN Stack Development',
+    'Frontend Development',
+    'Backend Development',
+    'Data Structures and Algorithms',
   ],
 }
 
@@ -38,7 +46,7 @@ export const websiteSchema = {
 export const portfolioOrganizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'Devesh Sahu Developer Studio',
+  name: 'Devesh Sahu Developer Portfolio',
   url: siteUrl,
   logo: `${siteUrl}/logo.png`,
   founder: personSchema,
@@ -55,7 +63,30 @@ export const projectsSchema = {
   name: 'Projects by Devesh Sahu',
   url: `${siteUrl}/projects`,
   description:
-    'Full-stack MERN projects by Devesh Sahu including Queens Arena, E-Commerce Store and Zerodha Clone.',
+    'Full-stack MERN projects by Devesh Sahu including Queens Arena, E-Commerce Store, Zerodha Clone and Version Control System.',
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: [
+      {
+        '@type': 'SoftwareSourceCode',
+        name: 'Queens Arena',
+        programmingLanguage: ['JavaScript', 'React', 'Node.js'],
+        url: `${siteUrl}/projects`,
+      },
+      {
+        '@type': 'SoftwareSourceCode',
+        name: 'E-Commerce Store',
+        programmingLanguage: ['JavaScript', 'React', 'Node.js'],
+        url: `${siteUrl}/projects`,
+      },
+      {
+        '@type': 'SoftwareSourceCode',
+        name: 'Zerodha Clone',
+        programmingLanguage: ['JavaScript', 'React', 'Node.js'],
+        url: `${siteUrl}/projects`,
+      },
+    ],
+  },
 }
 
 export const recruiterSchema = {
@@ -63,6 +94,8 @@ export const recruiterSchema = {
   '@type': 'ProfilePage',
   name: 'Recruiter Hub | Devesh Sahu',
   url: `${siteUrl}/recruiter`,
+  description:
+    'Recruiter-ready profile of Devesh Sahu with resume, skills, projects, education and contact details.',
   mainEntity: personSchema,
 }
 
@@ -72,11 +105,14 @@ export const freelanceSchema = {
   name: 'Freelance Web Development Services by Devesh Sahu',
   provider: personSchema,
   areaServed: 'India',
+  url: `${siteUrl}/freelance`,
   serviceType: [
     'Portfolio Website Development',
     'Business Website Development',
     'MERN Stack Development',
     'React Development',
     'Node.js API Development',
+    'Dashboard Development',
+    'E-Commerce Website Development',
   ],
 }

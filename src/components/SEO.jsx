@@ -12,7 +12,8 @@ export default function SEO({
   type = 'website',
   schema,
 }) {
-  const canonicalUrl = `${siteUrl}${path}`
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`
+  const canonicalUrl = `${siteUrl}${normalizedPath}`
 
   return (
     <Helmet>
@@ -21,7 +22,7 @@ export default function SEO({
       <meta name="description" content={description} />
       <meta
         name="keywords"
-        content="Devesh Sahu, MERN Stack Developer, React Developer, Node.js Developer, Full Stack Developer, B.Tech IT, Software Developer Portfolio, Web Developer India"
+        content="Devesh Sahu, MERN Stack Developer, React Developer, Node.js Developer, Express.js Developer, MongoDB Developer, Full Stack Developer, Software Developer Portfolio, B.Tech IT, Web Developer India"
       />
       <meta name="author" content="Devesh Sahu" />
       <meta name="robots" content="index, follow, max-image-preview:large" />
