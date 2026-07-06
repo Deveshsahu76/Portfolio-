@@ -2,6 +2,7 @@ import React, { Suspense, lazy, useEffect } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import MainLayout from './layouts/MainLayout'
 import SEO from './components/SEO'
+import AnalyticsTracker from './components/AnalyticsTracker'
 import { homePageSchema } from './seo/schema'
 
 const Home = lazy(() => import('./pages/Home'))
@@ -12,6 +13,7 @@ const Contact = lazy(() => import('./pages/Contact'))
 const RecruiterHub = lazy(() => import('./pages/RecruiterHub'))
 const Freelance = lazy(() => import('./pages/Freelance'))
 const AdminRequests = lazy(() => import('./pages/AdminRequests'))
+const AnalyticsDashboard = lazy(() => import('./pages/AnalyticsDashboard'))
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -43,6 +45,7 @@ export default function App() {
   return (
     <>
       <SEO schema={homePageSchema} />
+      <AnalyticsTracker />
       <ScrollToTop />
 
       <Suspense fallback={<PageFallback />}>
@@ -56,6 +59,7 @@ export default function App() {
             <Route path="/recruiter" element={<RecruiterHub />} />
             <Route path="/freelance" element={<Freelance />} />
             <Route path="/admin-requests" element={<AdminRequests />} />
+            <Route path="/analytics" element={<AnalyticsDashboard />} />
           </Route>
         </Routes>
       </Suspense>

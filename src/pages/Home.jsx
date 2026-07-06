@@ -31,6 +31,7 @@ import { homePageSchema } from '../seo/schema'
 import profileImg from '../assets/portfolioimage.png'
 import projects from '../data/projects'
 import ProjectCard from '../components/ProjectCard'
+import LivePortfolioStats from '../components/LivePortfolioStats'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -303,6 +304,8 @@ export default function Home() {
               <span>{stat.label}</span>
             </div>
           ))}
+
+          <LivePortfolioStats />
         </section>
 
         <section className="premium-section premium-audience-section">
