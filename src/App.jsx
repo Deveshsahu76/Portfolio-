@@ -61,9 +61,11 @@ export default function App() {
             <Route path="/admin-requests" element={<AdminRequests />} />
             <Route path="/analytics" element={<AnalyticsDashboard />} />
            
-          </Route>
+          </Route>        <Route path="/admin/requests" element={<AdminRequests />} />
+
         </Routes>
       </Suspense>
     </>
   )
 }
+
