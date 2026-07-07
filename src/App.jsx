@@ -4,7 +4,6 @@ import MainLayout from './layouts/MainLayout'
 import SEO from './components/SEO'
 import AnalyticsTracker from './components/AnalyticsTracker'
 import { homePageSchema } from './seo/schema'
-import AdminRequests from './pages/AdminRequests'
 
 const Home = lazy(() => import('./pages/Home'))
 const Projects = lazy(() => import('./pages/Projects'))
@@ -61,7 +60,7 @@ export default function App() {
             <Route path="/freelance" element={<Freelance />} />
             <Route path="/admin-requests" element={<AdminRequests />} />
             <Route path="/analytics" element={<AnalyticsDashboard />} />
-            <Route path="/admin/requests" element={<AdminRequests />} />
+           
           </Route>
         </Routes>
       </Suspense>
