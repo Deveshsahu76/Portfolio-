@@ -18,6 +18,11 @@ const leadSchema = new mongoose.Schema(
       trim: true,
     },
 
+    companyName: {
+      type: String,
+      trim: true,
+    },
+
     company: {
       type: String,
       trim: true,
@@ -79,12 +84,22 @@ const leadSchema = new mongoose.Schema(
       type: String,
       default: 'portfolio',
     },
+
+    userAgent: {
+      type: String,
+      trim: true,
+    },
+
+    ipAddress: {
+      type: String,
+      trim: true,
+    },
   },
   {
     timestamps: true,
   }
 )
 
-const Lead = mongoose.model('Lead', leadSchema)
+const Lead = mongoose.models.Lead || mongoose.model('Lead', leadSchema)
 
 export default Lead

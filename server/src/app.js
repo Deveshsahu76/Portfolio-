@@ -1,31 +1,44 @@
-import express from 'express';
-import cors from 'cors';
-import corsOptions from './config/corsOptions.js';
-import rateLimiter from './middlewares/rateLimiter.js';
-import notFoundMiddleware from './middlewares/notFoundMiddleware.js';
-import errorMiddleware from './middlewares/errorMiddleware.js';
-import healthRoutes from './routes/healthRoutes.js';
-import recruiterRoutes from './routes/recruiterRoutes.js';
-import freelanceRoutes from './routes/freelanceRoutes.js';
+import express from 'express'
+import cors from 'cors'
 
-const app = express();
+const app = express()
 
-app.use(cors(corsOptions));
-app.use(express.json({ limit: '20kb' }));
-app.use(rateLimiter);
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'https://deveshsahuportfolio.vercel.app',
+]
 
-app.use('/api/health', healthRoutes);
-app.use('/api/recruiter', recruiterRoutes);
-app.use('/api/freelance', freelanceRoutes);
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true)
+      }
+
+      return callback(null, true)
+    },
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  })
+)
+
+app.use(express.json({ limit: '1mb' }))
+app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
-  res.json({
+  res.status(200).json({
     success: true,
-    message: 'Devesh Portfolio Backend API is running.',
-  });
-});
+    message: 'Portfolio backend API is running.',
+  })
+})
 
-app.use(notFoundMiddleware);
-app.use(errorMiddleware);
+app.get('/api/health', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Backend health check passed.',
+    timestamp: new Date().toISOString(),
+  })
+})
 
-export default app;
+export default app
