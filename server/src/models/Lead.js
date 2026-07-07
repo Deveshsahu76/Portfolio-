@@ -6,6 +6,14 @@ const leadSchema = new mongoose.Schema(
       type: String,
       enum: ['recruiter', 'freelance', 'contact'],
       required: true,
+      index: true,
+    },
+
+    status: {
+      type: String,
+      enum: ['new', 'reviewed', 'archived'],
+      default: 'new',
+      index: true,
     },
 
     name: {

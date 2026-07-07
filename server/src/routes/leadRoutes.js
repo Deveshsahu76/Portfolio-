@@ -37,11 +37,154 @@ const sendMissingFields = (res, fields) => {
   })
 }
 
+const getAdminKeyFromRequest = (req) => {
+  const headerKey = req.get('x-admin-key')
+  const queryKey = req.query.adminKey
+  const authHeader = req.get('authorization') || ''
+
+  if (headerKey) return headerKey
+  if (queryKey) return queryKey
+
+  if (authHeader.startsWith('Bearer ')) {
+    return authHeader.replace('Bearer ', '').trim()
+  }
+
+  return ''
+}
+
+const requireAdmin = (req, res, next) => {
+  const configuredKey = process.env.ADMIN_KEY
+  const providedKey = getAdminKeyFromRequest(req)
+
+  if (!configuredKey) {
+    return res.status(500).json({
+      success: false,
+      message: 'ADMIN_KEY is not configured on backend.',
+    })
+  }
+
+  if (providedKey !== configuredKey) {
+    return res.status(401).json({
+      success: false,
+      message: 'Unauthorized admin request.',
+    })
+  }
+
+  next()
+}
+
 router.get('/leads/health', (req, res) => {
   res.status(200).json({
     success: true,
     message: 'Lead routes are working.',
   })
+})
+
+router.get('/leads', requireAdmin, async (req, res) => {
+  try {
+    const { type = 'all', status = 'all' } = req.query
+
+    const filter = {}
+
+    if (type !== 'all') {
+      filter.type = type
+    }
+
+    if (status !== 'all') {
+      filter.status = status
+    }
+
+    const leads = await Lead.find(filter).sort({ createdAt: -1 }).limit(200)
+
+    const counts = await Lead.aggregate([
+      {
+        $group: {
+          _id: {
+            type: '$type',
+            status: '$status',
+          },
+          count: { $sum: 1 },
+        },
+      },
+    ])
+
+    return res.status(200).json({
+      success: true,
+      leads,
+      counts,
+    })
+  } catch (error) {
+    console.error('Fetch leads error:', error)
+
+    return res.status(500).json({
+      success: false,
+      message: 'Server error while fetching leads.',
+    })
+  }
+})
+
+router.patch('/leads/:id/status', requireAdmin, async (req, res) => {
+  try {
+    const status = clean(req.body.status)
+
+    if (!['new', 'reviewed', 'archived'].includes(status)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid status.',
+      })
+    }
+
+    const lead = await Lead.findByIdAndUpdate(
+      req.params.id,
+      { status },
+      { new: true }
+    )
+
+    if (!lead) {
+      return res.status(404).json({
+        success: false,
+        message: 'Lead not found.',
+      })
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: 'Lead status updated.',
+      lead,
+    })
+  } catch (error) {
+    console.error('Update lead status error:', error)
+
+    return res.status(500).json({
+      success: false,
+      message: 'Server error while updating lead status.',
+    })
+  }
+})
+
+router.delete('/leads/:id', requireAdmin, async (req, res) => {
+  try {
+    const lead = await Lead.findByIdAndDelete(req.params.id)
+
+    if (!lead) {
+      return res.status(404).json({
+        success: false,
+        message: 'Lead not found.',
+      })
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: 'Lead deleted successfully.',
+    })
+  } catch (error) {
+    console.error('Delete lead error:', error)
+
+    return res.status(500).json({
+      success: false,
+      message: 'Server error while deleting lead.',
+    })
+  }
 })
 
 router.post('/recruiter/schedule', async (req, res) => {
@@ -66,6 +209,7 @@ router.post('/recruiter/schedule', async (req, res) => {
 
     const lead = await Lead.create({
       type: 'recruiter',
+      status: 'new',
       name: recruiterName,
       recruiterName,
       companyName,
@@ -117,6 +261,7 @@ router.post('/freelance/request', async (req, res) => {
 
     const lead = await Lead.create({
       type: 'freelance',
+      status: 'new',
       name,
       email,
       whatsapp,
@@ -164,6 +309,7 @@ router.post('/contact', async (req, res) => {
 
     const lead = await Lead.create({
       type: 'contact',
+      status: 'new',
       name,
       email,
       subject,
