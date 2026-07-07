@@ -95,7 +95,7 @@ const availability = [
 
 const defaultForm = {
   recruiterName: '',
-  company: '',
+  companyName: '',
   email: '',
   role: '',
   message: '',
@@ -113,8 +113,10 @@ export default function RecruiterHub() {
 
   const email = 'deveshsahu567@gmail.com'
   const phone = '+91 7607997416'
+
   const whatsappLink =
     'https://wa.me/917607997416?text=Hi%20Devesh%2C%20I%20visited%20your%20portfolio%20and%20want%20to%20discuss%20an%20opportunity.'
+
   const mailLink =
     'mailto:deveshsahu567@gmail.com?subject=Software%20Development%20Opportunity%20for%20Devesh%20Sahu&body=Hi%20Devesh%2C%0A%0AI%20visited%20your%20portfolio%20and%20would%20like%20to%20discuss%20an%20opportunity.%0A%0ACompany%3A%0ARole%3A%0ALocation%3A%0ANext%20steps%3A%0A%0ARegards%2C'
 
@@ -154,11 +156,19 @@ export default function RecruiterHub() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          recruiterName: form.recruiterName,
+          companyName: form.companyName,
+          email: form.email,
+          role: form.role,
+          message: form.message,
+        }),
       })
 
+      const data = await response.json().catch(() => null)
+
       if (!response.ok) {
-        throw new Error('Request failed')
+        throw new Error(data?.message || 'Request failed')
       }
 
       setStatus({
@@ -167,13 +177,13 @@ export default function RecruiterHub() {
       })
 
       setForm(defaultForm)
-    } catch {
+    } catch (error) {
       const fallbackSubject = encodeURIComponent(
         `Recruiter Inquiry - ${form.role || 'Software Development Role'}`
       )
 
       const fallbackBody = encodeURIComponent(
-        `Hi Devesh,\n\nI visited your portfolio and want to discuss an opportunity.\n\nRecruiter Name: ${form.recruiterName}\nCompany: ${form.company}\nEmail: ${form.email}\nRole: ${form.role}\nMessage: ${form.message}\n\nRegards,\n${form.recruiterName}`
+        `Hi Devesh,\n\nI visited your portfolio and want to discuss an opportunity.\n\nRecruiter Name: ${form.recruiterName}\nCompany: ${form.companyName}\nEmail: ${form.email}\nRole: ${form.role}\nMessage: ${form.message}\n\nRegards,\n${form.recruiterName}`
       )
 
       window.location.href = `mailto:${email}?subject=${fallbackSubject}&body=${fallbackBody}`
@@ -181,6 +191,7 @@ export default function RecruiterHub() {
       setStatus({
         type: 'success',
         message:
+          error?.message ||
           'Backend is unavailable right now, so your email app has been opened.',
       })
     }
@@ -463,8 +474,8 @@ export default function RecruiterHub() {
                 Company
                 <input
                   type="text"
-                  name="company"
-                  value={form.company}
+                  name="companyName"
+                  value={form.companyName}
                   onChange={handleChange}
                   placeholder="Company name"
                   required
