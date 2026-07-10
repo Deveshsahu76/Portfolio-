@@ -17,6 +17,7 @@ import {
   FiUser,
 } from 'react-icons/fi'
 import SEO from '../components/SEO'
+import ResumeManager from '../components/admin/ResumeManager'
 
 const API_URL =
   import.meta.env.VITE_API_URL || 'https://portfolio-backend-4b9u.onrender.com'
@@ -155,6 +156,11 @@ export default function AdminRequests() {
   }
 
   const updateStatus = async (leadId, nextStatus) => {
+    if (!savedKey) {
+      setMessage('Please enter admin key first.')
+      return
+    }
+
     try {
       const response = await fetch(`${API_URL}/api/leads/${leadId}/status`, {
         method: 'PATCH',
@@ -186,6 +192,11 @@ export default function AdminRequests() {
   }
 
   const deleteLead = async (leadId) => {
+    if (!savedKey) {
+      setMessage('Please enter admin key first.')
+      return
+    }
+
     const confirmed = window.confirm('Delete this lead permanently?')
 
     if (!confirmed) return
@@ -241,7 +252,8 @@ export default function AdminRequests() {
     const rows = filteredLeads.map((lead) =>
       headers
         .map((key) => {
-          const value = key === 'status' ? normalizeStatus(lead) : lead[key] || ''
+          const value =
+            key === 'status' ? normalizeStatus(lead) : lead[key] || ''
           return `"${String(value).replaceAll('"', '""')}"`
         })
         .join(',')
@@ -309,6 +321,8 @@ export default function AdminRequests() {
             </div>
           </div>
         </section>
+
+        <ResumeManager adminKey={savedKey} />
 
         <section className="adminleads-stats">
           <div>

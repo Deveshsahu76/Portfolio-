@@ -21,6 +21,7 @@ import {
 } from 'react-icons/fi'
 import { FaLinkedin } from 'react-icons/fa'
 import SEO from '../components/SEO'
+import ResumeLink from '../components/ResumeLink'
 import { personSchema } from '../seo/schema'
 
 const journey = [
@@ -126,9 +127,9 @@ export default function About() {
                 View Projects <FiArrowRight />
               </Link>
 
-              <a href="/resume.pdf" download className="about-premium-secondary-btn">
+              <ResumeLink className="about-premium-secondary-btn">
                 <FiDownload /> Resume
-              </a>
+              </ResumeLink>
 
               <Link to="/recruiter" className="about-premium-secondary-btn">
                 <FiBriefcase /> Recruiter Hub
@@ -371,3 +372,4 @@ export default function About() {
     </>
   )
 }
+

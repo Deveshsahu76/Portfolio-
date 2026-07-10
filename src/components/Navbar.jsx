@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { FiDownload, FiMenu, FiX } from 'react-icons/fi'
 import ThemeToggle from './ThemeToggle'
+import ResumeLink from './ResumeLink'
 
 const navLinks = [
   { to: '/', label: 'Home' },
@@ -55,9 +56,9 @@ export default function Navbar() {
         </div>
 
         <div className="hidden items-center gap-2 lg:flex">
-          <a href="/resume.pdf" download className="btn-primary px-4 py-2 text-sm">
+          <ResumeLink className="btn-primary px-4 py-2 text-sm">
             <FiDownload /> Resume
-          </a>
+          </ResumeLink>
           <ThemeToggle />
         </div>
 
@@ -93,9 +94,9 @@ export default function Navbar() {
               </NavLink>
             ))}
 
-            <a href="/resume.pdf" download className="btn-primary mt-2">
+            <ResumeLink className="btn-primary mt-2" onClick={() => setOpen(false)}>
               <FiDownload /> Download Resume
-            </a>
+            </ResumeLink>
           </div>
         </div>
       )}

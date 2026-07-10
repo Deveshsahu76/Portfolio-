@@ -22,6 +22,7 @@ import {
   FiZap,
 } from 'react-icons/fi'
 import SEO from '../components/SEO'
+import ResumeLink from '../components/ResumeLink'
 import projects from '../data/projects'
 
 const API_URL =
@@ -226,9 +227,9 @@ export default function RecruiterHub() {
             </p>
 
             <div className="recruiterx-actions">
-              <a href="/resume.pdf" download className="recruiterx-primary-btn">
+              <ResumeLink className="recruiterx-primary-btn">
                 <FiDownload /> Download Resume
-              </a>
+              </ResumeLink>
 
               <a href={mailLink} className="recruiterx-secondary-btn">
                 <FiMail /> Email Me
@@ -542,9 +543,9 @@ export default function RecruiterHub() {
           </div>
 
           <div>
-            <a href="/resume.pdf" download>
+            <ResumeLink>
               <FiDownload /> Resume
-            </a>
+            </ResumeLink>
 
             <a href="/projects">
               Projects <FiArrowRight />
@@ -555,3 +556,4 @@ export default function RecruiterHub() {
     </>
   )
 }
+

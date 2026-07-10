@@ -23,6 +23,7 @@ import {
   FiZap,
 } from 'react-icons/fi'
 import SEO from '../components/SEO'
+import ResumeLink from '../components/ResumeLink'
 
 const API_URL =
   import.meta.env.VITE_API_URL || 'https://portfolio-backend-4b9u.onrender.com'
@@ -232,9 +233,9 @@ export default function Contact() {
                 <FiMail /> Send Email
               </a>
 
-              <a href="/resume.pdf" download className="contactx-secondary-btn">
+              <ResumeLink className="contactx-secondary-btn">
                 <FiDownload /> Resume
-              </a>
+              </ResumeLink>
             </div>
 
             <div className="contactx-copy-mail">
@@ -496,3 +497,4 @@ export default function Contact() {
     </>
   )
 }
+
