@@ -9,29 +9,33 @@ const allowedOrigins = [
   'https://deveshsahuportfolio.vercel.app',
 ]
 
-app.use(
-  cors({
-    origin(origin, callback) {
-      if (!origin) {
-        return callback(null, true)
-      }
-
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true)
-      }
-
+const corsOptions = {
+  origin(origin, callback) {
+    if (!origin) {
       return callback(null, true)
-    },
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'x-admin-key'],
-  })
-)
+    }
 
-app.options('*', cors())
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true)
+    }
 
-app.use(express.json({ limit: '1mb' }))
-app.use(express.urlencoded({ extended: true }))
+    return callback(null, true)
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: [
+    'Content-Type',
+    'Authorization',
+    'x-admin-key',
+    'x-file-name',
+  ],
+}
+
+app.use(cors(corsOptions))
+app.options('*', cors(corsOptions))
+
+app.use(express.json({ limit: '10mb' }))
+app.use(express.urlencoded({ extended: true, limit: '10mb' }))
 
 app.get('/', (req, res) => {
   res.status(200).json({
