@@ -25,7 +25,14 @@ import {
 import SEO from '../components/SEO'
 import projects from '../data/projects'
 
-const filters = ['All', 'MERN', 'Full Stack', 'Frontend', 'Backend/API', 'Mobile']
+const filters = [
+  'All',
+  'MERN',
+  'Full Stack',
+  'Frontend',
+  'Backend/API',
+  'Mobile',
+]
 
 const projectStrengths = [
   {
@@ -80,22 +87,36 @@ function getProjectCategory(project) {
     .join(' ')
     .toLowerCase()
 
-  if (text.includes('apk') || text.includes('android') || text.includes('mobile')) {
+  if (
+    text.includes('apk') ||
+    text.includes('android') ||
+    text.includes('mobile')
+  ) {
     return 'Mobile'
   }
 
   if (
     text.includes('mern') ||
-    (text.includes('react') && text.includes('node') && text.includes('mongodb'))
+    (text.includes('react') &&
+      text.includes('node') &&
+      text.includes('mongodb'))
   ) {
     return 'MERN'
   }
 
-  if (text.includes('api') || text.includes('backend') || text.includes('express')) {
+  if (
+    text.includes('api') ||
+    text.includes('backend') ||
+    text.includes('express')
+  ) {
     return 'Backend/API'
   }
 
-  if (text.includes('react') || text.includes('frontend') || text.includes('ui')) {
+  if (
+    text.includes('react') ||
+    text.includes('frontend') ||
+    text.includes('ui')
+  ) {
     return 'Frontend'
   }
 
@@ -106,6 +127,7 @@ function matchesFilter(project, activeFilter) {
   if (activeFilter === 'All') return true
 
   const category = getProjectCategory(project)
+
   const text = [
     category,
     project.title,
@@ -118,14 +140,30 @@ function matchesFilter(project, activeFilter) {
     .toLowerCase()
 
   if (activeFilter === 'Full Stack') {
-    return text.includes('full') || text.includes('mern') || text.includes('backend')
+    return (
+      text.includes('full') ||
+      text.includes('mern') ||
+      text.includes('backend')
+    )
   }
 
   if (activeFilter === 'Backend/API') {
-    return text.includes('backend') || text.includes('api') || text.includes('express')
+    return (
+      text.includes('backend') ||
+      text.includes('api') ||
+      text.includes('express')
+    )
   }
 
   return text.includes(activeFilter.toLowerCase())
+}
+
+function getProjectImageClass(project) {
+  if (project.id === 'queens-arena') {
+    return 'projectsx-project-visual-portrait'
+  }
+
+  return 'projectsx-project-visual-landscape'
 }
 
 export default function Projects() {
@@ -133,6 +171,8 @@ export default function Projects() {
   const [query, setQuery] = useState('')
 
   const filteredProjects = useMemo(() => {
+    const normalizedQuery = query.trim().toLowerCase()
+
     return projects.filter((project) => {
       const searchText = [
         project.title,
@@ -144,7 +184,10 @@ export default function Projects() {
         .join(' ')
         .toLowerCase()
 
-      const queryMatch = searchText.includes(query.toLowerCase())
+      const queryMatch =
+        normalizedQuery.length === 0 ||
+        searchText.includes(normalizedQuery)
+
       const filterMatch = matchesFilter(project, activeFilter)
 
       return queryMatch && filterMatch
@@ -172,22 +215,34 @@ export default function Projects() {
             </h1>
 
             <p>
-              Here you can review my live projects, GitHub repositories, tech
-              stack, backend APIs, database schemas, architecture and practical
-              implementation approach.
+              Here you can review my live projects, GitHub repositories,
+              technology stack, backend APIs, database schemas, architecture
+              and practical implementation approach.
             </p>
 
             <div className="projectsx-actions">
-              <a href="#projects-list" className="projectsx-primary-btn">
-                View Projects <FiArrowRight />
+              <a
+                href="#projects-list"
+                className="projectsx-primary-btn"
+              >
+                View Projects
+                <FiArrowRight />
               </a>
 
-              <Link to="/recruiter" className="projectsx-secondary-btn">
-                <FiBriefcase /> Recruiter Hub
+              <Link
+                to="/recruiter"
+                className="projectsx-secondary-btn"
+              >
+                <FiBriefcase />
+                Recruiter Hub
               </Link>
 
-              <Link to="/contact" className="projectsx-secondary-btn">
-                Contact Me <FiExternalLink />
+              <Link
+                to="/contact"
+                className="projectsx-secondary-btn"
+              >
+                Contact Me
+                <FiExternalLink />
               </Link>
             </div>
           </div>
@@ -209,7 +264,7 @@ export default function Projects() {
 
               <div>
                 <FiCheckCircle />
-                <strong>API + schema details</strong>
+                <strong>API and schema details</strong>
               </div>
 
               <div>
@@ -220,9 +275,12 @@ export default function Projects() {
 
             <div className="projectsx-mini-proof">
               <FiAward />
+
               <div>
-                <strong>Built for HR review</strong>
-                <span>Quick proof of skills, code and project thinking.</span>
+                <strong>Built for recruiter review</strong>
+                <span>
+                  Quick proof of skills, code and project thinking.
+                </span>
               </div>
             </div>
           </aside>
@@ -253,16 +311,21 @@ export default function Projects() {
         <section className="projectsx-section">
           <div className="projectsx-section-head">
             <span>Skill Proof</span>
+
             <h2>What these projects demonstrate.</h2>
+
             <p>
-              These projects are structured to show frontend, backend, database,
-              deployment and real product thinking.
+              These projects are structured to show frontend, backend,
+              database, deployment and real product thinking.
             </p>
           </div>
 
           <div className="projectsx-strength-grid">
             {projectStrengths.map(({ icon: Icon, title, desc }) => (
-              <article key={title} className="projectsx-strength-card">
+              <article
+                key={title}
+                className="projectsx-strength-card"
+              >
                 <div className="projectsx-icon">
                   <Icon />
                 </div>
@@ -283,7 +346,10 @@ export default function Projects() {
           <div className="projectsx-flow-grid">
             {caseStudyFlow.map((item, index) => (
               <article key={item.title}>
-                <strong>{String(index + 1).padStart(2, '0')}</strong>
+                <strong>
+                  {String(index + 1).padStart(2, '0')}
+                </strong>
+
                 <h3>{item.title}</h3>
                 <p>{item.desc}</p>
               </article>
@@ -291,26 +357,32 @@ export default function Projects() {
           </div>
         </section>
 
-        <section id="projects-list" className="projectsx-section">
+        <section
+          id="projects-list"
+          className="projectsx-section"
+        >
           <div className="projectsx-projects-head">
             <div>
               <span>Project Lab</span>
               <h2>Explore selected projects.</h2>
+
               <p>
-                Filter projects by category or search by technology, feature or
-                project name.
+                Filter projects by category or search by technology,
+                feature or project name.
               </p>
             </div>
 
-            <div className="projectsx-search">
+            <label className="projectsx-search">
               <FiSearch />
+
               <input
-                type="text"
+                type="search"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Search React, MongoDB, API..."
+                aria-label="Search projects"
               />
-            </div>
+            </label>
           </div>
 
           <div className="projectsx-filter-bar">
@@ -325,7 +397,10 @@ export default function Projects() {
                   key={filter}
                   type="button"
                   onClick={() => setActiveFilter(filter)}
-                  className={activeFilter === filter ? 'active' : ''}
+                  className={
+                    activeFilter === filter ? 'active' : ''
+                  }
+                  aria-pressed={activeFilter === filter}
                 >
                   {filter}
                 </button>
@@ -341,76 +416,104 @@ export default function Projects() {
               const schemas = project.schema || []
               const architecture = project.architecture || []
               const category = getProjectCategory(project)
+              const imageClass = getProjectImageClass(project)
 
               return (
-                <article key={project.id || project.title} className="projectsx-project-card">
-                  <div className="projectsx-project-visual">
-                    {project.image ? (
-                      <img
-                        src={project.image}
-                        alt={`${project.title} project preview`}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    ) : (
-                      <div className="projectsx-project-placeholder">
-                        <FiLayers />
-                      </div>
-                    )}
-
-                    <div className="projectsx-project-badge">
-                      <FiGrid />
-                      {category}
-                    </div>
-
-                    {project.apk && (
-                      <div className="projectsx-apk-badge">
-                        <FiSmartphone />
-                        APK
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="projectsx-project-content">
-                    <div className="projectsx-project-title-row">
-                      <div>
-                        <span>{category} Project</span>
-                        <h3>{project.title}</h3>
-                      </div>
-
-                      <FiZap />
-                    </div>
-
-                    <p className="projectsx-project-desc">
-                      {project.longDescription || project.description}
-                    </p>
-
-                    <div className="projectsx-tech-list">
-                      {techStack.slice(0, 7).map((tech) => (
-                        <span key={tech}>{tech}</span>
-                      ))}
-                    </div>
-
-                    <div className="projectsx-action-row">
-                      {project.demo && (
-                        <a href={project.demo} target="_blank" rel="noreferrer">
-                          Live Demo <FiExternalLink />
-                        </a>
+                <article
+                  key={project.id || project.title}
+                  className="projectsx-project-card projectsx-project-card-v2"
+                >
+                  <div className="projectsx-project-top">
+                    <div
+                      className={`projectsx-project-visual ${imageClass}`}
+                    >
+                      {project.image ? (
+                        <img
+                          src={project.image}
+                          alt={`${project.title} project preview`}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      ) : (
+                        <div className="projectsx-project-placeholder">
+                          <FiLayers />
+                        </div>
                       )}
 
-                      {project.github && (
-                        <a href={project.github} target="_blank" rel="noreferrer">
-                          GitHub <FiGithub />
-                        </a>
-                      )}
+                      <div className="projectsx-project-badge">
+                        <FiGrid />
+                        {category}
+                      </div>
 
                       {project.apk && (
-                        <a href={project.apk} download>
-                          APK <FiDownload />
-                        </a>
+                        <div className="projectsx-apk-badge">
+                          <FiSmartphone />
+                          APK
+                        </div>
                       )}
                     </div>
 
+                    <div className="projectsx-project-overview">
+                      <div className="projectsx-project-title-row">
+                        <div>
+                          <span>{category} Project</span>
+                          <h3>{project.title}</h3>
+                        </div>
+
+                        <FiZap />
+                      </div>
+
+                      <p className="projectsx-project-desc">
+                        {project.longDescription ||
+                          project.description}
+                      </p>
+
+                      <div className="projectsx-tech-list">
+                        {techStack.slice(0, 7).map((tech) => (
+                          <span key={tech}>{tech}</span>
+                        ))}
+                      </div>
+
+                      <div className="projectsx-action-row">
+                        {project.demo && (
+                          <a
+                            href={project.demo}
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label={`Open ${project.title} live demo`}
+                          >
+                            Live Demo
+                            <FiExternalLink />
+                          </a>
+                        )}
+
+                        {project.github && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label={`Open ${project.title} GitHub repository`}
+                          >
+                            GitHub
+                            <FiGithub />
+                          </a>
+                        )}
+
+                        {project.apk && (
+                          <a
+                            href={project.apk}
+                            download
+                            aria-label={`Download ${project.title} APK`}
+                          >
+                            APK
+                            <FiDownload />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="projectsx-project-details">
                     <div className="projectsx-case-grid">
                       <div>
                         <div className="projectsx-case-heading">
@@ -435,50 +538,72 @@ export default function Projects() {
                         </div>
 
                         <ul>
-                          {architecture.slice(0, 5).map((item) => (
-                            <li key={item}>
-                              <FiArrowRight />
-                              <span>{item}</span>
-                            </li>
-                          ))}
+                          {architecture
+                            .slice(0, 5)
+                            .map((item) => (
+                              <li key={item}>
+                                <FiArrowRight />
+                                <span>{item}</span>
+                              </li>
+                            ))}
                         </ul>
                       </div>
                     </div>
 
-                    {apiDocs.length > 0 && (
-                      <div className="projectsx-api-box">
-                        <div className="projectsx-box-head">
-                          <FiServer />
-                          <strong>API Endpoints Preview</strong>
-                        </div>
-
-                        <div className="projectsx-api-list">
-                          {apiDocs.slice(0, 4).map((api) => (
-                            <div key={`${api.method}-${api.endpoint}`}>
-                              <span>{api.method}</span>
-                              <code>{api.endpoint}</code>
-                              <p>{api.description}</p>
+                    {(apiDocs.length > 0 ||
+                      schemas.length > 0) && (
+                      <div className="projectsx-technical-grid">
+                        {apiDocs.length > 0 && (
+                          <div className="projectsx-api-box">
+                            <div className="projectsx-box-head">
+                              <FiServer />
+                              <strong>
+                                API Endpoints Preview
+                              </strong>
                             </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
 
-                    {schemas.length > 0 && (
-                      <div className="projectsx-schema-box">
-                        <div className="projectsx-box-head">
-                          <FiDatabase />
-                          <strong>Database Schema Preview</strong>
-                        </div>
-
-                        <div className="projectsx-schema-list">
-                          {schemas.slice(0, 4).map((item) => (
-                            <div key={item.name}>
-                              <strong>{item.name}</strong>
-                              <p>{(item.fields || []).join(', ')}</p>
+                            <div className="projectsx-api-list">
+                              {apiDocs
+                                .slice(0, 4)
+                                .map((api) => (
+                                  <div
+                                    key={`${api.method}-${api.endpoint}`}
+                                  >
+                                    <span>{api.method}</span>
+                                    <code>{api.endpoint}</code>
+                                    <p>{api.description}</p>
+                                  </div>
+                                ))}
                             </div>
-                          ))}
-                        </div>
+                          </div>
+                        )}
+
+                        {schemas.length > 0 && (
+                          <div className="projectsx-schema-box">
+                            <div className="projectsx-box-head">
+                              <FiDatabase />
+                              <strong>
+                                Database Schema Preview
+                              </strong>
+                            </div>
+
+                            <div className="projectsx-schema-list">
+                              {schemas
+                                .slice(0, 4)
+                                .map((item) => (
+                                  <div key={item.name}>
+                                    <strong>{item.name}</strong>
+
+                                    <p>
+                                      {(item.fields || []).join(
+                                        ', '
+                                      )}
+                                    </p>
+                                  </div>
+                                ))}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     )}
 
@@ -498,32 +623,54 @@ export default function Projects() {
             <div className="projectsx-empty">
               <FiSearch />
               <h3>No project found</h3>
-              <p>Try a different filter or search keyword.</p>
+
+              <p>
+                Try another category or search using a different
+                project name, feature or technology.
+              </p>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setQuery('')
+                  setActiveFilter('All')
+                }}
+              >
+                Reset filters
+              </button>
             </div>
           )}
         </section>
 
         <section className="projectsx-final-cta">
           <div>
-            <span>Like the work?</span>
-            <h2>Review my resume or contact me for opportunities.</h2>
+            <span>Interested in my work?</span>
+
+            <h2>
+              Review my profile or contact me for an opportunity.
+            </h2>
+
             <p>
-              Recruiters can shortlist me for internship roles. Clients can
-              contact me for freelance websites and full-stack projects.
+              Recruiters can evaluate my projects through the
+              Recruiter Hub. Clients can contact me for websites,
+              dashboards, APIs and full-stack applications.
             </p>
           </div>
 
           <div>
             <Link to="/recruiter">
-              Recruiter Hub <FiBriefcase />
+              Recruiter Hub
+              <FiBriefcase />
             </Link>
 
             <Link to="/freelance">
-              Freelance Work <FiBarChart2 />
+              Freelance Work
+              <FiBarChart2 />
             </Link>
 
             <Link to="/contact">
-              Contact Me <FiArrowRight />
+              Contact Me
+              <FiArrowRight />
             </Link>
           </div>
         </section>
