@@ -50,3 +50,14 @@ export const adminLimiter = rateLimit({
     'Too many admin requests. Please wait and try again.'
   ),
 })
+
+export const adminLoginLimiter = rateLimit({
+  ...commonOptions,
+
+  windowMs: 15 * 60 * 1000,
+  limit: 10,
+
+  handler: createLimitHandler(
+    'Too many admin login attempts. Please wait 15 minutes and try again.'
+  ),
+})

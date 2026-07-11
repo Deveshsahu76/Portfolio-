@@ -1,47 +1,76 @@
 import dotenv from 'dotenv'
 import path from 'path'
+import { fileURLToPath } from 'url'
 
-import analyticsRoutes from './routes/analyticsRoutes.js'
-import leadRoutes from './routes/leadRoutes.js'
-import siteSettingsRoutes from './routes/siteSettingsRoutes.js'
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
-import {
-  adminLimiter,
-  apiLimiter,
-  formLimiter,
-} from './middleware/rateLimiters.js'
-
-import {
-  errorHandler,
-  notFoundHandler,
-} from './middleware/errorHandlers.js'
-
+// Always load server/.env, chahe command kisi bhi folder se run ho.
 dotenv.config({
-  path: path.resolve(process.cwd(), '.env'),
+  path: path.resolve(__dirname, '../.env'),
+  override: true,
 })
 
 const { default: app } = await import('./app.js')
 const { default: connectDB } = await import('./config/db.js')
 
+const { default: adminAuthRoutes } = await import(
+  './routes/adminAuthRoutes.js'
+)
+
+const { default: analyticsRoutes } = await import(
+  './routes/analyticsRoutes.js'
+)
+
+const { default: leadRoutes } = await import(
+  './routes/leadRoutes.js'
+)
+
+const { default: siteSettingsRoutes } = await import(
+  './routes/siteSettingsRoutes.js'
+)
+
+const {
+  adminLimiter,
+  adminLoginLimiter,
+  apiLimiter,
+  formLimiter,
+} = await import('./middleware/rateLimiters.js')
+
+const {
+  errorHandler,
+  notFoundHandler,
+} = await import('./middleware/errorHandlers.js')
+
 /*
 |--------------------------------------------------------------------------
-| API rate limits
+| Global API protection
 |--------------------------------------------------------------------------
 */
 
 app.use('/api', apiLimiter)
 
-// Public form spam protection.
+/*
+|--------------------------------------------------------------------------
+| Public form protection
+|--------------------------------------------------------------------------
+*/
+
 app.use('/api/recruiter', formLimiter)
 app.use('/api/freelance', formLimiter)
 app.use('/api/contact', formLimiter)
 
-// Private/admin API protection.
+/*
+|--------------------------------------------------------------------------
+| Admin protection
+|--------------------------------------------------------------------------
+*/
+
+app.use('/api/admin/login', adminLoginLimiter)
+app.use('/api/admin/session', adminLimiter)
 app.use('/api/leads', adminLimiter)
-app.use(
-  '/api/site-settings/resume/upload',
-  adminLimiter
-)
+app.use('/api/analytics/dashboard', adminLimiter)
+app.use('/api/site-settings/resume/upload', adminLimiter)
 
 /*
 |--------------------------------------------------------------------------
@@ -49,13 +78,14 @@ app.use(
 |--------------------------------------------------------------------------
 */
 
+app.use('/api', adminAuthRoutes)
 app.use('/api/analytics', analyticsRoutes)
 app.use('/api', leadRoutes)
 app.use('/api', siteSettingsRoutes)
 
 /*
 |--------------------------------------------------------------------------
-| Error handlers must stay after routes
+| Error handlers
 |--------------------------------------------------------------------------
 */
 
@@ -66,6 +96,16 @@ const PORT = Number(process.env.PORT) || 5000
 
 const startServer = async () => {
   try {
+    if (!process.env.ADMIN_KEY) {
+      throw new Error('ADMIN_KEY is missing from server/.env')
+    }
+
+    if (!process.env.ADMIN_SESSION_SECRET) {
+      throw new Error(
+        'ADMIN_SESSION_SECRET is missing from server/.env'
+      )
+    }
+
     await connectDB()
 
     app.listen(PORT, () => {
@@ -73,6 +113,7 @@ const startServer = async () => {
       console.log(
         `Environment: ${process.env.NODE_ENV || 'development'}`
       )
+      console.log('Admin authentication configuration loaded.')
     })
   } catch (error) {
     console.error(
