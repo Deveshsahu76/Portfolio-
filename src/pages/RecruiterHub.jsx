@@ -23,6 +23,7 @@ import {
 } from 'react-icons/fi'
 import SEO from '../components/SEO'
 import ResumeLink from '../components/ResumeLink'
+import LiveProfileStatus, { RecruiterAvailabilityList } from '../components/LiveProfileStatus'
 import LiveLeetCodeStat from '../components/LiveLeetCodeStat'
 import projects from '../data/projects'
 
@@ -94,7 +95,7 @@ const availability = [
   },
   {
     label: 'Location',
-    value: 'India · Remote / Hybrid / On-site',
+    value: 'India Â· Remote / Hybrid / On-site',
   },
 ]
 
@@ -281,25 +282,20 @@ export default function RecruiterHub() {
             <div className="recruiterx-profile-top">
               <span>Candidate Snapshot</span>
               <h2>Devesh Sahu</h2>
-              <p>MERN Stack Developer · B.Tech IT</p>
+              <p>MERN Stack Developer Â· B.Tech IT</p>
             </div>
 
             <div className="recruiterx-score-card">
               <div>
                 <strong>Internship Ready</strong>
-                <span>Frontend · Backend · Full Stack</span>
+                <span>Frontend Â· Backend Â· Full Stack</span>
               </div>
 
               <FiCheckCircle />
             </div>
 
             <div className="recruiterx-profile-list">
-              {availability.map((item) => (
-                <div key={item.label}>
-                  <span>{item.label}</span>
-                  <strong>{item.value}</strong>
-                </div>
-              ))}
+              <RecruiterAvailabilityList />
             </div>
           </aside>
         </section>
@@ -320,6 +316,8 @@ export default function RecruiterHub() {
             )
           )}
         </section>
+
+        <LiveProfileStatus />
 
         <section className="recruiterx-section">
           <div className="recruiterx-section-head">
@@ -386,6 +384,8 @@ export default function RecruiterHub() {
             </div>
           </div>
         </section>
+
+        <LiveProfileStatus />
 
         <section className="recruiterx-section">
           <div className="recruiterx-section-head">
@@ -459,7 +459,7 @@ export default function RecruiterHub() {
 
               <div>
                 <FiMapPin />
-                <span>India · Flexible location</span>
+                <span>India Â· Flexible location</span>
               </div>
 
               <div>

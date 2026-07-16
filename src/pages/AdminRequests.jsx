@@ -18,6 +18,7 @@ import {
 } from 'react-icons/fi'
 import SEO from '../components/SEO'
 import ResumeManager from '../components/admin/ResumeManager'
+import AvailabilityManager from '../components/admin/AvailabilityManager'
 
 const API_URL =
   import.meta.env.VITE_API_URL || 'https://portfolio-backend-4b9u.onrender.com'
@@ -321,6 +322,8 @@ export default function AdminRequests() {
             </div>
           </div>
         </section>
+
+        <AvailabilityManager adminKey={savedKey} />
 
         <ResumeManager adminKey={savedKey} />
 

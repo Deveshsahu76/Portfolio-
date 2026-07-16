@@ -15190,3 +15190,725 @@ html.dark ::selection {
 /* =========================================================
    PORTFOLIO PHASE 2 UI CLEANUP END
    ========================================================= */
+
+/* =========================================================
+   PORTFOLIO PHASE 3 START
+   ========================================================= */
+
+.live-availability-pill {
+  cursor: default;
+}
+
+.live-availability-pill.available span,
+.profilelive-status.available i {
+  background: #22c55e;
+}
+
+.live-availability-pill.limited span,
+.profilelive-status.limited i {
+  background: #f59e0b;
+}
+
+.live-availability-pill.unavailable span,
+.profilelive-status.unavailable i {
+  background: #ef4444;
+}
+
+.live-availability-pill span,
+.profilelive-status i {
+  box-shadow:
+    0 0 0 0 currentColor;
+  animation:
+    profileLivePulse
+    1.5s
+    ease-out
+    infinite;
+}
+
+.profilelive-section {
+  position: relative;
+  width: min(100% - 2rem, 1360px);
+  margin: 2rem auto 4rem;
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 2rem;
+  padding: clamp(1.3rem, 3vw, 2.3rem);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(34, 197, 94, 0.12), transparent 27rem),
+    radial-gradient(circle at 100% 100%, rgba(99, 102, 241, 0.12), transparent 27rem),
+    rgba(255, 255, 255, 0.86);
+  box-shadow:
+    0 28px 80px rgba(15, 23, 42, 0.09);
+  backdrop-filter: blur(22px);
+}
+
+.profilelive-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.profilelive-heading h2 {
+  max-width: 48rem;
+  margin: 0.85rem 0 0;
+  color: #020617;
+  font-size: clamp(2rem, 4vw, 4rem);
+  font-weight: 950;
+  line-height: 1;
+  letter-spacing: -0.055em;
+}
+
+.profilelive-heading p {
+  max-width: 45rem;
+  margin: 0.9rem 0 0;
+  color: #64748b;
+  font-size: 0.96rem;
+  font-weight: 650;
+  line-height: 1.75;
+}
+
+.profilelive-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #16a34a;
+  font-size: 0.72rem;
+  font-weight: 950;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.profilelive-kicker i {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 999px;
+  background: #22c55e;
+  animation:
+    profileLivePulse
+    1.5s
+    ease-out
+    infinite;
+}
+
+.profilelive-status {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.55rem;
+  border-radius: 999px;
+  padding: 0.7rem 0.95rem;
+  color: #15803d;
+  background: #dcfce7;
+  font-size: 0.72rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.profilelive-status.limited {
+  color: #92400e;
+  background: #fef3c7;
+}
+
+.profilelive-status.unavailable {
+  color: #991b1b;
+  background: #fee2e2;
+}
+
+.profilelive-status i {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+}
+
+.profilelive-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.6rem;
+}
+
+.profilelive-grid article {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 1.35rem;
+  padding: 1.15rem;
+  background: rgba(255, 255, 255, 0.8);
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.profilelive-grid article:hover {
+  transform: translateY(-4px);
+  border-color: rgba(34, 197, 94, 0.3);
+  box-shadow:
+    0 17px 40px rgba(15, 23, 42, 0.08);
+}
+
+.profilelive-grid svg {
+  color: #16a34a;
+  font-size: 1.25rem;
+}
+
+.profilelive-grid span {
+  display: block;
+  margin-top: 0.75rem;
+  color: #64748b;
+  font-size: 0.7rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.profilelive-grid strong {
+  display: block;
+  margin-top: 0.35rem;
+  color: #0f172a;
+  font-size: 0.92rem;
+  font-weight: 950;
+  line-height: 1.45;
+}
+
+.profilelive-resume {
+  display: grid;
+  grid-template-columns:
+    auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 1.35rem;
+  padding: 1rem;
+  background: rgba(248, 250, 252, 0.85);
+}
+
+.profilelive-resume-icon {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  place-items: center;
+  border-radius: 1rem;
+  color: #4f46e5;
+  background: #eef2ff;
+  font-size: 1.35rem;
+}
+
+.profilelive-resume span,
+.profilelive-resume small {
+  display: block;
+  color: #64748b;
+  font-size: 0.72rem;
+  font-weight: 750;
+}
+
+.profilelive-resume strong {
+  display: block;
+  margin: 0.18rem 0;
+  color: #0f172a;
+  font-size: 1rem;
+  font-weight: 950;
+}
+
+.profilelive-resume-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.8rem 1rem;
+  color: white;
+  background:
+    linear-gradient(
+      135deg,
+      #4f46e5,
+      #0ea5e9
+    );
+  font-size: 0.78rem;
+  font-weight: 950;
+  box-shadow:
+    0 12px 30px rgba(79, 70, 229, 0.2);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.profilelive-resume-button:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 17px 38px rgba(79, 70, 229, 0.3);
+}
+
+.profilelive-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.profilelive-trust div {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-radius: 999px;
+  padding: 0.55rem 0.75rem;
+  color: #475569;
+  background: rgba(255, 255, 255, 0.8);
+  font-size: 0.7rem;
+  font-weight: 850;
+}
+
+.profilelive-trust svg {
+  color: #16a34a;
+}
+
+.admin-profile-control,
+.resumeadmin-section {
+  margin-top: 1.5rem;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 2rem;
+  padding: clamp(1.2rem, 3vw, 2rem);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 22px 65px rgba(15, 23, 42, 0.07);
+}
+
+.admin-profile-control-head,
+.resumeadmin-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.admin-profile-control-head > div > span,
+.resumeadmin-heading > div > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #4f46e5;
+  font-size: 0.72rem;
+  font-weight: 950;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.admin-profile-control-head h2,
+.resumeadmin-heading h2 {
+  margin: 0.8rem 0 0;
+  color: #020617;
+  font-size: clamp(1.7rem, 3vw, 3rem);
+  font-weight: 950;
+  letter-spacing: -0.045em;
+}
+
+.admin-profile-control-head p,
+.resumeadmin-heading p {
+  max-width: 48rem;
+  margin: 0.7rem 0 0;
+  color: #64748b;
+  font-size: 0.88rem;
+  font-weight: 650;
+  line-height: 1.7;
+}
+
+.admin-profile-control-head > button,
+.resumeadmin-heading > button {
+  flex-shrink: 0;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 999px;
+  padding: 0.75rem 1rem;
+  color: #0f172a;
+  background: white;
+  font-size: 0.76rem;
+  font-weight: 900;
+}
+
+.admin-profile-form {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.admin-profile-form label,
+.resumeadmin-card label {
+  display: grid;
+  gap: 0.55rem;
+  color: #334155;
+  font-size: 0.76rem;
+  font-weight: 900;
+}
+
+.admin-profile-form label svg {
+  color: #4f46e5;
+}
+
+.admin-profile-form input,
+.admin-profile-form select,
+.resumeadmin-card input {
+  width: 100%;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 1rem;
+  padding: 0.85rem 0.95rem;
+  color: #0f172a;
+  background: white;
+  outline: none;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.admin-profile-form input:focus,
+.admin-profile-form select:focus,
+.resumeadmin-card input:focus {
+  border-color: rgba(79, 70, 229, 0.6);
+  box-shadow:
+    0 0 0 4px rgba(79, 70, 229, 0.1);
+}
+
+.admin-profile-wide {
+  grid-column: 1 / -1;
+}
+
+.admin-profile-checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.admin-profile-checkboxes label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.7rem 0.85rem;
+  color: #334155;
+  background: #f1f5f9;
+  font-size: 0.75rem;
+  font-weight: 850;
+}
+
+.admin-profile-checkboxes input {
+  width: 1rem;
+  height: 1rem;
+  accent-color: #4f46e5;
+}
+
+.admin-profile-save,
+.resumeadmin-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.1rem;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.85rem 1.1rem;
+  color: white;
+  background:
+    linear-gradient(
+      135deg,
+      #4f46e5,
+      #0891b2
+    );
+  font-size: 0.78rem;
+  font-weight: 950;
+  cursor: pointer;
+}
+
+.admin-profile-message,
+.resumeadmin-message {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 1rem;
+  border-radius: 1rem;
+  padding: 0.8rem 0.95rem;
+  color: #15803d;
+  background: #dcfce7;
+  font-size: 0.76rem;
+  font-weight: 850;
+}
+
+.resumeadmin-analytics {
+  display: grid;
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 1.5rem;
+}
+
+.resumeadmin-analytics article {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 1.25rem;
+  padding: 1rem;
+  background: #f8fafc;
+}
+
+.resumeadmin-analytics svg {
+  color: #4f46e5;
+}
+
+.resumeadmin-analytics strong {
+  display: block;
+  margin-top: 0.65rem;
+  color: #0f172a;
+  font-size: 1.6rem;
+  font-weight: 950;
+}
+
+.resumeadmin-analytics .resumeadmin-date {
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.resumeadmin-analytics span {
+  display: block;
+  margin-top: 0.25rem;
+  color: #64748b;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.resumeadmin-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.resumeadmin-card {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 1.35rem;
+  padding: 1.15rem;
+  background: #f8fafc;
+}
+
+.resumeadmin-card h3,
+.resumeadmin-pages h3 {
+  margin: 0 0 1rem;
+  color: #0f172a;
+  font-size: 1rem;
+  font-weight: 950;
+}
+
+.resumeadmin-upload {
+  display: flex !important;
+  min-height: 9rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 2px dashed rgba(79, 70, 229, 0.28);
+  border-radius: 1.1rem;
+  padding: 1rem;
+  text-align: center;
+  background: white;
+}
+
+.resumeadmin-upload svg {
+  color: #4f46e5;
+  font-size: 2rem;
+}
+
+.resumeadmin-upload strong {
+  margin-top: 0.65rem;
+  color: #0f172a;
+}
+
+.resumeadmin-upload span {
+  color: #64748b;
+  font-size: 0.7rem;
+}
+
+.resumeadmin-upload input {
+  display: none;
+}
+
+.resumeadmin-current {
+  margin-top: 1rem;
+  border-radius: 1rem;
+  padding: 0.8rem;
+  background: white;
+}
+
+.resumeadmin-current span {
+  display: block;
+  color: #64748b;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.resumeadmin-current strong {
+  display: block;
+  margin-top: 0.25rem;
+  color: #0f172a;
+  font-size: 0.8rem;
+}
+
+.resumeadmin-actions {
+  display: flex;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.resumeadmin-actions a {
+  display: inline-flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 999px;
+  padding: 0.8rem;
+  color: #0f172a;
+  background: white;
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+.resumeadmin-actions .resumeadmin-primary {
+  flex: 1;
+  margin-top: 0;
+}
+
+.resumeadmin-pages {
+  margin-top: 1rem;
+  border-radius: 1.2rem;
+  padding: 1rem;
+  background: #f8fafc;
+}
+
+.resumeadmin-pages > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(15, 23, 42, 0.07);
+  padding: 0.65rem 0;
+  color: #475569;
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+html.dark .profilelive-section,
+html.dark .admin-profile-control,
+html.dark .resumeadmin-section {
+  border-color: rgba(148, 163, 184, 0.14);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(34, 197, 94, 0.1), transparent 27rem),
+    radial-gradient(circle at 100% 100%, rgba(99, 102, 241, 0.15), transparent 27rem),
+    rgba(15, 23, 42, 0.85);
+}
+
+html.dark .profilelive-heading h2,
+html.dark .profilelive-grid strong,
+html.dark .profilelive-resume strong,
+html.dark .admin-profile-control-head h2,
+html.dark .resumeadmin-heading h2,
+html.dark .resumeadmin-analytics strong,
+html.dark .resumeadmin-card h3,
+html.dark .resumeadmin-pages h3,
+html.dark .resumeadmin-current strong,
+html.dark .resumeadmin-upload strong {
+  color: #f8fafc;
+}
+
+html.dark .profilelive-grid article,
+html.dark .profilelive-resume,
+html.dark .profilelive-trust div,
+html.dark .admin-profile-form input,
+html.dark .admin-profile-form select,
+html.dark .resumeadmin-card,
+html.dark .resumeadmin-analytics article,
+html.dark .resumeadmin-upload,
+html.dark .resumeadmin-current,
+html.dark .resumeadmin-pages,
+html.dark .resumeadmin-actions a {
+  border-color: rgba(148, 163, 184, 0.14);
+  color: #f8fafc;
+  background: rgba(15, 23, 42, 0.68);
+}
+
+html.dark .admin-profile-form label,
+html.dark .resumeadmin-card label {
+  color: #cbd5e1;
+}
+
+@keyframes profileLivePulse {
+  0% {
+    box-shadow:
+      0 0 0 0 rgba(34, 197, 94, 0.65);
+  }
+
+  75%,
+  100% {
+    box-shadow:
+      0 0 0 9px rgba(34, 197, 94, 0);
+  }
+}
+
+@media (max-width: 900px) {
+  .profilelive-heading,
+  .admin-profile-control-head,
+  .resumeadmin-heading {
+    flex-direction: column;
+  }
+
+  .profilelive-grid,
+  .resumeadmin-analytics {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .resumeadmin-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .profilelive-section {
+    width: min(100% - 1rem, 1360px);
+    border-radius: 1.5rem;
+    padding: 1rem;
+  }
+
+  .profilelive-grid,
+  .resumeadmin-analytics,
+  .admin-profile-form {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-profile-wide {
+    grid-column: auto;
+  }
+
+  .profilelive-resume {
+    grid-template-columns:
+      auto minmax(0, 1fr);
+  }
+
+  .profilelive-resume-button {
+    grid-column: 1 / -1;
+  }
+
+  .resumeadmin-actions {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-availability-pill span,
+  .profilelive-status i,
+  .profilelive-kicker i {
+    animation: none !important;
+  }
+}
+
+/* =========================================================
+   PORTFOLIO PHASE 3 END
+   ========================================================= */

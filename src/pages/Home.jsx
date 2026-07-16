@@ -34,6 +34,7 @@ import ProjectCard from '../components/ProjectCard'
 import LivePortfolioStats from '../components/LivePortfolioStats'
 import LiveEngineeringPulse from '../components/LiveEngineeringPulse'
 import HomeStats from '../components/HomeStats'
+import LiveProfileStatus, { AvailabilityPill } from '../components/LiveProfileStatus'
 import ResumeLink from '../components/ResumeLink'
 
 const fadeUp = {
@@ -179,7 +180,7 @@ export default function Home() {
               </h1>
 
               <p className="premium-hero-desc">
-                IÃ¢â‚¬â„¢m <strong>Devesh Sahu</strong>, a MERN Stack Developer building
+                IÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢m <strong>Devesh Sahu</strong>, a MERN Stack Developer building
                 clean, usable and deployable full-stack web apps with React,
                 Node.js, Express, MongoDB, APIs and production deployment.
               </p>
@@ -240,13 +241,10 @@ export default function Home() {
                 <div>
                   <span className="premium-mini-label">Developer Profile</span>
                   <h2>Devesh Sahu</h2>
-                  <p>MERN Stack Developer Ã‚· B.Tech IT</p>
+                  <p>MERN Stack Developer Ãƒâ€šÂ· B.Tech IT</p>
                 </div>
 
-                <div className="premium-status-pill">
-                  <span />
-                  Open
-                </div>
+                <AvailabilityPill />
               </div>
 
               <div className="premium-photo-wrap">
@@ -295,6 +293,7 @@ export default function Home() {
         </section>
 
         <HomeStats />
+        <LiveProfileStatus />
          <LivePortfolioStats />
         <LiveEngineeringPulse />
 

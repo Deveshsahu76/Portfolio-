@@ -1,259 +1,660 @@
-import React, { useEffect, useState } from 'react'
+import React, {
+  useEffect,
+  useState,
+} from 'react'
 import {
+  FiBarChart2,
   FiCheckCircle,
+  FiClock,
+  FiDownload,
   FiExternalLink,
   FiFileText,
   FiRefreshCw,
   FiSave,
   FiUploadCloud,
 } from 'react-icons/fi'
+import {
+  clearResumeMetaCache,
+} from '../../hooks/useResumeUrl'
 
-const API_URL =
-  import.meta.env.VITE_API_URL || 'https://portfolio-backend-4b9u.onrender.com'
+const getApiUrl = () => {
+  if (
+    typeof window !==
+    'undefined'
+  ) {
+    const local =
+      window.location.hostname ===
+        'localhost' ||
+      window.location.hostname ===
+        '127.0.0.1'
 
-export default function ResumeManager({ adminKey }) {
-  const [resumeUrl, setResumeUrl] = useState('')
-  const [draftUrl, setDraftUrl] = useState('')
-  const [selectedFile, setSelectedFile] = useState(null)
-  const [loading, setLoading] = useState(false)
-  const [uploading, setUploading] = useState(false)
-  const [message, setMessage] = useState('')
-
-  const fetchResumeUrl = async () => {
-    setLoading(true)
-    setMessage('Loading resume...')
-
-    try {
-      const response = await fetch(`${API_URL}/api/site-settings/resume`)
-      const data = await response.json()
-
-      if (!response.ok) {
-        throw new Error(data?.message || 'Failed to load resume.')
-      }
-
-      setResumeUrl(data.resumeUrl || '/resume.pdf')
-      setDraftUrl(data.resumeUrl || '/resume.pdf')
-      setMessage('Resume loaded.')
-    } catch (error) {
-      setMessage(error.message || 'Failed to load resume.')
-    } finally {
-      setLoading(false)
+    if (local) {
+      return 'http://localhost:5000'
     }
   }
 
-  const saveResumeUrl = async () => {
-    if (!adminKey) {
-      setMessage('Please save admin key first.')
-      return
-    }
+  return (
+    import.meta.env.VITE_API_URL ||
+    'https://portfolio-backend-4b9u.onrender.com'
+  )
+}
 
-    if (!draftUrl.trim()) {
-      setMessage('Resume URL is required.')
-      return
-    }
-
-    setLoading(true)
-    setMessage('Saving resume URL...')
-
-    try {
-      const response = await fetch(`${API_URL}/api/site-settings/resume`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-admin-key': adminKey,
-        },
-        body: JSON.stringify({
-          resumeUrl: draftUrl.trim(),
-        }),
-      })
-
-      const data = await response.json()
-
-      if (!response.ok) {
-        throw new Error(data?.message || 'Failed to save resume URL.')
-      }
-
-      setResumeUrl(data.resumeUrl)
-      setDraftUrl(data.resumeUrl)
-      setMessage('Resume URL updated successfully.')
-    } catch (error) {
-      setMessage(error.message || 'Failed to save resume URL.')
-    } finally {
-      setLoading(false)
-    }
+const formatDate = (
+  dateValue
+) => {
+  if (!dateValue) {
+    return 'No downloads yet'
   }
 
-  const handleFileChange = (event) => {
-    const file = event.target.files?.[0]
+  try {
+    return new Intl.DateTimeFormat(
+      'en-IN',
+      {
+        dateStyle: 'medium',
+        timeStyle: 'short',
+      }
+    ).format(
+      new Date(dateValue)
+    )
+  } catch {
+    return 'N/A'
+  }
+}
+
+export default function ResumeManager({
+  adminKey,
+}) {
+  const [resumeUrl, setResumeUrl] =
+    useState('')
+
+  const [draftUrl, setDraftUrl] =
+    useState('')
+
+  const [version, setVersion] =
+    useState('1.0')
+
+  const [updatedAt, setUpdatedAt] =
+    useState(null)
+
+  const [
+    selectedFile,
+    setSelectedFile,
+  ] = useState(null)
+
+  const [loading, setLoading] =
+    useState(false)
+
+  const [uploading, setUploading] =
+    useState(false)
+
+  const [message, setMessage] =
+    useState('')
+
+  const [analytics, setAnalytics] =
+    useState({
+      totalDownloads: 0,
+      downloadsLast7Days: 0,
+      lastDownloadAt: null,
+      downloadsByPage: [],
+    })
+
+  const loadResumeData =
+    async () => {
+      setLoading(true)
+
+      setMessage(
+        'Loading resume data...'
+      )
+
+      try {
+        const metaResponse =
+          await fetch(
+            `${getApiUrl()}/api/resume/meta`
+          )
+
+        const metaResult =
+          await metaResponse.json()
+
+        if (
+          !metaResponse.ok ||
+          !metaResult?.success
+        ) {
+          throw new Error(
+            metaResult?.message ||
+              'Unable to load resume.'
+          )
+        }
+
+        const meta =
+          metaResult.data
+
+        setResumeUrl(
+          meta.resumeUrl ||
+            '/resume.pdf'
+        )
+
+        setDraftUrl(
+          meta.resumeUrl ||
+            '/resume.pdf'
+        )
+
+        setVersion(
+          meta.version ||
+            '1.0'
+        )
+
+        setUpdatedAt(
+          meta.updatedAt ||
+            null
+        )
+
+        if (adminKey) {
+          const analyticsResponse =
+            await fetch(
+              `${getApiUrl()}/api/resume/analytics`,
+              {
+                headers: {
+                  'x-admin-key':
+                    adminKey,
+                },
+              }
+            )
+
+          const analyticsResult =
+            await analyticsResponse
+              .json()
+
+          if (
+            analyticsResponse.ok &&
+            analyticsResult?.success
+          ) {
+            setAnalytics(
+              analyticsResult.data
+            )
+          }
+        }
+
+        setMessage(
+          'Resume data loaded.'
+        )
+      } catch (error) {
+        setMessage(
+          error.message ||
+            'Unable to load resume.'
+        )
+      } finally {
+        setLoading(false)
+      }
+    }
+
+  const saveResumeMeta =
+    async () => {
+      if (!adminKey) {
+        throw new Error(
+          'Please save admin key first.'
+        )
+      }
+
+      const response =
+        await fetch(
+          `${getApiUrl()}/api/resume/meta`,
+          {
+            method: 'PUT',
+
+            headers: {
+              'Content-Type':
+                'application/json',
+
+              'x-admin-key':
+                adminKey,
+            },
+
+            body:
+              JSON.stringify({
+                version:
+                  version.trim() ||
+                  '1.0',
+              }),
+          }
+        )
+
+      const result =
+        await response.json()
+
+      if (!response.ok) {
+        throw new Error(
+          result?.message ||
+            'Unable to update resume metadata.'
+        )
+      }
+
+      clearResumeMetaCache()
+
+      setUpdatedAt(
+        result.data?.updatedAt ||
+          new Date().toISOString()
+      )
+
+      return result
+    }
+
+  const saveResumeUrl =
+    async () => {
+      if (!adminKey) {
+        setMessage(
+          'Please save admin key first.'
+        )
+
+        return
+      }
+
+      if (!draftUrl.trim()) {
+        setMessage(
+          'Resume URL is required.'
+        )
+
+        return
+      }
+
+      setLoading(true)
+
+      setMessage(
+        'Saving resume URL...'
+      )
+
+      try {
+        const response =
+          await fetch(
+            `${getApiUrl()}/api/site-settings/resume`,
+            {
+              method: 'PUT',
+
+              headers: {
+                'Content-Type':
+                  'application/json',
+
+                'x-admin-key':
+                  adminKey,
+              },
+
+              body:
+                JSON.stringify({
+                  resumeUrl:
+                    draftUrl.trim(),
+                }),
+            }
+          )
+
+        const result =
+          await response.json()
+
+        if (!response.ok) {
+          throw new Error(
+            result?.message ||
+              'Unable to save resume URL.'
+          )
+        }
+
+        await saveResumeMeta()
+
+        setResumeUrl(
+          result.resumeUrl
+        )
+
+        setDraftUrl(
+          result.resumeUrl
+        )
+
+        setMessage(
+          'Resume URL, version and update date saved.'
+        )
+      } catch (error) {
+        setMessage(
+          error.message ||
+            'Unable to save resume URL.'
+        )
+      } finally {
+        setLoading(false)
+      }
+    }
+
+  const handleFileChange = (
+    event
+  ) => {
+    const file =
+      event.target.files?.[0]
 
     if (!file) {
       setSelectedFile(null)
       return
     }
 
-    if (file.type !== 'application/pdf') {
+    if (
+      file.type !==
+      'application/pdf'
+    ) {
       setSelectedFile(null)
-      setMessage('Only PDF file allowed.')
+
+      setMessage(
+        'Only PDF files are allowed.'
+      )
+
       return
     }
 
-    if (file.size > 5 * 1024 * 1024) {
+    if (
+      file.size >
+      5 * 1024 * 1024
+    ) {
       setSelectedFile(null)
-      setMessage('PDF size must be less than 5MB.')
+
+      setMessage(
+        'PDF must be less than 5MB.'
+      )
+
       return
     }
 
     setSelectedFile(file)
-    setMessage(`Selected: ${file.name}`)
+
+    setMessage(
+      `Selected: ${file.name}`
+    )
   }
 
-  const uploadResumePdf = async () => {
-    if (!adminKey) {
-      setMessage('Please save admin key first.')
-      return
-    }
+  const uploadResumePdf =
+    async () => {
+      if (!adminKey) {
+        setMessage(
+          'Please save admin key first.'
+        )
 
-    if (!selectedFile) {
-      setMessage('Please choose a PDF file first.')
-      return
-    }
-
-    setUploading(true)
-    setMessage('Uploading resume PDF...')
-
-    try {
-      const response = await fetch(`${API_URL}/api/site-settings/resume/upload`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/pdf',
-          'x-admin-key': adminKey,
-          'x-file-name': encodeURIComponent(selectedFile.name),
-        },
-        body: selectedFile,
-      })
-
-      const data = await response.json()
-
-      if (!response.ok) {
-        throw new Error(data?.message || 'Failed to upload resume PDF.')
+        return
       }
 
-      setResumeUrl(data.resumeUrl)
-      setDraftUrl(data.resumeUrl)
-      setSelectedFile(null)
-      setMessage('Resume PDF uploaded successfully. All resume buttons updated.')
-    } catch (error) {
-      setMessage(error.message || 'Failed to upload resume PDF.')
-    } finally {
-      setUploading(false)
+      if (!selectedFile) {
+        setMessage(
+          'Choose a PDF first.'
+        )
+
+        return
+      }
+
+      setUploading(true)
+
+      setMessage(
+        'Uploading resume PDF...'
+      )
+
+      try {
+        const response =
+          await fetch(
+            `${getApiUrl()}/api/site-settings/resume/upload`,
+            {
+              method: 'PUT',
+
+              headers: {
+                'Content-Type':
+                  'application/pdf',
+
+                'x-admin-key':
+                  adminKey,
+
+                'x-file-name':
+                  encodeURIComponent(
+                    selectedFile.name
+                  ),
+              },
+
+              body: selectedFile,
+            }
+          )
+
+        const result =
+          await response.json()
+
+        if (!response.ok) {
+          throw new Error(
+            result?.message ||
+              'Unable to upload resume.'
+          )
+        }
+
+        await saveResumeMeta()
+
+        setResumeUrl(
+          result.resumeUrl
+        )
+
+        setDraftUrl(
+          result.resumeUrl
+        )
+
+        setSelectedFile(null)
+
+        setMessage(
+          'Resume uploaded. Version and update date saved.'
+        )
+      } catch (error) {
+        setMessage(
+          error.message ||
+            'Unable to upload resume.'
+        )
+      } finally {
+        setUploading(false)
+      }
     }
-  }
 
   useEffect(() => {
-    fetchResumeUrl()
-  }, [])
+    loadResumeData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [adminKey])
 
   return (
-    <section className="mt-6 rounded-[2rem] border border-slate-900/10 bg-white/90 p-6 shadow-2xl shadow-slate-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/70">
-      <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+    <section className="resumeadmin-section">
+      <div className="resumeadmin-heading">
         <div>
-          <div className="inline-flex items-center gap-2 rounded-full bg-indigo-50 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-indigo-600 dark:bg-cyan-400/10 dark:text-cyan-300">
+          <span>
             <FiFileText />
             Resume Manager
-          </div>
+          </span>
 
-          <h2 className="mt-4 text-3xl font-black tracking-tight text-slate-950 dark:text-white md:text-4xl">
-            Upload resume from your PC
+          <h2>
+            Resume upload and
+            download analytics
           </h2>
 
-          <p className="mt-3 max-w-3xl text-sm font-semibold leading-7 text-slate-600 dark:text-slate-300 md:text-base">
-            Yahan se PDF upload karo. Portfolio me Home, Navbar, Recruiter Hub,
-            About aur Contact page ke sab resume buttons automatically latest PDF
-            open karenge.
+          <p>
+            Latest resume, version and
+            analytics yahan manage
+            honge.
           </p>
         </div>
 
         <button
           type="button"
-          onClick={fetchResumeUrl}
+          onClick={loadResumeData}
           disabled={loading}
-          className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-900/10 bg-white px-5 py-3 text-sm font-black text-slate-950 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-white/5 dark:text-white"
         >
           <FiRefreshCw />
-          {loading ? 'Loading...' : 'Refresh'}
+
+          {loading
+            ? 'Loading...'
+            : 'Refresh'}
         </button>
       </div>
 
-      <div className="mt-6 grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="rounded-[1.5rem] border border-slate-900/10 bg-slate-50/80 p-5 dark:border-white/10 dark:bg-slate-950/40">
-          <div className="flex items-center gap-2 text-sm font-black text-slate-950 dark:text-white">
-            <FiUploadCloud />
+      <div className="resumeadmin-analytics">
+        <article>
+          <FiDownload />
+
+          <strong>
+            {
+              analytics.totalDownloads
+            }
+          </strong>
+
+          <span>
+            Total Downloads
+          </span>
+        </article>
+
+        <article>
+          <FiBarChart2 />
+
+          <strong>
+            {
+              analytics
+                .downloadsLast7Days
+            }
+          </strong>
+
+          <span>
+            Last 7 Days
+          </span>
+        </article>
+
+        <article>
+          <FiClock />
+
+          <strong className="resumeadmin-date">
+            {formatDate(
+              analytics
+                .lastDownloadAt
+            )}
+          </strong>
+
+          <span>
+            Last Download
+          </span>
+        </article>
+
+        <article>
+          <FiFileText />
+
+          <strong>
+            v{version}
+          </strong>
+
+          <span>
+            Current Version
+          </span>
+        </article>
+      </div>
+
+      <div className="resumeadmin-grid">
+        <div className="resumeadmin-card">
+          <h3>
             Upload PDF from PC
-          </div>
+          </h3>
 
-          <label className="mt-4 flex cursor-pointer flex-col items-center justify-center rounded-[1.25rem] border-2 border-dashed border-slate-300 bg-white px-5 py-8 text-center transition hover:border-indigo-400 hover:bg-indigo-50/50 dark:border-white/15 dark:bg-white/5 dark:hover:border-cyan-300 dark:hover:bg-cyan-400/10">
-            <FiFileText className="text-4xl text-indigo-600 dark:text-cyan-300" />
+          <label className="resumeadmin-upload">
+            <FiUploadCloud />
 
-            <span className="mt-3 text-base font-black text-slate-950 dark:text-white">
-              {selectedFile ? selectedFile.name : 'Choose resume PDF'}
+            <strong>
+              {selectedFile
+                ? selectedFile.name
+                : 'Choose resume PDF'}
+            </strong>
+
+            <span>
+              PDF only · Maximum 5MB
             </span>
-
-            <small className="mt-1 text-xs font-bold text-slate-500 dark:text-slate-400">
-              PDF only · Max 5MB
-            </small>
 
             <input
               type="file"
               accept="application/pdf,.pdf"
-              onChange={handleFileChange}
-              className="hidden"
+              onChange={
+                handleFileChange
+              }
+            />
+          </label>
+
+          <label>
+            Resume Version
+
+            <input
+              value={version}
+              onChange={(event) =>
+                setVersion(
+                  event.target.value
+                )
+              }
+              placeholder="2.0"
             />
           </label>
 
           <button
             type="button"
-            onClick={uploadResumePdf}
-            disabled={uploading || !selectedFile}
-            className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-indigo-600 to-cyan-500 px-5 py-3 text-sm font-black text-white shadow-lg shadow-indigo-500/20 transition hover:-translate-y-0.5 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-60"
+            onClick={
+              uploadResumePdf
+            }
+            disabled={
+              uploading ||
+              !selectedFile
+            }
+            className="resumeadmin-primary"
           >
             <FiUploadCloud />
-            {uploading ? 'Uploading...' : 'Upload Resume PDF'}
+
+            {uploading
+              ? 'Uploading...'
+              : 'Upload Resume'}
           </button>
         </div>
 
-        <div className="rounded-[1.5rem] border border-slate-900/10 bg-slate-50/80 p-5 dark:border-white/10 dark:bg-slate-950/40">
-          <div className="flex items-center gap-2 text-sm font-black text-slate-950 dark:text-white">
-            <FiExternalLink />
-            Or use public resume URL
-          </div>
+        <div className="resumeadmin-card">
+          <h3>
+            Public Resume URL
+          </h3>
 
-          <label className="mt-4 grid gap-2 text-sm font-black text-slate-700 dark:text-slate-200">
-            Latest Resume URL
+          <label>
+            Resume URL
+
             <input
-              type="url"
+              type="text"
               value={draftUrl}
-              onChange={(event) => setDraftUrl(event.target.value)}
-              placeholder="https://drive.google.com/..."
-              className="w-full rounded-2xl border border-slate-900/10 bg-white px-4 py-3 text-sm font-bold text-slate-950 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 dark:border-white/10 dark:bg-white/5 dark:text-white"
+              onChange={(event) =>
+                setDraftUrl(
+                  event.target.value
+                )
+              }
+              placeholder="/resume.pdf or public URL"
             />
           </label>
 
-          <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+          <div className="resumeadmin-current">
+            <span>
+              Last Updated
+            </span>
+
+            <strong>
+              {formatDate(
+                updatedAt
+              )}
+            </strong>
+          </div>
+
+          <div className="resumeadmin-actions">
             <button
               type="button"
-              onClick={saveResumeUrl}
+              onClick={
+                saveResumeUrl
+              }
               disabled={loading}
-              className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-black text-white transition hover:-translate-y-0.5 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-60 dark:bg-white dark:text-slate-950"
+              className="resumeadmin-primary"
             >
               <FiSave />
-              {loading ? 'Saving...' : 'Save URL'}
+              Save URL
             </button>
 
             <a
-              href={resumeUrl || '/resume.pdf'}
+              href={
+                resumeUrl ||
+                '/resume.pdf'
+              }
               target="_blank"
               rel="noreferrer"
-              className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-slate-900/10 bg-white px-5 py-3 text-sm font-black text-slate-950 transition hover:-translate-y-0.5 hover:shadow-lg dark:border-white/10 dark:bg-white/5 dark:text-white"
             >
               <FiExternalLink />
               View Current
@@ -262,10 +663,34 @@ export default function ResumeManager({ adminKey }) {
         </div>
       </div>
 
+      {analytics
+        .downloadsByPage
+        ?.length > 0 && (
+        <div className="resumeadmin-pages">
+          <h3>
+            Downloads by Page
+          </h3>
+
+          {analytics
+            .downloadsByPage
+            .map((item) => (
+              <div key={item.page}>
+                <span>
+                  {item.page}
+                </span>
+
+                <strong>
+                  {item.count}
+                </strong>
+              </div>
+            ))}
+        </div>
+      )}
+
       {message && (
-        <div className="mt-5 flex items-start gap-3 rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-black text-emerald-700 dark:bg-emerald-400/10 dark:text-emerald-300">
-          <FiCheckCircle className="mt-0.5 shrink-0" />
-          <span>{message}</span>
+        <div className="resumeadmin-message">
+          <FiCheckCircle />
+          {message}
         </div>
       )}
     </section>

@@ -41,6 +41,9 @@ const { default: githubRoutes } = await import(
 const { default: projectStatusRoutes } = await import(
   './routes/projectStatusRoutes.js'
 )
+const { default: profileRoutes } = await import(
+  './routes/profileRoutes.js'
+)
 const {
   adminLimiter,
   adminLoginLimiter,
@@ -96,6 +99,7 @@ app.use('/api', siteSettingsRoutes)
 app.use('/api', leetcodeRoutes)
 app.use('/api', githubRoutes)
 app.use('/api', projectStatusRoutes)
+app.use('/api', profileRoutes)
 
 /*
 |--------------------------------------------------------------------------

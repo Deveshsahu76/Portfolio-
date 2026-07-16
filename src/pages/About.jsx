@@ -22,6 +22,7 @@ import {
 import { FaLinkedin } from 'react-icons/fa'
 import SEO from '../components/SEO'
 import ResumeLink from '../components/ResumeLink'
+import LiveProfileStatus, { AvailabilityLabel, AvailabilityRoles } from '../components/LiveProfileStatus'
 import LiveLeetCodeStat from '../components/LiveLeetCodeStat'
 import { personSchema } from '../seo/schema'
 
@@ -151,7 +152,7 @@ export default function About() {
             <div className="about-premium-profile-info">
               <span>Developer Profile</span>
               <h2>Devesh Sahu</h2>
-              <p>MERN Stack Developer · B.Tech IT</p>
+              <p>MERN Stack Developer Â· B.Tech IT</p>
             </div>
 
             <div className="about-premium-profile-grid">
@@ -163,8 +164,8 @@ export default function About() {
 
               <div>
                 <FiZap />
-                <strong>Open</strong>
-                <span>Internship + Freelance</span>
+                <strong><AvailabilityLabel /></strong>
+                <span><AvailabilityRoles /></span>
               </div>
             </div>
           </aside>
@@ -191,6 +192,8 @@ export default function About() {
             <span>Graduation batch</span>
           </div>
         </section>
+
+        <LiveProfileStatus />
 
         <section className="about-premium-section about-premium-story">
           <div className="about-premium-section-head">
