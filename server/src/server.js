@@ -38,6 +38,9 @@ const { default: githubRoutes } = await import(
   './routes/githubRoutes.js'
 )
 
+const { default: engineeringRoutes } = await import(
+  './routes/engineeringRoutes.js'
+)
 const { default: projectStatusRoutes } = await import(
   './routes/projectStatusRoutes.js'
 )
@@ -98,6 +101,7 @@ app.use('/api', leadRoutes)
 app.use('/api', siteSettingsRoutes)
 app.use('/api', leetcodeRoutes)
 app.use('/api', githubRoutes)
+app.use('/api', engineeringRoutes)
 app.use('/api', projectStatusRoutes)
 app.use('/api', profileRoutes)
 

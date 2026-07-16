@@ -1,5 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import {
+  Link,
+} from 'react-router-dom'
 import {
   FiArrowRight,
   FiDownload,
@@ -8,6 +10,7 @@ import {
   FiLayers,
 } from 'react-icons/fi'
 import ProjectLiveBadge from './ProjectLiveBadge'
+import ProjectEngineeringBadge from './ProjectEngineeringBadge'
 
 export default function ProjectCard({
   project,
@@ -71,6 +74,10 @@ export default function ProjectCard({
           {project.description ||
             project.longDescription}
         </p>
+
+        <ProjectEngineeringBadge
+          project={project}
+        />
 
         <div className="mt-5 flex flex-wrap gap-2">
           {tech

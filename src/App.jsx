@@ -6,10 +6,13 @@ import AnalyticsTracker from './components/AnalyticsTracker'
 const Home = lazy(() => import('./pages/Home'))
 const Projects = lazy(() => import('./pages/Projects'))
 const ProjectDetails = lazy(() => import('./pages/ProjectDetails'))
+const EngineeringDashboard = lazy(() => import('./pages/EngineeringDashboard'))
+const SystemStatus = lazy(() => import('./pages/SystemStatus'))
 const Skills = lazy(() => import('./pages/Skills'))
 const About = lazy(() => import('./pages/About'))
 const Contact = lazy(() => import('./pages/Contact'))
 const RecruiterHub = lazy(() => import('./pages/RecruiterHub'))
+const RecruiterQuickView = lazy(() => import('./pages/RecruiterQuickView'))
 const Freelance = lazy(() => import('./pages/Freelance'))
 const AdminRequests = lazy(() => import('./pages/AdminRequests'))
 const AnalyticsDashboard = lazy(() => import('./pages/AnalyticsDashboard'))
@@ -61,17 +64,20 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/:projectId" element={<ProjectDetails />} />
+            <Route path="/engineering" element={<EngineeringDashboard />} />
+            <Route path="/status" element={<SystemStatus />} />
             <Route path="/skills" element={<Skills />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/recruiter" element={<RecruiterHub />} />
+            <Route path="/recruiter/quick-view" element={<RecruiterQuickView />} />
             <Route path="/freelance" element={<Freelance />} />
 
             {/* Public 404 page */}
             <Route path="*" element={<NotFound />} />
           </Route>
 
-          {/* Private admin routes â€” intentionally outside MainLayout */}
+          {/* Private admin routes Ã¢â‚¬â€ intentionally outside MainLayout */}
           <Route path="/admin/requests" element={<AdminRequests />} />
           <Route
             path="/admin-requests"

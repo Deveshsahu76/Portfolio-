@@ -5,7 +5,10 @@ https://deveshsahuportfolio.vercel.app/projects/zerodha-clone
 https://deveshsahuportfolio.vercel.app/projects/ecommerce-store
 https://deveshsahuportfolio.vercel.app/projects/version-control-system
 https://deveshsahuportfolio.vercel.app/recruiter
+https://deveshsahuportfolio.vercel.app/recruiter/quick-view
 https://deveshsahuportfolio.vercel.app/freelance
 https://deveshsahuportfolio.vercel.app/about
 https://deveshsahuportfolio.vercel.app/skills
 https://deveshsahuportfolio.vercel.app/contact
+https://deveshsahuportfolio.vercel.app/engineering
+https://deveshsahuportfolio.vercel.app/status

@@ -23,6 +23,7 @@ import {
   FiZap,
 } from 'react-icons/fi'
 import SEO from '../components/SEO'
+import ProjectEngineeringBadge from '../components/ProjectEngineeringBadge'
 import projects from '../data/projects'
 
 const filters = [
@@ -467,6 +468,10 @@ export default function Projects() {
                         {project.longDescription ||
                           project.description}
                       </p>
+
+                      <ProjectEngineeringBadge
+                        project={project}
+                      />
 
                       <div className="projectsx-tech-list">
                         {techStack.slice(0, 7).map((tech) => (
