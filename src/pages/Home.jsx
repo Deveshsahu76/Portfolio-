@@ -32,6 +32,7 @@ import profileImg from '../assets/portfolioimage.png'
 import projects from '../data/projects'
 import ProjectCard from '../components/ProjectCard'
 import LivePortfolioStats from '../components/LivePortfolioStats'
+import HomeStats from '../components/HomeStats'
 import ResumeLink from '../components/ResumeLink'
 
 const fadeUp = {
@@ -48,12 +49,6 @@ const stagger = {
   },
 }
 
-const heroStats = [
-  { value: '4+', label: 'Projects shipped' },
-  { value: '170+', label: 'LeetCode solved' },
-  { value: 'MERN', label: 'Primary stack' },
-  { value: 'Live', label: 'Deployments' },
-]
 
 const trustSignals = [
   'React + Node.js + MongoDB',
@@ -183,7 +178,7 @@ export default function Home() {
               </h1>
 
               <p className="premium-hero-desc">
-                I’m <strong>Devesh Sahu</strong>, a MERN Stack Developer building
+                Iâ€™m <strong>Devesh Sahu</strong>, a MERN Stack Developer building
                 clean, usable and deployable full-stack web apps with React,
                 Node.js, Express, MongoDB, APIs and production deployment.
               </p>
@@ -244,7 +239,7 @@ export default function Home() {
                 <div>
                   <span className="premium-mini-label">Developer Profile</span>
                   <h2>Devesh Sahu</h2>
-                  <p>MERN Stack Developer · B.Tech IT</p>
+                  <p>MERN Stack Developer Â· B.Tech IT</p>
                 </div>
 
                 <div className="premium-status-pill">
@@ -298,15 +293,7 @@ export default function Home() {
           </motion.div>
         </section>
 
-        <section className="premium-stats-strip">
-          {heroStats.map((stat) => (
-            <div key={stat.label} className="premium-stat-card">
-              <strong>{stat.value}</strong>
-              <span>{stat.label}</span>
-            </div>
-          ))}
-
-        </section>
+        <HomeStats />
          <LivePortfolioStats />
 
         <section className="premium-section premium-audience-section">

@@ -30,6 +30,10 @@ const { default: siteSettingsRoutes } = await import(
   './routes/siteSettingsRoutes.js'
 )
 
+const { default: leetcodeRoutes } = await import(
+  './routes/leetcodeRoutes.js'
+)
+
 const {
   adminLimiter,
   adminLoginLimiter,
@@ -82,6 +86,7 @@ app.use('/api', adminAuthRoutes)
 app.use('/api/analytics', analyticsRoutes)
 app.use('/api', leadRoutes)
 app.use('/api', siteSettingsRoutes)
+app.use('/api', leetcodeRoutes)
 
 /*
 |--------------------------------------------------------------------------
