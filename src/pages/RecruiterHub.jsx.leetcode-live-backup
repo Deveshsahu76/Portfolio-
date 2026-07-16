@@ -23,7 +23,6 @@ import {
 } from 'react-icons/fi'
 import SEO from '../components/SEO'
 import ResumeLink from '../components/ResumeLink'
-import LiveLeetCodeStat from '../components/LiveLeetCodeStat'
 import projects from '../data/projects'
 
 const API_URL =
@@ -53,10 +52,7 @@ const recruiterHighlights = [
 ]
 
 const quickStats = [
-  {
-    liveLeetCode: true,
-    label: 'LeetCode Problems',
-  },
+  { value: '170+', label: 'LeetCode Problems' },
   { value: '4+', label: 'Projects Built' },
   { value: 'MERN', label: 'Primary Stack' },
   { value: '2027', label: 'Graduation Batch' },
@@ -224,7 +220,7 @@ export default function RecruiterHub() {
             </h1>
 
             <p>
-              I'm <strong>Devesh Sahu</strong>, a B.Tech IT student and MERN
+              I’m <strong>Devesh Sahu</strong>, a B.Tech IT student and MERN
               Stack Developer. This page is designed to help HR and recruiters
               quickly check my skills, projects, resume, availability and contact
               options.
@@ -305,20 +301,12 @@ export default function RecruiterHub() {
         </section>
 
         <section className="recruiterx-stats">
-          {quickStats.map((item) =>
-            item.liveLeetCode ? (
-              <LiveLeetCodeStat
-                key={item.label}
-                label={item.label}
-                fallback={127}
-              />
-            ) : (
-              <div key={item.label}>
-                <strong>{item.value}</strong>
-                <span>{item.label}</span>
-              </div>
-            )
-          )}
+          {quickStats.map((item) => (
+            <div key={item.label}>
+              <strong>{item.value}</strong>
+              <span>{item.label}</span>
+            </div>
+          ))}
         </section>
 
         <section className="recruiterx-section">

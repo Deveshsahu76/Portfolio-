@@ -2,22 +2,29 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import LeftSidebar from '../components/LeftSidebar'
 import CustomCursor from '../components/CustomCursor'
 
 export default function MainLayout() {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-slate-50 text-slate-950 antialiased dark:bg-slate-950 dark:text-white">
-      <CustomCursor />
+    <div className="site-shell min-h-screen overflow-x-hidden bg-slate-50 text-slate-950 antialiased dark:bg-slate-950 dark:text-white">
+      <a
+        href="#main-content"
+        className="site-skip-link"
+      >
+        Skip to main content
+      </a>
 
+      <CustomCursor />
       <Navbar />
 
-      <LeftSidebar />
-
-      <div className="flex min-h-[calc(100vh-96px)] flex-col">
-        <div className="flex-1">
+      <div className="site-page-stack flex min-h-screen min-w-0 flex-col">
+        <main
+          id="main-content"
+          tabIndex={-1}
+          className="site-main-content min-w-0 flex-1"
+        >
           <Outlet />
-        </div>
+        </main>
 
         <Footer />
       </div>
