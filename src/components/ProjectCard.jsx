@@ -1,11 +1,32 @@
 import React from 'react'
-import { FiDownload, FiExternalLink, FiGithub, FiLayers } from 'react-icons/fi'
+import {
+  FiDownload,
+  FiExternalLink,
+  FiGithub,
+  FiLayers,
+} from 'react-icons/fi'
+import ProjectLiveBadge from './ProjectLiveBadge'
 
-export default function ProjectCard({ project }) {
-  const tech = project.techStack || project.tags || project.technologies || []
-  const liveLink = project.demo || project.live || project.liveLink
-  const githubLink = project.github || project.githubLink
-  const apkLink = project.apk
+export default function ProjectCard({
+  project,
+}) {
+  const tech =
+    project.techStack ||
+    project.tags ||
+    project.technologies ||
+    []
+
+  const liveLink =
+    project.demo ||
+    project.live ||
+    project.liveLink
+
+  const githubLink =
+    project.github ||
+    project.githubLink
+
+  const apkLink =
+    project.apk
 
   return (
     <article className="soft-card hover-lift group overflow-hidden rounded-[2rem]">
@@ -28,6 +49,10 @@ export default function ProjectCard({ project }) {
           Full Stack
         </div>
 
+        <ProjectLiveBadge
+          projectId={project.id}
+        />
+
         {apkLink && (
           <div className="absolute right-4 top-4 rounded-full bg-emerald-500 px-3 py-1 text-xs font-black text-white shadow-lg">
             APK
@@ -41,15 +66,21 @@ export default function ProjectCard({ project }) {
         </h3>
 
         <p className="mt-3 line-clamp-3 text-sm leading-7 text-slate-600 dark:text-slate-400">
-          {project.description || project.longDescription}
+          {project.description ||
+            project.longDescription}
         </p>
 
         <div className="mt-5 flex flex-wrap gap-2">
-          {tech.slice(0, 5).map((item) => (
-            <span key={item} className="badge">
-              {item}
-            </span>
-          ))}
+          {tech
+            .slice(0, 5)
+            .map((item) => (
+              <span
+                key={item}
+                className="badge"
+              >
+                {item}
+              </span>
+            ))}
         </div>
 
         <div className="mt-6 flex flex-wrap gap-3">
@@ -60,7 +91,8 @@ export default function ProjectCard({ project }) {
               rel="noreferrer"
               className="btn-primary px-4 py-2 text-sm"
             >
-              Live <FiExternalLink />
+              Live
+              <FiExternalLink />
             </a>
           )}
 
@@ -71,13 +103,19 @@ export default function ProjectCard({ project }) {
               rel="noreferrer"
               className="btn-secondary px-4 py-2 text-sm"
             >
-              Code <FiGithub />
+              Code
+              <FiGithub />
             </a>
           )}
 
           {apkLink && (
-            <a href={apkLink} download className="btn-secondary px-4 py-2 text-sm">
-              APK <FiDownload />
+            <a
+              href={apkLink}
+              download
+              className="btn-secondary px-4 py-2 text-sm"
+            >
+              APK
+              <FiDownload />
             </a>
           )}
         </div>
