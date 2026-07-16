@@ -475,6 +475,14 @@ export default function Projects() {
                       </div>
 
                       <div className="projectsx-action-row">
+                        <Link
+                          to={`/projects/${project.id}`}
+                          className="projectsx-case-study-link"
+                          aria-label={`View ${project.title} case study`}
+                        >
+                          View Case Study
+                          <FiArrowRight />
+                        </Link>
                         {project.demo && (
                           <a
                             href={project.demo}

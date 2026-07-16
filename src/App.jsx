@@ -5,6 +5,7 @@ import AnalyticsTracker from './components/AnalyticsTracker'
 
 const Home = lazy(() => import('./pages/Home'))
 const Projects = lazy(() => import('./pages/Projects'))
+const ProjectDetails = lazy(() => import('./pages/ProjectDetails'))
 const Skills = lazy(() => import('./pages/Skills'))
 const About = lazy(() => import('./pages/About'))
 const Contact = lazy(() => import('./pages/Contact'))
@@ -59,6 +60,7 @@ export default function App() {
           <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:projectId" element={<ProjectDetails />} />
             <Route path="/skills" element={<Skills />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
@@ -69,7 +71,7 @@ export default function App() {
             <Route path="*" element={<NotFound />} />
           </Route>
 
-          {/* Private admin routes — intentionally outside MainLayout */}
+          {/* Private admin routes â€” intentionally outside MainLayout */}
           <Route path="/admin/requests" element={<AdminRequests />} />
           <Route
             path="/admin-requests"

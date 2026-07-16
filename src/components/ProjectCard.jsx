@@ -1,5 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import {
+  FiArrowRight,
   FiDownload,
   FiExternalLink,
   FiGithub,
@@ -46,7 +48,7 @@ export default function ProjectCard({
         )}
 
         <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-black text-slate-950 backdrop-blur-xl dark:bg-slate-950/80 dark:text-white">
-          Full Stack
+          {project.category || 'Full Stack'}
         </div>
 
         <ProjectLiveBadge
@@ -84,12 +86,20 @@ export default function ProjectCard({
         </div>
 
         <div className="mt-6 flex flex-wrap gap-3">
+          <Link
+            to={`/projects/${project.id}`}
+            className="btn-primary px-4 py-2 text-sm"
+          >
+            Case Study
+            <FiArrowRight />
+          </Link>
+
           {liveLink && (
             <a
               href={liveLink}
               target="_blank"
               rel="noreferrer"
-              className="btn-primary px-4 py-2 text-sm"
+              className="btn-secondary px-4 py-2 text-sm"
             >
               Live
               <FiExternalLink />

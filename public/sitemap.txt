@@ -1,5 +1,9 @@
-﻿https://deveshsahuportfolio.vercel.app/
+https://deveshsahuportfolio.vercel.app/
 https://deveshsahuportfolio.vercel.app/projects
+https://deveshsahuportfolio.vercel.app/projects/queens-arena
+https://deveshsahuportfolio.vercel.app/projects/zerodha-clone
+https://deveshsahuportfolio.vercel.app/projects/ecommerce-store
+https://deveshsahuportfolio.vercel.app/projects/version-control-system
 https://deveshsahuportfolio.vercel.app/recruiter
 https://deveshsahuportfolio.vercel.app/freelance
 https://deveshsahuportfolio.vercel.app/about
