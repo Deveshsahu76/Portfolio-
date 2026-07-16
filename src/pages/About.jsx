@@ -22,6 +22,7 @@ import {
 import { FaLinkedin } from 'react-icons/fa'
 import SEO from '../components/SEO'
 import ResumeLink from '../components/ResumeLink'
+import LiveLeetCodeStat from '../components/LiveLeetCodeStat'
 import { personSchema } from '../seo/schema'
 
 const journey = [
@@ -73,7 +74,7 @@ const values = [
 const highlights = [
   'B.Tech Information Technology student',
   'MERN Stack Developer',
-  '170+ LeetCode problems solved',
+  'Live LeetCode problem-solving progress',
   'React, Node.js, Express, MongoDB',
   'Live projects with deployment',
   'Open to internship and freelance work',
@@ -111,12 +112,12 @@ export default function About() {
             </div>
 
             <h1>
-              I’m building myself like a{' '}
+              Iâ€™m building myself like a{' '}
               <span>software product, not just a resume.</span>
             </h1>
 
             <p>
-              I’m <strong>Devesh Sahu</strong>, a B.Tech Information Technology
+              Iâ€™m <strong>Devesh Sahu</strong>, a B.Tech Information Technology
               student and MERN Stack Developer. I build full-stack web apps with
               React, Node.js, Express and MongoDB, while improving DSA, deployment
               skills and real-world project execution.
@@ -150,7 +151,7 @@ export default function About() {
             <div className="about-premium-profile-info">
               <span>Developer Profile</span>
               <h2>Devesh Sahu</h2>
-              <p>MERN Stack Developer · B.Tech IT</p>
+              <p>MERN Stack Developer Â· B.Tech IT</p>
             </div>
 
             <div className="about-premium-profile-grid">
@@ -170,10 +171,10 @@ export default function About() {
         </section>
 
         <section className="about-premium-stats">
-          <div>
-            <strong>170+</strong>
-            <span>LeetCode solved</span>
-          </div>
+          <LiveLeetCodeStat
+            label="LeetCode solved"
+            fallback={127}
+          />
 
           <div>
             <strong>4+</strong>
@@ -342,7 +343,7 @@ export default function About() {
 
         <section className="about-premium-final-cta">
           <div>
-            <span>Let’s connect</span>
+            <span>Letâ€™s connect</span>
             <h2>Want to review my work or discuss an opportunity?</h2>
             <p>
               Explore my projects, open my recruiter hub, or connect with me on

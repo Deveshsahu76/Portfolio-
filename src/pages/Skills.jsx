@@ -30,6 +30,7 @@ import {
   FiZap,
 } from 'react-icons/fi'
 import SEO from '../components/SEO'
+import LiveLeetCodeStat from '../components/LiveLeetCodeStat'
 import projects from '../data/projects'
 
 const categories = ['All', 'Frontend', 'Backend', 'Database', 'Tools', 'Core']
@@ -194,7 +195,7 @@ const skills = [
     level: 68,
     status: 'Practicing',
     icon: FiTarget,
-    usedIn: ['170+ LeetCode Problems'],
+    usedIn: ['Live LeetCode Profile'],
     desc: 'Arrays, strings, two pointers, recursion, backtracking, sorting and problem solving.',
   },
   {
@@ -227,7 +228,7 @@ const skillStats = [
     label: 'Primary Stack',
   },
   {
-    value: '170+',
+    liveLeetCode: true,
     label: 'DSA Problems',
   },
   {
@@ -263,7 +264,7 @@ const interviewReadiness = [
   {
     icon: FiTarget,
     title: 'DSA Practice',
-    desc: '170+ LeetCode problems solved with regular improvement in problem-solving.',
+    desc: 'Live LeetCode progress with regular improvement in problem-solving.',
   },
   {
     icon: FiLayers,
@@ -361,7 +362,7 @@ export default function Skills() {
             </h1>
 
             <p>
-              I’m focused on MERN Stack Development with React, Node.js, Express,
+              Iâ€™m focused on MERN Stack Development with React, Node.js, Express,
               MongoDB, REST APIs, GitHub, deployment and DSA practice. This page
               shows what I know, where I used it and what I am improving.
             </p>
@@ -418,12 +419,20 @@ export default function Skills() {
         </section>
 
         <section className="skillsx-stats">
-          {skillStats.map((item) => (
-            <div key={item.label}>
-              <strong>{item.value}</strong>
-              <span>{item.label}</span>
-            </div>
-          ))}
+          {skillStats.map((item) =>
+            item.liveLeetCode ? (
+              <LiveLeetCodeStat
+                key={item.label}
+                label={item.label}
+                fallback={127}
+              />
+            ) : (
+              <div key={item.label}>
+                <strong>{item.value}</strong>
+                <span>{item.label}</span>
+              </div>
+            )
+          )}
         </section>
 
         <section className="skillsx-section">

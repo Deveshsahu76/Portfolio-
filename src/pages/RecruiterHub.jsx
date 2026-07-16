@@ -23,6 +23,7 @@ import {
 } from 'react-icons/fi'
 import SEO from '../components/SEO'
 import ResumeLink from '../components/ResumeLink'
+import LiveLeetCodeStat from '../components/LiveLeetCodeStat'
 import projects from '../data/projects'
 
 const API_URL =
@@ -52,7 +53,10 @@ const recruiterHighlights = [
 ]
 
 const quickStats = [
-  { value: '170+', label: 'LeetCode Problems' },
+  {
+    liveLeetCode: true,
+    label: 'LeetCode Problems',
+  },
   { value: '4+', label: 'Projects Built' },
   { value: 'MERN', label: 'Primary Stack' },
   { value: '2027', label: 'Graduation Batch' },
@@ -90,7 +94,7 @@ const availability = [
   },
   {
     label: 'Location',
-    value: 'India · Remote / Hybrid / On-site',
+    value: 'India Â· Remote / Hybrid / On-site',
   },
 ]
 
@@ -220,7 +224,7 @@ export default function RecruiterHub() {
             </h1>
 
             <p>
-              I’m <strong>Devesh Sahu</strong>, a B.Tech IT student and MERN
+              Iâ€™m <strong>Devesh Sahu</strong>, a B.Tech IT student and MERN
               Stack Developer. This page is designed to help HR and recruiters
               quickly check my skills, projects, resume, availability and contact
               options.
@@ -277,13 +281,13 @@ export default function RecruiterHub() {
             <div className="recruiterx-profile-top">
               <span>Candidate Snapshot</span>
               <h2>Devesh Sahu</h2>
-              <p>MERN Stack Developer · B.Tech IT</p>
+              <p>MERN Stack Developer Â· B.Tech IT</p>
             </div>
 
             <div className="recruiterx-score-card">
               <div>
                 <strong>Internship Ready</strong>
-                <span>Frontend · Backend · Full Stack</span>
+                <span>Frontend Â· Backend Â· Full Stack</span>
               </div>
 
               <FiCheckCircle />
@@ -301,12 +305,20 @@ export default function RecruiterHub() {
         </section>
 
         <section className="recruiterx-stats">
-          {quickStats.map((item) => (
-            <div key={item.label}>
-              <strong>{item.value}</strong>
-              <span>{item.label}</span>
-            </div>
-          ))}
+          {quickStats.map((item) =>
+            item.liveLeetCode ? (
+              <LiveLeetCodeStat
+                key={item.label}
+                label={item.label}
+                fallback={127}
+              />
+            ) : (
+              <div key={item.label}>
+                <strong>{item.value}</strong>
+                <span>{item.label}</span>
+              </div>
+            )
+          )}
         </section>
 
         <section className="recruiterx-section">
@@ -447,7 +459,7 @@ export default function RecruiterHub() {
 
               <div>
                 <FiMapPin />
-                <span>India · Flexible location</span>
+                <span>India Â· Flexible location</span>
               </div>
 
               <div>
