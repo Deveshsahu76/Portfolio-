@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import {
   FiArrowRight,
   FiAward,
@@ -25,6 +26,7 @@ import SEO from '../components/SEO'
 import ResumeLink from '../components/ResumeLink'
 import LiveProfileStatus, { RecruiterAvailabilityList } from '../components/LiveProfileStatus'
 import LiveLeetCodeStat from '../components/LiveLeetCodeStat'
+import InterviewBookingForm from '../components/InterviewBookingForm'
 import projects from '../data/projects'
 
 const API_URL =
@@ -95,7 +97,7 @@ const availability = [
   },
   {
     label: 'Location',
-    value: 'India Â· Remote / Hybrid / On-site',
+    value: 'India Ã‚Â· Remote / Hybrid / On-site',
   },
 ]
 
@@ -236,6 +238,14 @@ export default function RecruiterHub() {
                 <FiDownload /> Download Resume
               </ResumeLink>
 
+              <Link
+                to="/recruiter/quick-view"
+                className="recruiterx-secondary-btn"
+              >
+                <FiZap />
+                60-Second View
+              </Link>
+
               <a href={mailLink} className="recruiterx-secondary-btn">
                 <FiMail /> Email Me
               </a>
@@ -282,13 +292,13 @@ export default function RecruiterHub() {
             <div className="recruiterx-profile-top">
               <span>Candidate Snapshot</span>
               <h2>Devesh Sahu</h2>
-              <p>MERN Stack Developer Â· B.Tech IT</p>
+              <p>MERN Stack Developer &middot; B.Tech IT</p>
             </div>
 
             <div className="recruiterx-score-card">
               <div>
                 <strong>Internship Ready</strong>
-                <span>Frontend Â· Backend Â· Full Stack</span>
+                <span>Frontend / Backend / Full Stack</span>
               </div>
 
               <FiCheckCircle />
@@ -385,8 +395,6 @@ export default function RecruiterHub() {
           </div>
         </section>
 
-        <LiveProfileStatus />
-
         <section className="recruiterx-section">
           <div className="recruiterx-section-head">
             <span>Project Proof</span>
@@ -424,6 +432,9 @@ export default function RecruiterHub() {
                   </div>
 
                   <div className="recruiterx-project-actions">
+                    <Link to={`/projects/${project.id}`}>
+                      View Case Study <FiArrowRight />
+                    </Link>
                     {project.demo && (
                       <a href={project.demo} target="_blank" rel="noreferrer">
                         Live <FiExternalLink />
@@ -459,7 +470,7 @@ export default function RecruiterHub() {
 
               <div>
                 <FiMapPin />
-                <span>India Â· Flexible location</span>
+                <span>India / Flexible location</span>
               </div>
 
               <div>
@@ -469,80 +480,7 @@ export default function RecruiterHub() {
             </div>
           </div>
 
-          <form className="recruiterx-form" onSubmit={handleSubmit}>
-            <div className="recruiterx-form-grid">
-              <label>
-                Recruiter Name
-                <input
-                  type="text"
-                  name="recruiterName"
-                  value={form.recruiterName}
-                  onChange={handleChange}
-                  placeholder="Your name"
-                  required
-                />
-              </label>
-
-              <label>
-                Company
-                <input
-                  type="text"
-                  name="companyName"
-                  value={form.companyName}
-                  onChange={handleChange}
-                  placeholder="Company name"
-                  required
-                />
-              </label>
-            </div>
-
-            <label>
-              Email
-              <input
-                type="email"
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                placeholder="recruiter@company.com"
-                required
-              />
-            </label>
-
-            <label>
-              Role
-              <input
-                type="text"
-                name="role"
-                value={form.role}
-                onChange={handleChange}
-                placeholder="Software Development Intern"
-                required
-              />
-            </label>
-
-            <label>
-              Message
-              <textarea
-                name="message"
-                value={form.message}
-                onChange={handleChange}
-                placeholder="Share role details, location, interview process or next steps..."
-                rows="5"
-                required
-              />
-            </label>
-
-            {status.message && (
-              <div className={`recruiterx-status ${status.type}`}>
-                {status.message}
-              </div>
-            )}
-
-            <button type="submit" className="recruiterx-submit">
-              <FiSend />
-              {status.type === 'loading' ? 'Sending...' : 'Send Request'}
-            </button>
-          </form>
+          <InterviewBookingForm compact />
         </section>
 
         <section className="recruiterx-final-cta">

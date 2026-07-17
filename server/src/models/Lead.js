@@ -4,16 +4,30 @@ const leadSchema = new mongoose.Schema(
   {
     type: {
       type: String,
-      enum: ['recruiter', 'freelance', 'contact'],
+      enum: [
+        'recruiter',
+        'freelance',
+        'contact',
+      ],
       required: true,
       index: true,
     },
 
     status: {
       type: String,
-      enum: ['new', 'reviewed', 'archived'],
+      enum: [
+        'new',
+        'reviewed',
+        'archived',
+      ],
       default: 'new',
       index: true,
+    },
+
+    requestKind: {
+      type: String,
+      trim: true,
+      default: '',
     },
 
     name: {
@@ -53,6 +67,31 @@ const leadSchema = new mongoose.Schema(
     },
 
     role: {
+      type: String,
+      trim: true,
+    },
+
+    preferredDate: {
+      type: String,
+      trim: true,
+    },
+
+    preferredTime: {
+      type: String,
+      trim: true,
+    },
+
+    timezone: {
+      type: String,
+      trim: true,
+    },
+
+    interviewMode: {
+      type: String,
+      trim: true,
+    },
+
+    duration: {
       type: String,
       trim: true,
     },
@@ -108,6 +147,17 @@ const leadSchema = new mongoose.Schema(
   }
 )
 
-const Lead = mongoose.models.Lead || mongoose.model('Lead', leadSchema)
+leadSchema.index({
+  type: 1,
+  preferredDate: 1,
+  createdAt: -1,
+})
+
+const Lead =
+  mongoose.models.Lead ||
+  mongoose.model(
+    'Lead',
+    leadSchema
+  )
 
 export default Lead

@@ -189,49 +189,255 @@ router.delete('/leads/:id', requireAdmin, async (req, res) => {
 
 router.post('/recruiter/schedule', async (req, res) => {
   try {
-    const recruiterName = getFirstValue(req.body, ['recruiterName', 'name'])
-    const companyName = getFirstValue(req.body, ['companyName', 'company'])
-    const email = getFirstValue(req.body, ['email'])
-    const role = getFirstValue(req.body, ['role', 'position'])
-    const message = getFirstValue(req.body, ['message'])
+    const recruiterName =
+      getFirstValue(
+        req.body,
+        [
+          'recruiterName',
+          'name',
+        ]
+      )
+
+    const companyName =
+      getFirstValue(
+        req.body,
+        [
+          'companyName',
+          'company',
+        ]
+      )
+
+    const email =
+      getFirstValue(
+        req.body,
+        ['email']
+      ).toLowerCase()
+
+    const phone =
+      getFirstValue(
+        req.body,
+        [
+          'phone',
+          'whatsapp',
+        ]
+      )
+
+    const role =
+      getFirstValue(
+        req.body,
+        [
+          'role',
+          'position',
+        ]
+      )
+
+    const preferredDate =
+      getFirstValue(
+        req.body,
+        ['preferredDate']
+      )
+
+    const preferredTime =
+      getFirstValue(
+        req.body,
+        ['preferredTime']
+      )
+
+    const timezone =
+      getFirstValue(
+        req.body,
+        ['timezone']
+      ) || 'Asia/Kolkata'
+
+    const interviewMode =
+      getFirstValue(
+        req.body,
+        ['interviewMode']
+      ) || 'Google Meet'
+
+    const duration =
+      getFirstValue(
+        req.body,
+        ['duration']
+      ) || '30 minutes'
+
+    const message =
+      getFirstValue(
+        req.body,
+        ['message']
+      )
 
     const missing = []
 
-    if (!recruiterName) missing.push('recruiterName')
-    if (!companyName) missing.push('companyName')
-    if (!email) missing.push('email')
-    if (!role) missing.push('role')
-    if (!message) missing.push('message')
-
-    if (missing.length > 0) {
-      return sendMissingFields(res, missing)
+    if (!recruiterName) {
+      missing.push(
+        'recruiterName'
+      )
     }
 
-    const lead = await Lead.create({
-      type: 'recruiter',
-      status: 'new',
-      name: recruiterName,
-      recruiterName,
-      companyName,
-      company: companyName,
-      email,
-      role,
-      message,
-      source: 'portfolio-recruiter-page',
-      ...getRequestMeta(req),
-    })
+    if (!companyName) {
+      missing.push(
+        'companyName'
+      )
+    }
+
+    if (!email) {
+      missing.push('email')
+    }
+
+    if (!role) {
+      missing.push('role')
+    }
+
+    if (!preferredDate) {
+      missing.push(
+        'preferredDate'
+      )
+    }
+
+    if (!preferredTime) {
+      missing.push(
+        'preferredTime'
+      )
+    }
+
+    if (!message) {
+      missing.push('message')
+    }
+
+    if (missing.length > 0) {
+      return sendMissingFields(
+        res,
+        missing
+      )
+    }
+
+    const validEmail =
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+    if (!validEmail.test(email)) {
+      return res.status(400).json({
+        success: false,
+        message:
+          'Please enter a valid email address.',
+      })
+    }
+
+    const allowedModes = [
+      'Google Meet',
+      'Phone Call',
+      'Zoom',
+      'Microsoft Teams',
+    ]
+
+    const allowedDurations = [
+      '15 minutes',
+      '30 minutes',
+      '45 minutes',
+    ]
+
+    if (
+      !allowedModes.includes(
+        interviewMode
+      )
+    ) {
+      return res.status(400).json({
+        success: false,
+        message:
+          'Invalid interview mode.',
+      })
+    }
+
+    if (
+      !allowedDurations.includes(
+        duration
+      )
+    ) {
+      return res.status(400).json({
+        success: false,
+        message:
+          'Invalid interview duration.',
+      })
+    }
+
+    const today =
+      new Date()
+        .toISOString()
+        .slice(0, 10)
+
+    if (
+      preferredDate <
+      today
+    ) {
+      return res.status(400).json({
+        success: false,
+        message:
+          'Preferred interview date cannot be in the past.',
+      })
+    }
+
+    const lead =
+      await Lead.create({
+        type: 'recruiter',
+        status: 'new',
+
+        requestKind:
+          'interview-request',
+
+        name: recruiterName,
+        recruiterName,
+
+        companyName,
+        company: companyName,
+
+        email,
+        phone,
+
+        role,
+
+        preferredDate,
+        preferredTime,
+        timezone,
+        interviewMode,
+        duration,
+
+        message,
+
+        source:
+          'portfolio-interview-booking',
+
+        ...getRequestMeta(req),
+      })
 
     return res.status(201).json({
       success: true,
-      message: 'Recruiter request saved successfully.',
+
+      message:
+        'Interview request saved. The selected time is pending confirmation.',
+
       leadId: lead._id,
+
+      request: {
+        preferredDate,
+        preferredTime,
+        timezone,
+        interviewMode,
+        duration,
+        confirmationStatus:
+          'pending',
+      },
     })
   } catch (error) {
-    console.error('Recruiter lead error:', error)
+    console.error(
+      'Recruiter interview request error:',
+      error
+    )
 
     return res.status(500).json({
       success: false,
-      message: 'Server error while saving recruiter request.',
+
+      message:
+        'Server error while saving the interview request.',
     })
   }
 })

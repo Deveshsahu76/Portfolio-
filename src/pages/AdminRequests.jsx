@@ -2,6 +2,8 @@ import React, { useEffect, useMemo, useState } from 'react'
 import {
   FiArchive,
   FiBriefcase,
+  FiCalendar,
+  FiClock,
   FiCheckCircle,
   FiCopy,
   FiDownload,
@@ -15,6 +17,7 @@ import {
   FiSearch,
   FiTrash2,
   FiUser,
+  FiVideo,
 } from 'react-icons/fi'
 import SEO from '../components/SEO'
 import ResumeManager from '../components/admin/ResumeManager'
@@ -84,6 +87,11 @@ export default function AdminRequests() {
         lead.phone,
         lead.whatsapp,
         lead.role,
+        lead.preferredDate,
+        lead.preferredTime,
+        lead.timezone,
+        lead.interviewMode,
+        lead.duration,
         lead.subject,
         lead.category,
         lead.projectType,
@@ -241,6 +249,11 @@ export default function AdminRequests() {
       'phone',
       'whatsapp',
       'role',
+      'preferredDate',
+      'preferredTime',
+      'timezone',
+      'interviewMode',
+      'duration',
       'projectType',
       'budget',
       'timeline',
@@ -468,6 +481,65 @@ export default function AdminRequests() {
                   </div>
                 )}
 
+                {lead.type === 'recruiter' &&
+                  (lead.preferredDate ||
+                    lead.preferredTime ||
+                    lead.interviewMode) && (
+                    <div className="mt-4 grid gap-3 rounded-2xl border border-indigo-500/15 bg-indigo-50/70 p-4 dark:border-indigo-400/15 dark:bg-indigo-400/10 sm:grid-cols-2 lg:grid-cols-4">
+                      <div>
+                        <FiCalendar className="text-indigo-600 dark:text-indigo-300" />
+                        <span className="mt-2 block text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                          Preferred Date
+                        </span>
+                        <strong className="mt-1 block text-sm font-black text-slate-950 dark:text-white">
+                          {lead.preferredDate || 'N/A'}
+                        </strong>
+                      </div>
+
+                      <div>
+                        <FiClock className="text-indigo-600 dark:text-indigo-300" />
+                        <span className="mt-2 block text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                          Time
+                        </span>
+                        <strong className="mt-1 block text-sm font-black text-slate-950 dark:text-white">
+                          {lead.preferredTime || 'N/A'}
+                        </strong>
+                        <small className="mt-1 block text-xs font-bold text-slate-500">
+                          {lead.timezone || 'Asia/Kolkata'}
+                        </small>
+                      </div>
+
+                      <div>
+                        <FiVideo className="text-indigo-600 dark:text-indigo-300" />
+                        <span className="mt-2 block text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                          Interview Mode
+                        </span>
+                        <strong className="mt-1 block text-sm font-black text-slate-950 dark:text-white">
+                          {lead.interviewMode || 'N/A'}
+                        </strong>
+                      </div>
+
+                      <div>
+                        <FiBriefcase className="text-indigo-600 dark:text-indigo-300" />
+                        <span className="mt-2 block text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                          Duration
+                        </span>
+                        <strong className="mt-1 block text-sm font-black text-slate-950 dark:text-white">
+                          {lead.duration || 'N/A'}
+                        </strong>
+                      </div>
+
+                      <div className="sm:col-span-2 lg:col-span-4">
+                        <span className="block text-xs font-black uppercase tracking-wide text-indigo-600 dark:text-indigo-300">
+                          Interview Request Details
+                        </span>
+
+                        <p className="mt-1 text-xs font-bold text-slate-600 dark:text-slate-300">
+                          This is a preferred-time request and remains pending until you confirm it with the recruiter.
+                        </p>
+                      </div>
+                    </div>
+                  )}
                 <div className="adminlead-message">
                   <strong>Message</strong>
                   <p>{lead.message}</p>
