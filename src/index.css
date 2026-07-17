@@ -17272,3 +17272,521 @@ html.dark .projectdetail-schema-list code {
 /* =========================================================
    PORTFOLIO PHASE 5 END
    ========================================================= */
+
+/* HOME COMPACT DESKTOP FIX START */
+
+:root {
+  --portfolio-content-width: 1420px;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Main home width and spacing
+|--------------------------------------------------------------------------
+*/
+
+.premium-home {
+  padding:
+    clamp(1.25rem, 2vw, 2rem)
+    clamp(0.75rem, 1.6vw, 1.5rem)
+    3.5rem;
+}
+
+.premium-hero,
+.premium-stats-strip,
+.premium-section,
+.premium-proof-section,
+.premium-final-cta,
+.profilelive-section,
+.live-stats-widget,
+.engineering-pulse-shell {
+  width: min(
+    100%,
+    var(--portfolio-content-width)
+  );
+  max-width:
+    var(--portfolio-content-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.premium-section,
+.premium-proof-section,
+.premium-final-cta {
+  margin-top:
+    clamp(
+      2.4rem,
+      3.5vw,
+      3.8rem
+    );
+}
+
+.premium-stats-strip {
+  margin-top:
+    clamp(
+      1.5rem,
+      2.5vw,
+      2.5rem
+    );
+}
+
+.profilelive-section,
+.live-stats-widget,
+.engineering-pulse-shell {
+  margin-top:
+    clamp(
+      1.5rem,
+      2.4vw,
+      2.5rem
+    ) !important;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Main section headings
+|--------------------------------------------------------------------------
+*/
+
+.premium-section-head {
+  width: 100%;
+  max-width: 1120px;
+  margin-bottom: 1.25rem;
+}
+
+.premium-section-head-row {
+  max-width: none;
+}
+
+.premium-section-head h2,
+.premium-proof-left h2,
+.premium-final-cta h2 {
+  font-size:
+    clamp(
+      2rem,
+      3vw,
+      3.35rem
+    );
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.premium-section-head p,
+.premium-proof-left p,
+.premium-final-cta p {
+  max-width: 980px;
+  margin-top: 0.65rem;
+  font-size:
+    clamp(
+      0.9rem,
+      1vw,
+      1rem
+    );
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Hero section
+|--------------------------------------------------------------------------
+*/
+
+.premium-hero-grid {
+  grid-template-columns:
+    minmax(0, 1.2fr)
+    minmax(330px, 0.8fr);
+  gap:
+    clamp(
+      1.5rem,
+      3vw,
+      3rem
+    );
+}
+
+.premium-hero-copy h1 {
+  max-width: 920px;
+  font-size:
+    clamp(
+      3rem,
+      5.4vw,
+      5.7rem
+    );
+  line-height: 0.96;
+  letter-spacing: -0.062em;
+}
+
+.premium-hero-desc {
+  max-width: 850px;
+  margin-top: 1.15rem;
+  line-height: 1.7;
+}
+
+.premium-cta-row {
+  margin-top: 1.45rem;
+}
+
+.premium-trust-list {
+  max-width: 850px;
+  margin-top: 1.4rem;
+}
+
+.premium-social-row {
+  margin-top: 1.25rem;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Live profile section
+|--------------------------------------------------------------------------
+*/
+
+.profilelive-heading {
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.profilelive-heading > div:first-child {
+  flex: 1;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+}
+
+.profilelive-heading h2 {
+  max-width: 1120px;
+  font-size:
+    clamp(
+      2.15rem,
+      3.2vw,
+      3.45rem
+    );
+  line-height: 1.03;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.profilelive-heading p {
+  max-width: 900px;
+  margin-top: 0.6rem;
+  line-height: 1.6;
+}
+
+.profilelive-grid {
+  gap: 0.75rem;
+}
+
+.profilelive-grid article {
+  padding: 1rem;
+}
+
+.profilelive-resume {
+  margin-top: 0.8rem;
+}
+
+.profilelive-trust {
+  margin-top: 0.75rem;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Live portfolio analytics
+|--------------------------------------------------------------------------
+*/
+
+.live-stats-widget {
+  padding:
+    clamp(
+      1.35rem,
+      2.2vw,
+      2.1rem
+    );
+}
+
+.live-stats-head {
+  width: 100%;
+  max-width: 1100px;
+}
+
+.live-stats-head h2 {
+  font-size:
+    clamp(
+      2.1rem,
+      3vw,
+      3.35rem
+    );
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+}
+
+.live-stats-head p {
+  max-width: 1000px;
+  margin-top: 0.55rem;
+  line-height: 1.6;
+}
+
+.live-stats-grid {
+  gap: 0.75rem;
+  margin-top: 1.2rem;
+}
+
+.live-stats-grid article {
+  min-height: auto;
+  padding: 1rem 1.1rem;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Engineering section
+|--------------------------------------------------------------------------
+*/
+
+.engineering-pulse-shell {
+  padding:
+    clamp(
+      1.5rem,
+      2.4vw,
+      2.35rem
+    ) !important;
+}
+
+.engineering-pulse-header {
+  width: 100%;
+  align-items: stretch !important;
+}
+
+.engineering-pulse-title {
+  width: 100%;
+  max-width: none !important;
+  font-size:
+    clamp(
+      2.3rem,
+      3vw,
+      3.35rem
+    ) !important;
+  line-height: 1 !important;
+  letter-spacing: -0.047em !important;
+  text-wrap: balance;
+}
+
+.engineering-pulse-copy {
+  width: 100%;
+  max-width: 1050px !important;
+  line-height: 1.65 !important;
+}
+
+.engineering-pulse-actions {
+  justify-content: flex-end;
+  margin-top: -0.25rem;
+}
+
+.engineering-pulse-shell > div:nth-of-type(2) {
+  margin-top: 1.5rem;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Cards
+|--------------------------------------------------------------------------
+*/
+
+.premium-audience-grid,
+.premium-capability-grid,
+.premium-project-grid {
+  gap: 0.85rem;
+}
+
+.premium-audience-card,
+.premium-capability-card {
+  border-radius: 1.6rem;
+  padding: 1.15rem;
+}
+
+.premium-audience-card h3,
+.premium-capability-card h3 {
+  margin-top: 0.85rem;
+}
+
+.premium-audience-card p,
+.premium-capability-card p {
+  margin-top: 0.45rem;
+  line-height: 1.55;
+}
+
+.premium-audience-card > span {
+  margin-top: 0.9rem;
+}
+
+.premium-proof-section,
+.premium-final-cta {
+  border-radius: 2rem;
+}
+
+.premium-proof-section {
+  gap: 0.9rem;
+}
+
+.premium-proof-grid {
+  gap: 0.7rem;
+}
+
+.premium-proof-card {
+  padding: 1rem;
+}
+
+.premium-final-cta {
+  padding:
+    clamp(
+      1.25rem,
+      2.4vw,
+      2rem
+    );
+}
+
+/*
+|--------------------------------------------------------------------------
+| Footer
+|--------------------------------------------------------------------------
+*/
+
+.simple-footer {
+  width: min(
+    100%,
+    var(--portfolio-content-width)
+  );
+  padding:
+    0
+    clamp(
+      0.75rem,
+      1.6vw,
+      1.5rem
+    )
+    1.5rem;
+}
+
+.simple-footer-main {
+  gap: 1.5rem;
+  padding:
+    clamp(
+      1.25rem,
+      2.5vw,
+      2rem
+    );
+}
+
+/*
+|--------------------------------------------------------------------------
+| Large desktop: keep main headings on one line
+|--------------------------------------------------------------------------
+*/
+
+@media (min-width: 1400px) {
+  .premium-section-head h2,
+  .profilelive-heading h2,
+  .engineering-pulse-title,
+  .live-stats-head h2 {
+    max-width: none;
+    white-space: nowrap;
+    text-wrap: nowrap;
+  }
+
+  .premium-section-head {
+    max-width: none;
+  }
+
+  .profilelive-heading h2 {
+    font-size: 3.25rem;
+  }
+
+  .engineering-pulse-title {
+    font-size: 3.25rem !important;
+  }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Medium desktop and tablet
+|--------------------------------------------------------------------------
+*/
+
+@media (
+  min-width: 768px
+) and (
+  max-width: 1399px
+) {
+  .premium-section-head h2,
+  .profilelive-heading h2,
+  .engineering-pulse-title {
+    max-width: 1050px;
+  }
+
+  .engineering-pulse-actions {
+    justify-content: flex-start;
+  }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Mobile
+|--------------------------------------------------------------------------
+*/
+
+@media (max-width: 767px) {
+  .premium-home {
+    padding:
+      1rem
+      0.65rem
+      2.5rem;
+  }
+
+  .premium-section,
+  .premium-proof-section,
+  .premium-final-cta {
+    margin-top: 2.4rem;
+  }
+
+  .profilelive-section,
+  .live-stats-widget,
+  .engineering-pulse-shell {
+    margin-top: 1.25rem !important;
+  }
+
+  .premium-section-head h2,
+  .premium-proof-left h2,
+  .premium-final-cta h2,
+  .profilelive-heading h2,
+  .live-stats-head h2,
+  .engineering-pulse-title {
+    font-size:
+      clamp(
+        2rem,
+        10vw,
+        2.7rem
+      ) !important;
+    line-height: 1.04 !important;
+    white-space: normal !important;
+    text-wrap: balance;
+  }
+
+  .engineering-pulse-actions {
+    justify-content: stretch;
+  }
+
+  .engineering-pulse-actions a {
+    width: 100%;
+  }
+
+  .premium-audience-card,
+  .premium-capability-card {
+    border-radius: 1.35rem;
+  }
+
+  .simple-footer {
+    padding:
+      0
+      0.65rem
+      1rem;
+  }
+}
+
+/* HOME COMPACT DESKTOP FIX END */

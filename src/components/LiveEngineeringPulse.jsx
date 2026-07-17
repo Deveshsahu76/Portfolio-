@@ -139,25 +139,25 @@ export default function LiveEngineeringPulse() {
       .slice(0, 5)
 
   return (
-    <section className="mx-auto mt-8 w-[min(100%-1rem,1360px)] overflow-hidden rounded-[2.5rem] border border-slate-900/10 bg-slate-950 p-5 text-white shadow-2xl shadow-slate-950/20 sm:p-7 lg:p-10">
-      <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+    <section className="engineering-pulse-shell mx-auto mt-8 w-[min(100%-1rem,1360px)] overflow-hidden rounded-[2.5rem] border border-slate-900/10 bg-slate-950 p-5 text-white shadow-2xl shadow-slate-950/20 sm:p-7 lg:p-10">
+      <div className="engineering-pulse-header flex flex-col gap-5">
         <div>
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-emerald-300">
             <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
             Live Engineering Data
           </div>
 
-          <h2 className="mt-5 max-w-4xl text-3xl font-black leading-none tracking-[-0.05em] sm:text-5xl lg:text-6xl">
+          <h2 className="engineering-pulse-title mt-5 font-black">
             Real coding activity,
             builds and deployments.
           </h2>
 
-          <p className="mt-5 max-w-3xl text-sm font-semibold leading-7 text-slate-300 sm:text-base">
+          <p className="engineering-pulse-copy mt-4 text-sm font-semibold leading-7 text-slate-300 sm:text-base">
             GitHub commits, repository languages, development state, build results and service health are fetched automatically.
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-3">
+        <div className="engineering-pulse-actions flex flex-wrap gap-3">
           <Link
             to="/engineering"
             className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-black text-slate-950 transition hover:-translate-y-0.5"
