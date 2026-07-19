@@ -21,6 +21,7 @@ import {
 } from 'react-icons/fi'
 import { FaLinkedin } from 'react-icons/fa'
 import SEO from '../components/SEO'
+import JourneyTimeline3D from '../components/three/JourneyTimeline3D'
 import ResumeLink from '../components/ResumeLink'
 import LiveProfileStatus, { AvailabilityLabel, AvailabilityRoles } from '../components/LiveProfileStatus'
 import LiveLeetCodeStat from '../components/LiveLeetCodeStat'
@@ -152,7 +153,7 @@ export default function About() {
             <div className="about-premium-profile-info">
               <span>Developer Profile</span>
               <h2>Devesh Sahu</h2>
-              <p>MERN Stack Developer Â· B.Tech IT</p>
+              <p>MERN Stack Developer &middot; B.Tech IT</p>
             </div>
 
             <div className="about-premium-profile-grid">
@@ -170,6 +171,10 @@ export default function About() {
             </div>
           </aside>
         </section>
+
+        <JourneyTimeline3D
+          items={journey}
+        />
 
         <section className="about-premium-stats">
           <LiveLeetCodeStat

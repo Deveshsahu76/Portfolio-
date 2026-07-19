@@ -30,6 +30,7 @@ import {
   FiZap,
 } from 'react-icons/fi'
 import SEO from '../components/SEO'
+import SkillUniverse3D from '../components/three/SkillUniverse3D'
 import LiveLeetCodeStat from '../components/LiveLeetCodeStat'
 import projects from '../data/projects'
 
@@ -434,6 +435,10 @@ export default function Skills() {
             )
           )}
         </section>
+
+        <SkillUniverse3D
+          skills={skills}
+        />
 
         <section className="skillsx-section">
           <div className="skillsx-section-head">

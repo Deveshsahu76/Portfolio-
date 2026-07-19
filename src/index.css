@@ -20106,3 +20106,1245 @@ html[data-three-route='home']
 /* =========================================================
    PORTFOLIO PHASE 7B END
    ========================================================= */
+
+/* =========================================================
+   PORTFOLIO PHASE 7C START
+   ========================================================= */
+
+.skills-universe-section,
+.journey3d-section,
+.contact-globe-section {
+  position: relative;
+  z-index: 3;
+  width:
+    min(
+      calc(100% - 1rem),
+      1360px
+    );
+  margin:
+    clamp(
+      3rem,
+      7vw,
+      6rem
+    )
+    auto
+    0;
+  overflow: hidden;
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.1
+    );
+  border-radius:
+    clamp(
+      1.7rem,
+      4vw,
+      3rem
+    );
+  padding:
+    clamp(
+      1.2rem,
+      4vw,
+      3rem
+    );
+  color: #f8fafc;
+  background:
+    radial-gradient(
+      circle at 75% 20%,
+      rgba(
+        34,
+        211,
+        238,
+        0.08
+      ),
+      transparent 36%
+    ),
+    radial-gradient(
+      circle at 15% 80%,
+      rgba(
+        255,
+        122,
+        24,
+        0.1
+      ),
+      transparent 38%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(
+        6,
+        12,
+        22,
+        0.94
+      ),
+      rgba(
+        2,
+        5,
+        11,
+        0.9
+      )
+    );
+  box-shadow:
+    0 35px 110px
+      rgba(
+        0,
+        0,
+        0,
+        0.42
+      );
+  backdrop-filter:
+    blur(22px);
+}
+
+.skills-universe-heading,
+.journey3d-heading,
+.contact-globe-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.skills-universe-heading
+  > div:first-child,
+.journey3d-heading
+  > div:first-child,
+.contact-globe-heading
+  > div:first-child {
+  max-width: 52rem;
+}
+
+.skills-universe-heading
+  > div:first-child
+  > span,
+.journey3d-heading
+  > div:first-child
+  > span,
+.contact-globe-heading
+  > div:first-child
+  > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: #22d3ee;
+  font-size: 0.7rem;
+  font-weight: 950;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.skills-universe-heading h2,
+.journey3d-heading h2,
+.contact-globe-heading h2 {
+  max-width: 48rem;
+  margin: 0.9rem 0 0;
+  color: #f8fafc;
+  font-size:
+    clamp(
+      2.3rem,
+      5.3vw,
+      5rem
+    );
+  font-weight: 1000;
+  line-height: 0.96;
+  letter-spacing: -0.06em;
+}
+
+.skills-universe-heading p,
+.journey3d-heading p,
+.contact-globe-heading p {
+  max-width: 45rem;
+  margin: 1.2rem 0 0;
+  color: #94a3b8;
+  font-size: 0.92rem;
+  font-weight: 650;
+  line-height: 1.8;
+}
+
+.skills-universe-source,
+.contact-globe-live {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.8rem;
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.1
+    );
+  border-radius: 1.2rem;
+  padding: 0.9rem 1rem;
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.04
+    );
+}
+
+.skills-universe-source
+  > svg {
+  color: #22d3ee;
+  font-size: 1.35rem;
+}
+
+.skills-universe-source
+  strong,
+.skills-universe-source
+  span,
+.contact-globe-live
+  strong,
+.contact-globe-live
+  span {
+  display: block;
+}
+
+.skills-universe-source
+  strong,
+.contact-globe-live
+  strong {
+  color: #f8fafc;
+  font-size: 0.76rem;
+  font-weight: 950;
+}
+
+.skills-universe-source
+  span,
+.contact-globe-live
+  span {
+  margin-top: 0.18rem;
+  color: #64748b;
+  font-size: 0.63rem;
+  font-weight: 800;
+}
+
+.contact-globe-live > i {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow:
+    0 0 20px
+      rgba(
+        74,
+        222,
+        128,
+        0.7
+      );
+  animation:
+    phase7cLivePulse
+    1.8s
+    ease-in-out
+    infinite;
+}
+
+@keyframes phase7cLivePulse {
+  0%,
+  100% {
+    transform:
+      scale(0.85);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform:
+      scale(1.15);
+    opacity: 1;
+  }
+}
+
+.skills-universe-grid,
+.journey3d-grid,
+.contact-globe-grid {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(20rem, 0.85fr);
+  align-items: center;
+  gap:
+    clamp(
+      1.5rem,
+      4vw,
+      4rem
+    );
+  margin-top:
+    clamp(
+      1.8rem,
+      4vw,
+      3rem
+    );
+}
+
+.skills-universe-stage,
+.journey3d-stage,
+.contact-globe-stage {
+  position: relative;
+  min-height:
+    clamp(
+      31rem,
+      48vw,
+      42rem
+    );
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.07
+    );
+  border-radius: 2rem;
+  background:
+    radial-gradient(
+      circle,
+      rgba(
+        34,
+        211,
+        238,
+        0.07
+      ),
+      transparent 64%
+    );
+}
+
+.skills-universe-stage canvas,
+.journey3d-stage canvas,
+.contact-globe-stage canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.skill3d-node-label,
+.journey3d-year,
+.contact3d-node-label {
+  display: inline-flex;
+  white-space: nowrap;
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.12
+    );
+  border-radius: 999px;
+  padding:
+    0.38rem
+    0.62rem;
+  color: #cbd5e1;
+  background:
+    rgba(
+      3,
+      7,
+      14,
+      0.78
+    );
+  box-shadow:
+    0 10px 35px
+      rgba(
+        0,
+        0,
+        0,
+        0.4
+      );
+  backdrop-filter:
+    blur(12px);
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace;
+  font-size: 0.58rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+}
+
+.skill3d-node-label.active,
+.journey3d-year.active,
+.contact3d-node-label.active {
+  color: #05070c;
+  border-color: transparent;
+  background: #22d3ee;
+  box-shadow:
+    0 0 30px
+      rgba(
+        34,
+        211,
+        238,
+        0.35
+      );
+}
+
+.skills-universe-static,
+.journey3d-static,
+.contact-globe-static {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.7rem;
+  color: #94a3b8;
+  text-align: center;
+}
+
+.skills-universe-static
+  > svg,
+.journey3d-static
+  > svg,
+.contact-globe-static
+  > svg {
+  color: #22d3ee;
+  font-size: 4rem;
+}
+
+.skills-universe-static
+  strong,
+.journey3d-static
+  strong,
+.contact-globe-static
+  strong {
+  color: #f8fafc;
+  font-size: 1rem;
+  font-weight: 950;
+}
+
+.skills-universe-static
+  span,
+.journey3d-static
+  span,
+.contact-globe-static
+  span {
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.skills-universe-info,
+.journey3d-active-card,
+.contact-globe-info {
+  position: relative;
+  min-height: 32rem;
+  overflow: hidden;
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.09
+    );
+  border-radius: 2rem;
+  padding:
+    clamp(
+      1.3rem,
+      3vw,
+      2rem
+    );
+  background:
+    linear-gradient(
+      145deg,
+      rgba(
+        255,
+        255,
+        255,
+        0.055
+      ),
+      rgba(
+        255,
+        255,
+        255,
+        0.02
+      )
+    );
+  backdrop-filter:
+    blur(20px);
+}
+
+.skills-universe-info::after,
+.journey3d-active-card::after,
+.contact-globe-info::after {
+  content: '';
+  position: absolute;
+  right: -5rem;
+  top: -5rem;
+  width: 12rem;
+  height: 12rem;
+  border-radius: 50%;
+  pointer-events: none;
+  background:
+    rgba(
+      34,
+      211,
+      238,
+      0.1
+    );
+  filter: blur(35px);
+}
+
+.skills-universe-info-top {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.skills-universe-info-top
+  > div,
+.contact-globe-channel-icon {
+  display: grid;
+  width: 3.2rem;
+  height: 3.2rem;
+  place-items: center;
+  border-radius: 1rem;
+  color: #22d3ee;
+  background:
+    rgba(
+      34,
+      211,
+      238,
+      0.1
+    );
+  font-size: 1.4rem;
+}
+
+.skills-universe-info-top
+  > span {
+  color: #fb923c;
+  font-size: 0.66rem;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.skills-universe-info h3,
+.journey3d-active-card h3,
+.contact-globe-info h3 {
+  position: relative;
+  z-index: 2;
+  margin: 1.4rem 0 0;
+  color: #f8fafc;
+  font-size:
+    clamp(
+      2.4rem,
+      4.8vw,
+      4.3rem
+    );
+  font-weight: 1000;
+  line-height: 0.96;
+  letter-spacing: -0.055em;
+}
+
+.skills-universe-info
+  > p,
+.journey3d-active-card
+  > p,
+.contact-globe-info
+  > p {
+  position: relative;
+  z-index: 2;
+  margin: 1.1rem 0 0;
+  color: #94a3b8;
+  font-size: 0.86rem;
+  font-weight: 650;
+  line-height: 1.75;
+}
+
+.skills-universe-level {
+  position: relative;
+  z-index: 2;
+  margin-top: 1.5rem;
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    );
+  border-radius: 1.2rem;
+  padding: 1rem;
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.025
+    );
+}
+
+.skills-universe-level
+  > div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.skills-universe-level
+  span,
+.skills-universe-level
+  small {
+  color: #64748b;
+  font-size: 0.66rem;
+  font-weight: 850;
+}
+
+.skills-universe-level
+  strong {
+  color: #22d3ee;
+  font-size: 0.9rem;
+  font-weight: 1000;
+}
+
+.skills-universe-level
+  > div:nth-child(2) {
+  height: 0.45rem;
+  margin-top: 0.75rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    );
+}
+
+.skills-universe-level i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      90deg,
+      #22d3ee,
+      #8b5cf6,
+      #ff7a18
+    );
+}
+
+.skills-universe-level
+  small {
+  display: block;
+  margin-top: 0.6rem;
+}
+
+.skills-universe-proof {
+  position: relative;
+  z-index: 2;
+  margin-top: 1.3rem;
+}
+
+.skills-universe-proof
+  > strong,
+.skills-universe-modes
+  > strong {
+  color: #f8fafc;
+  font-size: 0.7rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.skills-universe-proof
+  > div,
+.skills-universe-selector,
+.contact-globe-modes
+  > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.7rem;
+}
+
+.skills-universe-proof
+  span,
+.contact-globe-modes
+  span {
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    );
+  border-radius: 999px;
+  padding:
+    0.45rem
+    0.65rem;
+  color: #cbd5e1;
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.035
+    );
+  font-size: 0.62rem;
+  font-weight: 800;
+}
+
+.skills-universe-selector {
+  max-height: 8.5rem;
+  overflow-y: auto;
+  padding-right: 0.2rem;
+  scrollbar-width: thin;
+}
+
+.skills-universe-selector
+  button {
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    );
+  border-radius: 999px;
+  padding:
+    0.48rem
+    0.68rem;
+  color: #64748b;
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.025
+    );
+  font-size: 0.61rem;
+  font-weight: 850;
+}
+
+.skills-universe-selector
+  button.active {
+  color: #05070c;
+  border-color: transparent;
+  background: #22d3ee;
+}
+
+.skills-universe-live {
+  display: grid;
+  grid-template-columns:
+    minmax(15rem, 0.45fr)
+    minmax(0, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    );
+  border-radius: 1.5rem;
+  padding: 1.2rem;
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.03
+    );
+}
+
+.skills-universe-live
+  > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.skills-universe-live
+  > div:first-child
+  > svg {
+  color: #22d3ee;
+  font-size: 1.5rem;
+}
+
+.skills-universe-live
+  span,
+.skills-universe-live
+  strong {
+  display: block;
+}
+
+.skills-universe-live
+  span {
+  color: #64748b;
+  font-size: 0.62rem;
+  font-weight: 850;
+}
+
+.skills-universe-live
+  strong {
+  margin-top: 0.18rem;
+  color: #f8fafc;
+  font-size: 0.75rem;
+  font-weight: 950;
+}
+
+.skills-universe-live
+  > section {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.skills-universe-live
+  article
+  > div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.skills-universe-live
+  article
+  > div:nth-child(2) {
+  height: 0.32rem;
+  margin-top: 0.35rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.07
+    );
+}
+
+.skills-universe-live
+  article i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      90deg,
+      #22d3ee,
+      #8b5cf6
+    );
+}
+
+.skills-universe-live p {
+  color: #64748b;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.journey3d-progress {
+  display: flex;
+  align-items: baseline;
+  color: #64748b;
+  font-family:
+    ui-monospace,
+    monospace;
+}
+
+.journey3d-progress
+  strong {
+  color: #ff9f43;
+  font-size: 2.5rem;
+  font-weight: 1000;
+}
+
+.journey3d-progress
+  span {
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+
+.journey3d-active-card
+  > span {
+  position: relative;
+  z-index: 2;
+  color: #ff9f43;
+  font-family:
+    ui-monospace,
+    monospace;
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0.15em;
+}
+
+.journey3d-active-index {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 1.4rem;
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    );
+  border-radius: 1.1rem;
+  padding: 0.9rem;
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.025
+    );
+}
+
+.journey3d-active-index
+  > svg {
+  color: #22d3ee;
+  font-size: 1.3rem;
+}
+
+.journey3d-active-index
+  strong,
+.journey3d-active-index
+  span {
+  display: block;
+}
+
+.journey3d-active-index
+  strong {
+  color: #f8fafc;
+  font-size: 0.72rem;
+  font-weight: 950;
+}
+
+.journey3d-active-index
+  span {
+  margin-top: 0.15rem;
+  color: #64748b;
+  font-size: 0.62rem;
+  font-weight: 800;
+}
+
+.journey3d-buttons {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 1.2rem;
+}
+
+.journey3d-buttons
+  button {
+  display: grid;
+  grid-template-columns:
+    auto 1fr auto;
+  align-items: center;
+  gap: 0.8rem;
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.07
+    );
+  border-radius: 1rem;
+  padding: 0.8rem;
+  color: #94a3b8;
+  text-align: left;
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.025
+    );
+}
+
+.journey3d-buttons
+  button.active {
+  color: #f8fafc;
+  border-color:
+    rgba(
+      255,
+      122,
+      24,
+      0.45
+    );
+  background:
+    rgba(
+      255,
+      122,
+      24,
+      0.09
+    );
+}
+
+.journey3d-buttons
+  button
+  span {
+  color: #ff9f43;
+  font-family:
+    ui-monospace,
+    monospace;
+  font-size: 0.65rem;
+  font-weight: 950;
+}
+
+.journey3d-buttons
+  button
+  strong {
+  overflow: hidden;
+  font-size: 0.7rem;
+  font-weight: 900;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.contact-globe-channel-icon {
+  position: relative;
+  z-index: 2;
+}
+
+.contact-globe-info
+  > span {
+  position: relative;
+  z-index: 2;
+  display: block;
+  margin-top: 1.2rem;
+  color: #64748b;
+  font-size: 0.64rem;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.contact-globe-open {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+  border-radius: 999px;
+  padding: 0.75rem 1rem;
+  color: #05070c;
+  background:
+    linear-gradient(
+      135deg,
+      #22d3ee,
+      #06b6d4
+    );
+  font-size: 0.72rem;
+  font-weight: 950;
+}
+
+.contact-globe-profile {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns:
+    repeat(2, 1fr);
+  gap: 0.7rem;
+  margin-top: 1.3rem;
+}
+
+.contact-globe-profile
+  > div {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.07
+    );
+  border-radius: 1rem;
+  padding: 0.8rem;
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.025
+    );
+}
+
+.contact-globe-profile
+  svg {
+  color: #ff9f43;
+}
+
+.contact-globe-profile
+  span,
+.contact-globe-profile
+  strong {
+  display: block;
+}
+
+.contact-globe-profile
+  span {
+  color: #64748b;
+  font-size: 0.58rem;
+  font-weight: 850;
+}
+
+.contact-globe-profile
+  strong {
+  margin-top: 0.15rem;
+  color: #f8fafc;
+  font-size: 0.68rem;
+  font-weight: 950;
+}
+
+.contact-globe-modes {
+  position: relative;
+  z-index: 2;
+  margin-top: 1.2rem;
+}
+
+.contact-globe-modes
+  > strong {
+  color: #f8fafc;
+  font-size: 0.67rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.contact-globe-selector {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns:
+    repeat(2, 1fr);
+  gap: 0.55rem;
+  margin-top: 1.3rem;
+}
+
+.contact-globe-selector
+  button {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.07
+    );
+  border-radius: 0.9rem;
+  padding: 0.7rem;
+  color: #64748b;
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.025
+    );
+  font-size: 0.65rem;
+  font-weight: 900;
+}
+
+.contact-globe-selector
+  button.active {
+  color: #f8fafc;
+  border-color:
+    rgba(
+      34,
+      211,
+      238,
+      0.44
+    );
+  background:
+    rgba(
+      34,
+      211,
+      238,
+      0.09
+    );
+}
+
+html[data-three-route='skills']
+  .global-3d-layer
+  canvas,
+html[data-three-route='about']
+  .global-3d-layer
+  canvas,
+html[data-three-route='contact']
+  .global-3d-layer
+  canvas {
+  opacity: 0.3;
+}
+
+@media (max-width: 1050px) {
+  .skills-universe-grid,
+  .journey3d-grid,
+  .contact-globe-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-universe-info,
+  .journey3d-active-card,
+  .contact-globe-info {
+    min-height: auto;
+  }
+
+  .skills-universe-live {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .skills-universe-heading,
+  .journey3d-heading,
+  .contact-globe-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .skills-universe-source,
+  .contact-globe-live {
+    width: 100%;
+  }
+
+  .skills-universe-stage,
+  .journey3d-stage,
+  .contact-globe-stage {
+    min-height: 29rem;
+  }
+
+  .skills-universe-selector {
+    max-height: none;
+  }
+
+  .contact-globe-profile,
+  .contact-globe-selector {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (
+  prefers-reduced-motion:
+    reduce
+) {
+  .contact-globe-live > i {
+    animation: none;
+  }
+}
+
+/* =========================================================
+   PORTFOLIO PHASE 7C END
+   ========================================================= */

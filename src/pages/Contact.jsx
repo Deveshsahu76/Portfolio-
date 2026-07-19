@@ -23,6 +23,7 @@ import {
   FiZap,
 } from 'react-icons/fi'
 import SEO from '../components/SEO'
+import ContactGlobe3D from '../components/three/ContactGlobe3D'
 import ResumeLink from '../components/ResumeLink'
 
 const API_URL =
@@ -273,6 +274,8 @@ export default function Contact() {
             </div>
           </aside>
         </section>
+
+        <ContactGlobe3D />
 
         <section className="contactx-quick-grid">
           {quickLinks.map(({ icon: Icon, label, value, href }) => (

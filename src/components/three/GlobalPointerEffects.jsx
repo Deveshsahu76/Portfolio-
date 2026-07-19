@@ -30,6 +30,23 @@ const surfaceSelector = [
   '.cinematic-contact-stack > a',
   '.project-orbit-content',
   '.project-orbit-browser',
+  '.skills-universe-info',
+  '.skills-universe-live',
+  '.skillsx-summary-card',
+  '.skillsx-group-card',
+  '.skillsx-skill-card',
+  '.skillsx-project-map > article',
+  '.skillsx-panel',
+  '.journey3d-active-card',
+  '.about-premium-profile-card',
+  '.about-premium-story-card',
+  '.about-premium-panel',
+  '.about-premium-value-card',
+  '.contact-globe-info',
+  '.contactx-profile-card',
+  '.contactx-quick-grid > a',
+  '.contactx-option-card',
+  '.contactx-panel',
 ].join(',')
 
 export default function GlobalPointerEffects() {
