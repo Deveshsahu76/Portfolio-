@@ -25,6 +25,11 @@ const surfaceSelector = [
   '.adminlead-card',
   '.resumeadmin-card',
   '.admin-profile-control',
+  '.cinematic-capability-card',
+  '.cinematic-audience-card',
+  '.cinematic-contact-stack > a',
+  '.project-orbit-content',
+  '.project-orbit-browser',
 ].join(',')
 
 export default function GlobalPointerEffects() {

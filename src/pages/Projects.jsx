@@ -24,6 +24,7 @@ import {
 } from 'react-icons/fi'
 import SEO from '../components/SEO'
 import ProjectEngineeringBadge from '../components/ProjectEngineeringBadge'
+import ProjectOrbitShowcase from '../components/ProjectOrbitShowcase'
 import projects from '../data/projects'
 
 const filters = [
@@ -308,6 +309,14 @@ export default function Projects() {
             <span>Deployment Proof</span>
           </div>
         </section>
+
+        <ProjectOrbitShowcase
+          projects={projects}
+          eyebrow="3D Project Navigator"
+          title="Navigate the project portfolio in three dimensions."
+          description="Select a project to preview its interface, technology stack, GitHub status and case study before exploring the complete technical details."
+          id="projects-3d-showcase"
+        />
 
         <section className="projectsx-section">
           <div className="projectsx-section-head">
