@@ -21763,3 +21763,244 @@ body {
 /* =========================================================
    FINAL PERFORMANCE MOBILE FIX END
    ========================================================= */
+
+/* =========================================================
+   PHASE 7E SAFE POLISH
+   Accessibility, runtime recovery and interaction stability
+   ========================================================= */
+
+:root {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  scroll-padding-top: 6rem;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  touch-action: manipulation;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+.site-main-content:focus {
+  outline: none;
+}
+
+.route-announcer {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.custom-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(103, 232, 249, 0.85);
+  border-radius: 999px;
+  pointer-events: none;
+  background: rgba(34, 211, 238, 0.12);
+  box-shadow:
+    0 0 0 5px rgba(34, 211, 238, 0.05),
+    0 0 24px rgba(34, 211, 238, 0.22);
+  will-change: transform;
+}
+
+:where(
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  [tabindex]:not([tabindex='-1'])
+):focus-visible {
+  outline: 3px solid rgba(34, 211, 238, 0.9);
+  outline-offset: 4px;
+}
+
+.site-skip-link {
+  position: fixed;
+  z-index: 10000;
+  left: 1rem;
+  top: 1rem;
+  transform: translateY(-180%);
+  border-radius: 999px;
+  padding: 0.75rem 1rem;
+  color: #020617;
+  background: #67e8f9;
+  font-size: 0.8rem;
+  font-weight: 900;
+  transition: transform 180ms ease;
+}
+
+.site-skip-link:focus {
+  transform: translateY(0);
+}
+
+.error-boundary-page {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 1rem;
+  color: #f8fafc;
+  background:
+    radial-gradient(
+      circle at 80% 10%,
+      rgba(251, 146, 60, 0.14),
+      transparent 28rem
+    ),
+    #020617;
+}
+
+.error-boundary-card {
+  width: min(100%, 42rem);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2rem;
+  padding: clamp(1.4rem, 5vw, 3rem);
+  background: rgba(15, 23, 42, 0.92);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
+}
+
+.error-boundary-icon {
+  display: grid;
+  width: 3.4rem;
+  height: 3.4rem;
+  place-items: center;
+  border-radius: 1rem;
+  color: #fdba74;
+  background: rgba(251, 146, 60, 0.1);
+  font-size: 1.5rem;
+}
+
+.error-boundary-card > span {
+  display: block;
+  margin-top: 1.2rem;
+  color: #fdba74;
+  font-size: 0.7rem;
+  font-weight: 950;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.error-boundary-card h1 {
+  margin: 0.7rem 0 0;
+  font-size: clamp(2.2rem, 7vw, 4.5rem);
+  font-weight: 1000;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.error-boundary-card p {
+  max-width: 34rem;
+  margin: 1rem 0 0;
+  color: #94a3b8;
+  font-weight: 650;
+  line-height: 1.75;
+}
+
+.error-boundary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.5rem;
+}
+
+.error-boundary-actions button,
+.error-boundary-actions a {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  padding: 0.75rem 1rem;
+  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 0.75rem;
+  font-weight: 950;
+}
+
+.error-boundary-actions button {
+  color: #020617;
+  border-color: transparent;
+  background: #fb923c;
+}
+
+@media (hover: none),
+(pointer: coarse) {
+  .custom-cursor {
+    display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .error-boundary-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .error-boundary-actions button,
+  .error-boundary-actions a {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .custom-cursor {
+    display: none !important;
+  }
+}
+
+@media print {
+  .site-navbar,
+  .site-footer,
+  .custom-cursor,
+  .site-skip-link {
+    display: none !important;
+  }
+
+  body,
+  #root,
+  .site-shell {
+    color: #000 !important;
+    background: #fff !important;
+  }
+
+  a {
+    color: #000 !important;
+    text-decoration: underline;
+  }
+}
+
+/* PHASE 7E SAFE POLISH END */

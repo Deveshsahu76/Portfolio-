@@ -1,17 +1,73 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
-export default function CustomCursor(){
-  const [pos, setPos] = useState({x:0,y:0})
+export default function CustomCursor() {
+  const cursorRef = useRef(null)
+  const [enabled, setEnabled] = useState(false)
 
-  useEffect(()=>{
-    function onMove(e){ setPos({x:e.clientX, y:e.clientY}) }
-    window.addEventListener('mousemove', onMove)
-    return ()=> window.removeEventListener('mousemove', onMove)
-  },[])
+  useEffect(() => {
+    const capabilityQuery = window.matchMedia(
+      '(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)'
+    )
+
+    let frame = 0
+    let pointerX = -100
+    let pointerY = -100
+
+    const updateCapability = () => {
+      setEnabled(capabilityQuery.matches)
+    }
+
+    const renderCursor = () => {
+      frame = 0
+
+      if (!cursorRef.current) {
+        return
+      }
+
+      cursorRef.current.style.transform =
+        `translate3d(${pointerX - 7}px, ${pointerY - 7}px, 0)`
+    }
+
+    const handlePointerMove = (event) => {
+      if (!capabilityQuery.matches) {
+        return
+      }
+
+      pointerX = event.clientX
+      pointerY = event.clientY
+
+      if (!frame) {
+        frame = window.requestAnimationFrame(renderCursor)
+      }
+    }
+
+    updateCapability()
+
+    window.addEventListener('pointermove', handlePointerMove, {
+      passive: true,
+    })
+
+    capabilityQuery.addEventListener?.('change', updateCapability)
+
+    return () => {
+      window.removeEventListener('pointermove', handlePointerMove)
+      capabilityQuery.removeEventListener?.('change', updateCapability)
+
+      if (frame) {
+        window.cancelAnimationFrame(frame)
+      }
+    }
+  }, [])
+
+  if (!enabled) {
+    return null
+  }
 
   return (
-    <div style={{pointerEvents:'none'}}>
-      <div style={{position:'fixed',left:pos.x-8,top:pos.y-8,width:16,height:16,borderRadius:9999,background:'rgba(124,58,237,0.9)',transform:'translateZ(0)',zIndex:9999}} />
-    </div>
+    <div
+      ref={cursorRef}
+      className="custom-cursor"
+      aria-hidden="true"
+    />
   )
 }

@@ -2,6 +2,7 @@ import React, { Suspense, lazy, useEffect } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import MainLayout from './layouts/MainLayout'
 import AnalyticsTracker from './components/AnalyticsTracker'
+import AppErrorBoundary from './components/AppErrorBoundary'
 
 
 const Home = lazy(() => import('./pages/Home'))
@@ -26,7 +27,7 @@ function ScrollToTop() {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: 'instant',
+      behavior: 'auto',
     })
   }, [pathname])
 
@@ -55,20 +56,11 @@ function PageFallback() {
 export default function App() {
   return (
     <>
-      <Suspense
-        fallback={
-          <div
-            className="global-3d-layer global-3d-fallback"
-            aria-hidden="true"
-          />
-        }
-      >
-      </Suspense>
-
-      <AnalyticsTracker />
+<AnalyticsTracker />
       <ScrollToTop />
 
-      <Suspense fallback={<PageFallback />}>
+      <AppErrorBoundary>
+        <Suspense fallback={<PageFallback />}>
         <Routes>
           {/* Public website routes */}
           <Route element={<MainLayout />}>
@@ -88,7 +80,7 @@ export default function App() {
             <Route path="*" element={<NotFound />} />
           </Route>
 
-          {/* Private admin routes Ã¢â‚¬â€ intentionally outside MainLayout */}
+          {/* Private admin routes - intentionally outside MainLayout */}
           <Route path="/admin/requests" element={<AdminRequests />} />
           <Route
             path="/admin-requests"
@@ -101,7 +93,8 @@ export default function App() {
             element={<Navigate to="/admin/analytics" replace />}
           />
         </Routes>
-      </Suspense>
+        </Suspense>
+      </AppErrorBoundary>
     </>
   )
 }
