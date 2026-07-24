@@ -27,6 +27,7 @@ import ResumeLink from '../components/ResumeLink'
 import LiveProfileStatus, { RecruiterAvailabilityList } from '../components/LiveProfileStatus'
 import LiveLeetCodeStat from '../components/LiveLeetCodeStat'
 import InterviewBookingForm from '../components/InterviewBookingForm'
+import RecruiterCommandDeck from '../components/RecruiterCommandDeck'
 import projects from '../data/projects'
 
 const API_URL =
@@ -327,6 +328,8 @@ export default function RecruiterHub() {
           )}
         </section>
 
+        <RecruiterCommandDeck />
+
         <LiveProfileStatus />
 
         <section className="recruiterx-section">
@@ -453,7 +456,7 @@ export default function RecruiterHub() {
           </div>
         </section>
 
-        <section className="recruiterx-contact-section">
+        <section id="recruiter-interview-request" className="recruiterx-contact-section">
           <div className="recruiterx-contact-copy">
             <span>Schedule Interview</span>
             <h2>Send a role or interview request.</h2>

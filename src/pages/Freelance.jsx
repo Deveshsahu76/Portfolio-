@@ -23,6 +23,7 @@ import {
   FiZap,
 } from 'react-icons/fi'
 import SEO from '../components/SEO'
+import FreelanceLaunchBoard from '../components/FreelanceLaunchBoard'
 import projects from '../data/projects'
 
 const API_URL =
@@ -348,6 +349,8 @@ export default function Freelance() {
             <span>Deployment</span>
           </div>
         </section>
+
+        <FreelanceLaunchBoard services={services} packages={packages} />
 
         <section className="freelancex-section">
           <div className="freelancex-section-head">
