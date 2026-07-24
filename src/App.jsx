@@ -3,8 +3,6 @@ import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import MainLayout from './layouts/MainLayout'
 import AnalyticsTracker from './components/AnalyticsTracker'
 
-const Global3DBackground = lazy(() => import('./components/three/Global3DBackground'))
-const GlobalPointerEffects = lazy(() => import('./components/three/GlobalPointerEffects'))
 
 const Home = lazy(() => import('./pages/Home'))
 const Projects = lazy(() => import('./pages/Projects'))
@@ -65,8 +63,6 @@ export default function App() {
           />
         }
       >
-        <Global3DBackground />
-        <GlobalPointerEffects />
       </Suspense>
 
       <AnalyticsTracker />

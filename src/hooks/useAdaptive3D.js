@@ -43,11 +43,11 @@ export default function useAdaptive3D() {
             ready: true,
 
             reducedMotion:
-              motionQuery.matches,
+              motionQuery.matches ||
+              window.innerWidth < 1024,
 
             lowQuality:
-              window.innerWidth <
-                800 ||
+              window.innerWidth < 1024 ||
               cores <= 4 ||
               memory <= 4,
 

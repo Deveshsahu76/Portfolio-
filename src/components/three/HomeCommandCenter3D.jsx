@@ -13,7 +13,6 @@ import {
   Float,
   Html,
   RoundedBox,
-  Sparkles,
 } from '@react-three/drei'
 import {
   MathUtils,
@@ -642,23 +641,6 @@ function CommandCenterScene({
           />
         )
       )}
-
-      <Sparkles
-        count={
-          lowQuality
-            ? 18
-            : 42
-        }
-        scale={[
-          8,
-          5,
-          5,
-        ]}
-        size={2}
-        speed={0.22}
-        opacity={0.6}
-        color="#ff9f43"
-      />
     </group>
   )
 }
@@ -708,8 +690,7 @@ export default function HomeCommandCenter3D() {
           motionQuery.matches,
 
         lowQuality:
-          window.innerWidth <
-            760 ||
+          window.innerWidth < 1024 ||
           Number(
             navigator
               .hardwareConcurrency ||

@@ -21348,3 +21348,418 @@ html[data-three-route='contact']
 /* =========================================================
    PORTFOLIO PHASE 7C END
    ========================================================= */
+
+/* =========================================================
+   FINAL PERFORMANCE MOBILE FIX START
+   ========================================================= */
+
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background:
+    radial-gradient(
+      circle at 85% 5%,
+      rgba(255, 122, 24, 0.13),
+      transparent 30rem
+    ),
+    radial-gradient(
+      circle at 10% 85%,
+      rgba(34, 211, 238, 0.08),
+      transparent 28rem
+    ),
+    linear-gradient(
+      145deg,
+      #02050b,
+      #07101b 52%,
+      #02050b
+    );
+  background-attachment: fixed;
+}
+
+.global-3d-layer,
+.global-pointer-aura {
+  display: none !important;
+}
+
+.live-3d-surface,
+.live-3d-surface:hover {
+  transform: none !important;
+  will-change: auto !important;
+}
+
+.live-3d-surface::before {
+  display: none !important;
+}
+
+.cinematic-home,
+.projectsx-page,
+.skillsx-page,
+.about-premium-page,
+.contactx-page,
+.recruiterx-page,
+.freelancex-page {
+  overflow-x: clip;
+}
+
+.home-featured-projects {
+  position: relative;
+  z-index: 3;
+  width:
+    min(
+      calc(100% - 1rem),
+      1360px
+    );
+  margin: 5rem auto 0;
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.1);
+  border-radius: 2.4rem;
+  padding:
+    clamp(
+      1.2rem,
+      4vw,
+      3rem
+    );
+  background:
+    linear-gradient(
+      145deg,
+      rgba(7, 12, 22, 0.94),
+      rgba(2, 5, 11, 0.92)
+    );
+  box-shadow:
+    0 30px 90px
+      rgba(0, 0, 0, 0.38);
+}
+
+.home-featured-projects-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.home-featured-projects-heading > div {
+  max-width: 50rem;
+}
+
+.home-featured-projects-heading span {
+  color: #fb923c;
+  font-size: 0.7rem;
+  font-weight: 950;
+  letter-spacing: 0.16em;
+}
+
+.home-featured-projects-heading h2 {
+  margin: 0.85rem 0 0;
+  color: #f8fafc;
+  font-size:
+    clamp(
+      2.2rem,
+      5vw,
+      4.7rem
+    );
+  font-weight: 1000;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.home-featured-projects-heading p {
+  max-width: 44rem;
+  margin: 1rem 0 0;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  line-height: 1.75;
+}
+
+.home-featured-projects-link {
+  display: inline-flex;
+  flex-shrink: 0;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border-radius: 999px;
+  padding: 0.75rem 1rem;
+  color: #05070c;
+  background:
+    linear-gradient(
+      135deg,
+      #fb923c,
+      #ff7a18
+    );
+  font-size: 0.75rem;
+  font-weight: 950;
+}
+
+.home-featured-projects-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.cinematic-data-layer,
+.cinematic-content-section,
+.cinematic-audience-section,
+.cinematic-final-section,
+.home-featured-projects {
+  content-visibility: auto;
+  contain-intrinsic-size:
+    1px 650px;
+}
+
+@media (max-width: 1023px) {
+  body {
+    background-attachment: scroll;
+  }
+
+  .route-transition-flash {
+    animation-duration:
+      200ms !important;
+  }
+
+  .cinematic-hero {
+    width: 100%;
+    min-height: auto;
+    padding:
+      6.5rem
+      1rem
+      2rem;
+  }
+
+  .cinematic-hero-grid {
+    display: flex;
+    min-height: auto;
+    flex-direction: column;
+    gap: 1.4rem;
+  }
+
+  .cinematic-hero-copy {
+    width: 100%;
+  }
+
+  .cinematic-hero-copy h1 {
+    max-width: 100%;
+    font-size:
+      clamp(
+        3.7rem,
+        20vw,
+        6.2rem
+      );
+    line-height: 0.84;
+    overflow-wrap: normal;
+  }
+
+  .cinematic-hero-copy h1 strong {
+    margin-left: 0;
+    -webkit-text-stroke:
+      1px rgba(
+        248,
+        250,
+        252,
+        0.8
+      );
+  }
+
+  .cinematic-hero-role {
+    margin-top: 1.4rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .cinematic-hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .cinematic-primary-button,
+  .cinematic-secondary-button,
+  .cinematic-icon-button {
+    width: 100%;
+  }
+
+  .cinematic-command-stage {
+    position: relative;
+    width: 100%;
+    min-height: 31rem;
+    margin-top: 0.3rem;
+    overflow: hidden;
+    border:
+      1px solid
+      rgba(255, 255, 255, 0.08);
+    border-radius: 1.6rem;
+    background:
+      rgba(255, 255, 255, 0.025);
+  }
+
+  .home3d-canvas {
+    display: none !important;
+  }
+
+  .home3d-static-fallback {
+    inset:
+      2rem 1rem 10rem;
+  }
+
+  .cinematic-profile-composition {
+    right: 1rem;
+    top: 1rem;
+    bottom: auto;
+    width: 7.2rem;
+  }
+
+  .cinematic-profile-label {
+    display: none;
+  }
+
+  .cinematic-live-terminal {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    width: auto;
+    min-width: 0;
+    padding: 0.8rem;
+  }
+
+  .cinematic-terminal-update,
+  .cinematic-floating-chip {
+    display: none !important;
+  }
+
+  .cinematic-live-metrics {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .cinematic-live-metrics article {
+    min-height: 5.2rem;
+    padding: 0.85rem;
+  }
+
+  .home-featured-projects {
+    width:
+      calc(100% - 1rem);
+    margin-top: 2rem;
+    border-radius: 1.4rem;
+    padding: 1rem;
+  }
+
+  .home-featured-projects-heading {
+    display: block;
+  }
+
+  .home-featured-projects-heading h2 {
+    font-size:
+      clamp(
+        2rem,
+        10vw,
+        3rem
+      );
+  }
+
+  .home-featured-projects-link {
+    width: 100%;
+    margin-top: 1.2rem;
+  }
+
+  .home-featured-projects-grid {
+    grid-template-columns: 1fr;
+    margin-top: 1.4rem;
+  }
+
+  .skills-universe-stage canvas,
+  .journey3d-stage canvas,
+  .contact-globe-stage canvas {
+    display: none !important;
+  }
+
+  .skills-universe-grid,
+  .journey3d-grid,
+  .contact-globe-grid {
+    display: block !important;
+  }
+
+  .skills-universe-stage,
+  .journey3d-stage,
+  .contact-globe-stage {
+    min-height: 18rem !important;
+    margin-top: 1rem;
+  }
+
+  .skills-universe-info,
+  .journey3d-active-card,
+  .contact-globe-info {
+    min-height: auto !important;
+    margin-top: 1rem;
+    padding: 1rem;
+  }
+
+  .cinematic-capability-grid,
+  .cinematic-audience-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cinematic-final-section {
+    display: block;
+    margin-top: 2rem;
+    border-radius: 1.4rem;
+    padding: 1.2rem;
+  }
+
+  .cinematic-contact-stack {
+    margin-top: 1.4rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .cinematic-hero-copy h1 {
+    font-size:
+      clamp(
+        3.2rem,
+        19vw,
+        4.8rem
+      );
+  }
+
+  .cinematic-command-stage {
+    min-height: 29rem;
+  }
+
+  .cinematic-profile-composition {
+    width: 6.3rem;
+  }
+
+  .cinematic-live-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .cinematic-live-metrics article {
+    border-right: 0;
+  }
+}
+
+@media (
+  prefers-reduced-motion:
+    reduce
+) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration:
+      0.01ms !important;
+    animation-iteration-count:
+      1 !important;
+  }
+}
+
+/* =========================================================
+   FINAL PERFORMANCE MOBILE FIX END
+   ========================================================= */

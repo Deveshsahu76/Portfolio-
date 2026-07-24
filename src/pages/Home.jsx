@@ -26,10 +26,10 @@ import SEO from '../components/SEO'
 import {
   homePageSchema,
 } from '../seo/schema'
-import profileImg from '../assets/portfolioimage.png'
+import profileImg from '../assets/portfolioimage.webp'
 import projects from '../data/projects'
+import ProjectCard from '../components/ProjectCard'
 import CinematicHomeHero from '../components/CinematicHomeHero'
-import ProjectOrbitShowcase from '../components/ProjectOrbitShowcase'
 import LivePortfolioStats from '../components/LivePortfolioStats'
 import LiveEngineeringPulse from '../components/LiveEngineeringPulse'
 import HomeStats from '../components/HomeStats'
@@ -157,15 +157,51 @@ export default function Home() {
 
         <LiveEngineeringPulse />
 
-        <ProjectOrbitShowcase
-          projects={
-            featuredProjects
-          }
-          eyebrow="Selected Product Work"
-          title="Explore projects through an interactive 3D showcase."
-          description="Switch between projects to inspect the interface, technology stack, development state, live deployment and detailed case study."
+        <section
           id="selected-projects"
-        />
+          className="home-featured-projects"
+        >
+          <div className="home-featured-projects-heading">
+            <div>
+              <span>
+                SELECTED PRODUCT WORK
+              </span>
+
+              <h2>
+                Projects built as working
+                full-stack products.
+              </h2>
+
+              <p>
+                Explore deployed applications,
+                their technical architecture,
+                development status and detailed
+                case studies.
+              </p>
+            </div>
+
+            <Link
+              to="/projects"
+              className="home-featured-projects-link"
+            >
+              View All Projects
+              <FiArrowRight />
+            </Link>
+          </div>
+
+          <div className="home-featured-projects-grid">
+            {featuredProjects
+              .slice(0, 3)
+              .map(
+                (project) => (
+                  <ProjectCard
+                    key={project.id}
+                    project={project}
+                  />
+                )
+              )}
+          </div>
+        </section>
 
         <section className="cinematic-content-section">
           <div className="cinematic-section-heading">
